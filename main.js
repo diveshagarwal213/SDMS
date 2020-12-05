@@ -1,8 +1,4 @@
 //topics button
-$(function(){
-  var tb = $("<button></button>").attr("id", "tb").text("Topics");
-  $(".topic").prepend(tb);
-});
 $(function () {
   $("#tb").click(function () {
     $(".unitcontent").slideToggle(600);

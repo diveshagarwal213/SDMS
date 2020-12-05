@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="sdms.css" />
     <link rel="stylesheet" type="text/css" href="cources.css" />
     <link rel="stylesheet" type="text/css" href="BCA.css" />
-    <link rel="stylesheet" type="text/css" href="main.css" />
     <meta name="viewport" content="Width=device-width, initial-scale=1.0" />
     <style>
       .fig1{
@@ -39,6 +38,7 @@
     <!--unit ends-->
     <!--topic-->
     <div class="topic">
+      <button id="tb">Topics</button>
      <div class="unitcontent"> </div>
 	   <div class="ads">ADS Block</div>
 	  </div>
@@ -46,6 +46,12 @@
     
     <!--section M (main)-->
     <div class="sectionM">
+      <div id="secMcontent">
+        <h3>Tips</h4>
+        <h4>1. Select Subject</h4>
+        <h4>2. Select Unit</h4>
+        <h4>3. Select Topic</h4>
+      </div>
       <div class="ads2">ADS Block</div>
       <button id="scrolltop">
 		    <svg height="48" viewBox="0 0 48 48" width="48"> <path d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z" /> <path d="M0 0h48v48h-48z" fill="none" /></svg> 
@@ -61,6 +67,7 @@
    <script>
      var gunit = 0;
      var gsubject = "";
+     var gtitle = "";
      $(document).ready(function(){
       //send data to load subject data 
       function sendfirst(){
@@ -113,10 +120,28 @@
               $(".unitcontent").append("<h2>" + data.message + "</h2>");
             }else{
               $.each(data, function(key, value){
-                $(".unitcontent").append("<button class = 'titleBtn' data-idtid = '" + value.tid + "'>" + value.title +"</button>");
+                $(".unitcontent").append("<button class = 'titleBtn' data-idtid = '" + value.tid + "' data-idtitle = '" + value.title + "'>" + value.title +"</button>");
               });
             }
           }
+        });
+      });
+      
+      //load tbody 
+      $(document).on("click",".titleBtn", function(){
+        var id2 = $(this).data("idtid");
+        $("#secMcontent").html("");
+        upidobj = {id: id2};
+        //console.log(upidobj);
+        var upidjson = JSON.stringify(upidobj);
+        $.ajax({
+            url:"http://localhost/try/loadsingle.php",
+            type: "POST",
+            data: upidjson,
+            success: function(data){
+                //console.log(data);
+                $("#secMcontent").prepend("<div>"+ data[0].tbody +"</div>");
+            }
         });
       });
       
@@ -124,12 +149,22 @@
       $(document).on("click",".subBtn", function(){
           $(".subBtn").css({"background-color": "black"});
           $(".unitBtn").css({"background-color": "black"});
-          $(this).css({"background-color": "#E09A3A"});
+          $(this).css({"background-color": "#179942"});
       });
       //active button color unit
       $(document).on("click",".unitBtn", function(){
           $(".unitBtn").css({"background-color": "black"});
-          $(this).css({"background-color": "#E09A3A"});
+          $(this).css({"background-color": "#179942"});
+      });
+      //active button color unit
+      $(document).on("click",".titleBtn", function(){
+          $(".titleBtn").css({"background-color": "black"});
+          $(this).css({"background-color": "#179942"});
+          gtitle = $(this).data("idtitle");
+          if(screen.width <= 521){
+            $("#tb").html("" + gtitle + "");
+            $("#tb").trigger("click");
+        };
       });
       
      });//ready
