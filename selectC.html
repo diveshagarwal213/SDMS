@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content=" Select cource | SDMS " />
+    <meta name="keywords" content=" MGSU, SDMS, Select Cource" />
+    <title>Select Cource | SDMS.com</title>
+    <meta name="viewport" content="Width=device-width, initial-scale=1.0" />
+    <script src="sdms.js"></script>
+    <link rel="stylesheet" type="text/css" href="sdms.css" />
+    <style>
+      .cards-comon { box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.45);}
+      @media (max-width: 1243px){
+        .cards{
+          padding-top: 5px;
+          overflow: scroll;
+        }
+      }
+      @media (max-width: 600px){
+        .A1{
+          text-align: center;
+        }
+      }
+    </style>
+    <!--<link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet"-->
+  </head>
+
+  <body>
+    <!--loading start-->
+    <div class="loader">
+      <h3><span class="thumb">loading...</span></h3>
+      <!--  <img src="lo.gif" alt="loading..."/>     -->
+    </div>
+    <!--loading end-->
+
+    <!--Section-A-->
+    <div class="sectionA A1">
+      <a href="index.html" class="logolink"><span class="sdmslogo">SDMS Courses</span></a>
+    </div>
+    <!--Section-dhead-->
+    <div class="f-hline2">
+      <div>
+        <input id="search" onkeyup="filter()" type="text" placeholder="search..eg.BCA,BSC"/>
+      </div>
+    </div>
+    <!--Section-D-->
+    <div class="sectionD">
+      <div class="cards">
+        <ul id="Menu">
+          <li>
+            <a href="#"><span class="dnone">BSC</span></a>
+            <div class="card1 cards-comon">
+              <div class="secb-img bimg1">
+                <p>BSC</p>
+              </div>
+              <div class="secb-fullform">
+                <h2><b>Bachelor of Science</b></h2>
+                <p>select part:</p>
+              </div>
+              <div class="secbparts">
+                <a href="cources\BSC1\PhyPaper1\phyPaper1Unit1.html">I</a>
+                <a href="">II</a>
+                <a href="">III</a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <a href="#"><span class="dnone">BCOM</span></a>
+            <div class="card2 cards-comon">
+              <div class="secb-img bimg2">
+                <p>BCOM</p>
+              </div>
+              <div class="secb-fullform">
+                <h2><b>Bachelor of Commerce</b></h2>
+                <p>select part:</p>
+              </div>
+              <div class="secbparts">
+                <a href="">I</a> <a href="">II</a> <a href="">III</a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <a href="#"><span class="dnone">BCA</span></a>
+            <div class="card3 cards-comon">
+              <div class="secb-img bimg3">
+                <p>BCA</p>
+              </div>
+              <div class="secb-fullform">
+                <h2><b>Bachelor of Computer &nbsp; Application</b></h2>
+                <p>select part:</p>
+              </div>
+
+              <div class="secbparts">
+                <a href="">I</a>
+                <a href="cources\BCA2\ComputerOrg\computerOrgUnit1.html"> II </a>
+                <a href="cources\BCA3\SoftwareEng\SoftwareEngUnit1.html">III</a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <a href="#"><span class="dnone">BA</span></a>
+            <div class="card4 cards-comon">
+              <div class="secb-img bimg4">
+                <p>BA</p>
+              </div>
+              <div class="secb-fullform">
+                <h2><b>Bachelor of Arts</b></h2>
+                <p>select part:</p>
+              </div>
+
+              <div class="secbparts">
+                <a href="">I</a> <a href="">II</a> <a href="">III</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--Section-footer-->
+    <div class="footer">
+      <div class="f-hline">Specially Designed for MGSU Students</div>
+
+      <div class="f-container">
+        <div class="fc1 fc-com">
+          <a href="">
+            <div class="fc1-logo">
+              <div class="fc1-l l1">
+                <img class="l2" src="icons\facebook.png" />
+              </div>
+              <div class="fc1-lt">FaceBook</div>
+            </div>
+          </a>
+
+          <a href="">
+            <div class="fc1-logo">
+              <div class="fc1-l l1">
+                <img class="l2" src="icons\instagram.png" />
+              </div>
+              <div class="fc1-lt">Instagram</div>
+            </div>
+          </a>
+
+          <a href="">
+            <div class="fc1-logo">
+              <div class="fc1-l">
+                <svg style="width: 55px; height: 55px;" viewBox="0 0 24 24">
+                  <path
+                    fill="#E62117"
+                    d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z"
+                  />
+                </svg>
+              </div>
+              <div class="fc1-lt">YouTube</div>
+            </div>
+          </a>
+        </div>
+        <div class="fc2 fc-com">
+          <ul class="fc2-ul">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Courses</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="">Term of Use</a></li>
+            <li><a href="">F&Q </a></li>
+          </ul>
+        </div>
+        <div class="fc3 fc-com">
+          <p>
+            <span>SDMS</span><br /><br /><i
+              >"it doesn't matter what others are doing. only matters what YOU are doing."</i>
+              <br /><br />Email Us <br />sdms@gmail.com(only for example)
+          </p>
+        </div>
+      </div>
+
+      <!--<div class="copyright">&copy; 2020 SDMS.All reights resived.</div>-->
+    </div>
+  </body>
+</html>

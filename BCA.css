@@ -1,0 +1,85 @@
+.topic {
+  border-right : 2px solid #E09A3A;
+  border-bottom : 2px solid #E09A3A;
+}
+.unit {
+  border-bottom: 3.5px solid #E09A3A;
+}
+.subject {
+  border-bottom : 4px solid #E09A3A;
+  border-top : 4px solid #E09A3A;
+}
+.topic button.active {
+  color: white;
+  background-color: #E09A3A;
+}
+.topic button:hover {
+  color: white;
+  background-color: #E09A3Abd;
+}
+
+.unit button:hover {
+  color: white;
+  background-color: #E09A3Abd;
+}
+
+.subject button:hover {
+  color: white;
+  background-color: #E09A3Abd;
+}
+
+.selectsub.active {
+  color: white;
+  background-color: #E09A3A;
+}
+.selectsub:hover {
+  color: white;
+  background-color: #E09A3A;
+}
+.courcehead {
+  color: #E09A3A;
+}
+.paint {
+  color: #E09A3A;
+  font-size: 140%;
+}
+.paint2 {
+  color: #E09A3A;
+}
+h2 {
+  color: #E09A3A;
+}
+.paint3 {
+  text-decoration: underline;
+  text-decoration-color: #E09A3A;
+}
+.paint4 {
+  background-color: #E09A3A;
+  border-radius: 5px;
+}
+b {
+  color: #E09A3A;
+}
+#defaultOpen {
+  background-color: #E09A3A;
+}
+#defaultOpen2 {
+  background-color: #E09A3A;
+}
+#scrolltop {
+  background-color: #E09A3A;
+}
+.topiclink svg:hover {
+  fill: #E09A3A;
+}
+.f-hline{
+  background-color: #E09A3A;
+}
+.ytcont{
+  border: 1px solid #E09A3A;
+}
+@media (max-width: 521px) {
+  .topic {
+    border-right: none;
+  }
+}

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDMS Data Management</title>
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" href="c.css">
+    <link rel="stylesheet" href="my.css">
+</head>
+<body>
+    <h1 class="heading">SDMS Data Management</h1>
+    <div id="formDiv">
+        <h2 class="heading">Insert New Data</h2>
+        <form id="inputForm">
+            <div id="one1">
+                <label for="Cname">Cource Name</label> 
+                <input type="text" id="Cname" placeholder="eg:BCA">
+                <label for="Cyear">Cource Year</label>
+                <input type="number" id="Cyear">
+            </div>
+            <div id="two2">
+                <label for="Csubject">Cource Subject</label>
+                <input type="text" id="Csubject">
+                <label for="Sunit">Subject Unit</label>
+                <input type="number" id="Sunit">
+            </div>
+            <label for="title">Toipc Title<span class="orange">*</span></label>
+            <input type="text" id="title">
+            <br>
+            <label for="Tbody">Title Body<span class="orange">*</span></label>
+            <textarea  id="Tbody"></textarea>
+            <input type="submit" id="saveButton" class="Button1" value="Submit">
+        </form>
+    </div>
+    <div id="searchDiv">
+        <h2 class="heading">Search Topic</h2>
+        <input type="text" id="searchBox">
+    </div>
+    <div id="updateDiv">
+        <div id="updateformdiv">
+            <h2 class="heading">Update data</h2>
+            <form id="updateForm">
+                <div id="one1">
+                    <label for="upcname">Cource Name</label> 
+                    <input type="text" id="upcname" >
+                    <input type="text" id="uptid" hidden>
+                    <label for="upcyear">Cource Year</label>
+                    <input type="number" id="upcyear">
+                </div>
+                <div id="two2">
+                    <label for="upcsubject">Cource Subject</label>
+                    <input type="text" id="upcsubject">
+                    <label for="upsunit">Subject Unit</label>
+                    <input type="number" id="upsunit">
+                </div>
+
+                <label for="uptitle">Toipc Title<span class="orange">*</span></label>
+                <input type="text" id="uptitle">
+                <br>
+                <label for="uptbody">Title Body<span class="orange">*</span></label>
+                <textarea  id="uptbody"></textarea>
+                <input type="submit" id="updateButton" class="Button1" value="Update">
+                <button class="Button2">Cancle</button>
+            </form>
+        </div>
+    </div>
+    <div id="loadDiv">
+        <table id="loadTable">
+            <tr>
+                <th>ID</th>
+                <th>Cource Name</th>
+                <th>Cource Year</th>
+                <th>Cource Subject</th>
+                <th>Subject Unit</th>
+                <th>Title</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            <tbody id="tableData">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+        $(document).ready(function(){
+            
+            //loadData
+            function loadTable(){
+                $("#tableData").html("");
+                $.ajax({
+                    url:"http://localhost/try/load.php",
+                    type: "GET",
+                    success: function(data){
+                        //console.log(data);
+                        if(data.status == false){
+                            $("#tableData").append("<tr><td><h2>" + data.message + "</h2></td></tr>"); 
+                        }else{
+                            $.each(data, function(key, value){
+                                $("#tableData").append("<tr><td>" + value.tid + "</td><td>" + value.cname + "</td><td>" + value.cyear + "</td><td>" + value.csubject + "</td><td>" + value.sunit + "</td><td>" + value.title + "</td>"
+                                    + "<td> <button class = 'updateBtn' data-idupdate = '" + value.tid + "'>Update</button> </td>" + "<td> <button class = 'deleteBtn' data-idDelete ='" + value.tid + "'>Delete</button> </td>" );
+                            });
+                        }
+                    }
+                });
+            }
+            loadTable();
+            
+            //insertData
+            $("#saveButton").on("click", function(e){
+                e.preventDefault();
+                var Cname = $("#Cname").val();
+                var Cyear = $("#Cyear").val();
+                var Csubj = $("#Csubject").val();
+                var Sunit = $("#Sunit").val();
+                var Title = $("#title").val();
+                var Tbody = $("#Tbody").val();
+                //var tbodye = encodeURI(Tbody);
+                //var obj = {cname: Cname, cyear: Cyear, csubject: Csubj, sunit: Sunit, title: Title, tbodyE: tbodye};
+                var obj = {cname: Cname, cyear: Cyear, csubject: Csubj, sunit: Sunit, title: Title, tbodyE: Tbody};
+
+                var d = JSON.stringify(obj);
+                $.ajax({
+                    url:"http://localhost/try/insert.php",
+                    type: "POST",
+                    data: d,
+                    success: function(data){
+                        if(data.status == false){
+                            alert(data.message);
+                        }else{
+                            loadTable();
+                        }
+                    }
+                });
+                $("#inputForm").trigger("reset");
+
+            });
+            
+            //fetch data for update
+            $(document).on("click",".updateBtn", function(){
+                $("#updateDiv").show();
+                var upid2 = $(this).data("idupdate");
+                upidobj = {id: upid2};
+                //console.log(upidobj);
+                var upidjson = JSON.stringify(upidobj);
+                $.ajax({
+                    url:"http://localhost/try/loadsingle.php",
+                    type: "POST",
+                    data: upidjson,
+                    success: function(data){
+                        //console.log(data);
+                        $("#uptid").val(data[0].tid);
+                        $("#upcname").val(data[0].cname);
+                        $("#upcyear").val(data[0].cyear);
+                        $("#upcsubject").val(data[0].csubject);
+                        $("#upsunit").val(data[0].sunit);
+                        $("#uptitle").val(data[0].title);
+                        //var tbodyee =  decodeURI(data[0].tbody);
+                        //console.log(tbodyee);
+                        //$("#uptbody").val(tbodyee);
+                        $("#uptbody").val(data[0].tbody);
+                    }
+                });
+            });
+            
+            //update fetched data
+            $("#updateButton").on("click", function(a){
+                a.preventDefault();
+                var idd = $("#uptid").val();
+                var Cname = $("#upcname").val();
+                var Cyear = $("#upcyear").val();
+                var Csubj = $("#upcsubject").val();
+                var Sunit = $("#upsunit").val();
+                var Title = $("#uptitle").val();
+                var Tbody = $("#uptbody").val();
+                //var tbodye = encodeURI(Tbody);
+                //var obj = {cname: Cname, cyear: Cyear, csubject: Csubj, sunit: Sunit, title: Title, tbodyE: tbodye};
+                var obj3 = {cname: Cname, cyear: Cyear, csubject: Csubj, sunit: Sunit, title: Title, tbodyE: Tbody, id: idd};
+                var json2 = JSON.stringify(obj3);
+                //console.log(json2);
+
+                $.ajax({
+                    url:"http://localhost/try/update.php",
+                    type:"PUT",
+                    data: json2,
+                    success: function(data){
+                        //console.log(data);
+                        if(data.status == false){
+                            alert(data.message);
+                        }else{
+                            loadTable();
+                            $("#updateDiv").hide();
+                            
+                        }
+                    }
+                });
+
+            });
+            
+            //delete data
+            $(document).on("click",".deleteBtn", function(){
+                var deid = $(this).data("iddelete");
+                deobj = {id: deid};
+                //console.log(upidobj);
+                var dejson = JSON.stringify(deobj);
+                //console.log(dejson);
+                var element = this;
+                if(confirm("Really Want to Delete ?")){
+                    $.ajax({
+                        url:"http://localhost/try/delete.php",
+                        type:"DELETE",
+                        data: dejson,
+                        success: function(data){
+                            if(data.status == false){
+                                alert(data.message);
+                            }else{
+                                $(element).closest("tr").fadeOut();
+                            }
+                        }
+                    });
+                }
+            });
+            
+            //search data
+            $("#searchBox").on("keyup", function(){
+                var search1 = $("#searchBox").val();
+                $("#tableData").html(""); 
+                //console.log(search1);   
+                $.ajax({
+                    url: "http://localhost/try/search.php?search=" + search1,
+                    type: "GET",
+                    success: function(data){
+                        if(data.status == false){
+                            $("#tableData").append("<tr><td><h2>" + data.message + "</h2></td></tr>"); 
+                        }else{
+                            $.each(data, function(key, value){
+                                $("#tableData").append("<tr><td>" + value.tid + "</td><td>" + value.cname + "</td><td>" + value.cyear + "</td><td>" + value.csubject + "</td><td>" + value.sunit + "</td><td>" + value.title + "</td>"
+                                    + "<td> <button class = 'updateBtn' data-idupdate = '" + value.tid + "'>Update</button> </td>" + "<td> <button class = 'deleteBtn' data-idDelete ='" + value.tid + "'>Delete</button> </td>" );
+                            });
+                        }
+                    }
+                });
+            });
+            
+            //closebtn
+            $("#closeBtn").on("click",function(){
+                $("#updateDiv").hide();
+            });
+        });//ready
+        
+
+    </script>
+
+</body>
+</html>

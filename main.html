@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery.js"></script>
+    <title>Unit-I | Software Engineering | BCA-III | SDMS.com</title>
+    <link rel="stylesheet" type="text/css" href="sdms.css" />
+    <link rel="stylesheet" type="text/css" href="cources.css" />
+    <link rel="stylesheet" type="text/css" href="BCA.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <meta name="viewport" content="Width=device-width, initial-scale=1.0" />
+    <style>
+      .fig1{
+        max-width: 500px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!--loading start-->
+    <div class="loader"><h3><span class="thumb">loading...</span></h3></div>
+
+    <!--Section-A-->
+    <div class="sectionA A1">
+      <a href="..\..\..\index.html" class="logolink"><span class="sdmslogo">SDMS</span></a>
+      <span class="courcehead"><b>BCA-|||</b></span>
+    </div>
+	  <!--subject-->
+	  <button class="selectsub"> Select Subject <span id="cross" >  &#9652 </span> <span id="cross2" > &#9662</span> </button>
+    <div class="subject"></div>
+    <!--unit-->
+    <div class="unit">
+      <button class = "unitBtn" data-idunit = "1">I</button>
+      <button class = "unitBtn" data-idunit = "2">II</button>
+      <button class = "unitBtn" data-idunit = "3">III</button>
+      <button class = "unitBtn" data-idunit = "4">IV</button>
+      <button class = "unitBtn" data-idunit = "5">V</button>
+    </div>
+    <!--unit ends-->
+    <!--topic-->
+    <div class="topic">
+     <div class="unitcontent"> </div>
+	   <div class="ads">ADS Block</div>
+	  </div>
+    <!--topic End-->
+    
+    <!--section M (main)-->
+    <div class="sectionM">
+      <div class="ads2">ADS Block</div>
+      <button id="scrolltop">
+		    <svg height="48" viewBox="0 0 48 48" width="48"> <path d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z" /> <path d="M0 0h48v48h-48z" fill="none" /></svg> 
+	    </button>
+	  </div>
+    <!--section ends-->
+
+   <!--Section-footer-->
+   <div class="footer"></div>
+   <script src="main.js"></script>
+   <script src="sdms.js"></script>
+
+   <script>
+     var gunit = 0;
+     var gsubject = "";
+     $(document).ready(function(){
+      //send data to load subject data 
+      function sendfirst(){
+        var sub = "BCA";
+        var y = 3;
+        var obj = {subject: sub, year: y};
+        var send = JSON.stringify(obj);
+        //console.log(send);
+        $.ajax({
+          url:"http://localhost/try/loadsubject.php",
+          type:"POST",
+          data: send,
+          success: function(data){
+            //console.log(data);
+            if(data.status == false){
+              $(".subject").append("<h2>" + data.message + "</h2>");
+            }else{
+              $.each(data, function(key, value){
+                  $(".subject").append("<button class = 'subBtn' data-idsub = '" + value.csubject + "'>" + value.csubject +"</button>");
+              });
+             }
+          }
+        });
+      };
+      sendfirst();
+
+      // store global subject data , select subject 
+      $(document).on("click",".subBtn", function(){
+        gsubject = $(this).data("idsub"); //global
+        $(".selectsub").html(''+ gsubject +' <span id="cross2" >  &#9652 </span> <span id="cross" > &#9662</span>');
+        if(screen.width <= 521){
+          $(".selectsub").trigger("click");
+        };
+      });
+      
+      // store global unit data and load topics
+      $(document).on("click",".unitBtn", function(){
+        gunit = $(this).data("idunit"); //global
+        var obj = {unitId: gunit, subjectId: gsubject};
+        var senddata = JSON.stringify(obj);
+        //console.log(senddata);
+        $(".unitcontent").html("");
+        $.ajax({
+          url:"http://localhost/try/loadtitle.php",
+          type:"POST",
+          data: senddata,
+          success: function(data){
+            //console.log(data);
+            if(data.status == false){
+              $(".unitcontent").append("<h2>" + data.message + "</h2>");
+            }else{
+              $.each(data, function(key, value){
+                $(".unitcontent").append("<button class = 'titleBtn' data-idtid = '" + value.tid + "'>" + value.title +"</button>");
+              });
+            }
+          }
+        });
+      });
+      
+      //active button color sub
+      $(document).on("click",".subBtn", function(){
+          $(".subBtn").css({"background-color": "black"});
+          $(".unitBtn").css({"background-color": "black"});
+          $(this).css({"background-color": "#E09A3A"});
+      });
+      //active button color unit
+      $(document).on("click",".unitBtn", function(){
+          $(".unitBtn").css({"background-color": "black"});
+          $(this).css({"background-color": "#E09A3A"});
+      });
+      
+     });//ready
+   </script>
+  </body>
+</html>

@@ -1,0 +1,338 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  color: white;
+  background: black;
+}
+h1, h2, h3{
+  text-transform: uppercase;
+}
+.active {
+  background-color: white;
+  color: black;
+}
+.courcehead {
+  float: right;
+  margin-right: 15%;
+  font-family: "Megrim";
+  font-size: 400%;
+  letter-spacing: 5px;
+}
+@-webkit-keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+/*subject*/
+
+.subject {
+  /*border: 4px solid white;*/
+  color: white;
+  overflow: hidden;
+}
+.subject button {
+  background-color: inherit;
+  color: white;
+  padding: 22px 0px;
+  width: 18%;
+  border: none;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.subject button:hover {
+  color: dimgrey;
+  background-color: #ddd;
+}
+.subject a {
+  text-decoration: none;
+}
+
+/*papers*/
+
+.papers {
+  border: 1px solid white;
+  color: white;
+  overflow: hidden;
+}
+.papers button {
+  display: block;
+  background-color: inherit;
+  color: white;
+  padding: 22px 0px;
+  width: 33.3%;
+  border: none;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 100%;
+  font-weight: bold;
+  float: left;
+}
+.papers button:hover {
+  color: dimgrey;
+  background-color: #ddd;
+}
+.papers a {
+  text-decoration: none;
+}
+
+/*unit*/
+
+.unit {
+  /*border: 3.5px solid white;*/
+  color: white;
+  overflow: hidden;
+}
+.unit button {
+  display: block;
+  background-color: inherit;
+  color: white;
+  padding: 20px 0px;
+  width: 20%;
+  border: none;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 120%;
+  float: left;
+}
+.unit button.active {
+  color: black;
+  background-color: white;
+}
+.unit button:hover {
+  color: dimgrey;
+  background-color: #ddd;
+}
+.subjcontent {
+  -webkit-animation: fadeEffect 1s;
+  animation: fadeEffect 1s;
+}
+
+/*topic*/
+
+.topic {
+  /*border: 2px solid white;*/
+  color: white;
+  width: 20.2%;
+  float: left;
+}
+.topic button {
+  display: block;
+  background-color: inherit;
+  color: white;
+  padding: 18px 0px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 105%;
+}
+.topic button.active {
+  color: black;
+  background-color: white;
+}
+
+.topic button:hover {
+  color: dimgrey;
+  background-color: #ddd;
+}
+.unitcontent {
+  -webkit-animation: fadeEffect 1s;
+  animation: fadeEffect 1s;
+}
+
+img {
+  width: 100%;
+  margin: 1%;
+  height: auto;
+}
+
+/*section-ads*/
+
+.ads {
+  border: 1px solid red;
+  display: none;
+  width: 100%;
+  min-height: 100px;
+}
+.ads2 {
+  border: 1px solid red;
+  display: none;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  min-height: 100px;
+}
+
+/*---------------------------------------------------------------------section-M*/
+
+.sectionM {
+  display: block;
+  width: 77%;
+  margin-left: 20.5%;
+  color: white;
+  min-height: 800px;
+  padding: 10px;
+  font-size: 120%;
+}
+.heading {
+  font-size: 200%;
+}
+
+.tabcontent {
+  -webkit-animation: fadeEffect 1s;
+  animation: fadeEffect 1s;
+}
+table,th,td {
+  border: 1px solid dimgray;
+  border-collapse: collapse;
+  text-align: center;
+  table-layout: fixed;
+  color: white;
+}
+th,
+td {
+  padding: 10px;
+}
+td {
+  text-align: left;
+}
+.topicby{
+  margin-left: 80%;
+}
+@-webkit-keyframes fadeEffect2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeEffect2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+#scrolltop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-property: background-color, color;
+  -webkit-animation: fadeEffect2 1s;
+  animation: fadeEffect2 1s;
+  opacity: 0.5;
+}
+#scrolltop:hover {
+  opacity: 1;
+}
+.topiclink {
+  float: right;
+  cursor: pointer;
+}
+.selectsub {
+  display: none;
+  background-color: inherit;
+  color: white;
+  padding: 18px 0px;
+  width: 100%;
+  border: 2px solid #179942;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  font-size: 105%;
+}
+
+#cross {
+  display: none;
+}
+.ytcont {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+  display: none;
+}
+.responsiveif {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+/*------------------------------------------------------media starts */
+@media (max-width: 521px) {
+  .topic {
+    float: none;
+    width: 100%;
+  }
+  .sectionM {
+    width: 100%;
+    margin-left: 0%;
+  }
+  .subject button {
+    width: 30%;
+  }
+  .subject {
+    width: 100%;
+    display: none;
+  }
+  .courcehead {
+    font-size: 400%;
+    margin-right: 5%;
+  }
+  .selectsub {
+    display: block;
+  }
+  .topicby{
+    margin-left: 60%;
+  }
+}
+@media (max-width: 463px) {
+  .courcehead {
+    font-size: 290%;
+  }
+}
+@media (max-width: 366px) {
+  .courcehead {
+    font-size: 260%;
+  }
+}
