@@ -4,12 +4,10 @@ $(function () {
     $(".unitcontent").slideToggle(600);
   });
 });
-$(function () {
-  $(".topiclink").click(function () {
-    $(".ytcont").slideToggle(600);
-  });
-});
 
+$(document).on("click","#youtubeBtn", function(){
+  $(".ytcont").slideToggle(600);
+});
 //select Subject button
 $(function () {
   $(".selectsub").click(function () {
@@ -30,7 +28,6 @@ function scrollFunction() {
     scrolltop.style.display = "none";
   }
 }
-
 scrolltop.addEventListener("click", backtotop);
 
 function backtotop() {

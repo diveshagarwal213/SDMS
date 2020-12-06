@@ -19,9 +19,18 @@
     <!--loading start-->
     <div class="loader"><h3><span class="thumb">loading...</span></h3></div>
 
+    <!--Section-x-->
+    <div id="navDiv">
+      <nav>
+        <a href="index2.html">SDMS</a>
+        <a href="index2.html">Home</a>
+        <a >Select Cource</a>                
+        <a href="read.html">Q</a>
+      </nav>
+    </div>
     <!--Section-A-->
     <div class="sectionA A1">
-      <a href="..\..\..\index.html" class="logolink"><span class="sdmslogo">SDMS</span></a>
+      <a href="index2.html" class="logolink"><span class="sdmslogo">SDMS</span></a>
       <span class="courcehead"><b>BCA-|||</b></span>
     </div>
 	  <!--subject-->
@@ -47,10 +56,8 @@
     <!--section M (main)-->
     <div class="sectionM">
       <div id="secMcontent">
-        <h3>Tips</h4>
-        <h4>1. Select Subject</h4>
-        <h4>2. Select Unit</h4>
-        <h4>3. Select Topic</h4>
+        <h2>Tips : - </h2>
+        <p> First Select COURCE and YEAR then SUBJECT, UNIT and TOPIC </p>
       </div>
       <div class="ads2">ADS Block</div>
       <button id="scrolltop">
@@ -65,10 +72,12 @@
    <script src="sdms.js"></script>
 
    <script>
+     //global variables
      var gunit = 0;
      var gsubject = "";
      var gtitle = "";
      $(document).ready(function(){
+      
       //send data to load subject data 
       function sendfirst(){
         var sub = "BCA";
@@ -131,7 +140,7 @@
       $(document).on("click",".titleBtn", function(){
         var id2 = $(this).data("idtid");
         $("#secMcontent").html("");
-        upidobj = {id: id2};
+        var upidobj = {id: id2};
         //console.log(upidobj);
         var upidjson = JSON.stringify(upidobj);
         $.ajax({

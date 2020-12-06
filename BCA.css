@@ -78,6 +78,26 @@ b {
 .ytcont{
   border: 1px solid #179942;
 }
+/*--nav---*/
+#navDiv {
+  border: 1px solid red;
+  width: 100%;
+  margin-top: 10px;
+  padding: 1px;
+}
+#navDiv a { 
+  color: white;  
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #179917;
+  margin-top: 10px;
+  margin-right: calc(100% - 99%);
+  font-family: "Megrim";
+  font-size: 400%;
+  letter-spacing: 10px;
+  /*margin-left: 5%;*/
+}
+
 @media (max-width: 521px) {
   .topic {
     border-right: none;
