@@ -1,3 +1,10 @@
+<?php
+ include "conn.php";
+ session_start();
+ if (isset($_SESSION['username'])) {
+     header("Location: {$hostname}/another.php");
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,16 +64,17 @@
                 var inputp = $("#inputpass").val();
                 var obj = {inputuser: inputn, inputpass: inputp};
                 var jsondata2 = JSON.stringify(obj);
-                console.log(jsondata2);
+                //console.log(jsondata2);
                 $.ajax({
                 url:"http://localhost/sdms/usercheck.php",
                 type:"POST",
                 data: jsondata2,
                 success: function(data){
-                    console.log(data);
-                    if (data.status == false) {
-                        alert(data.message);
-                    } else {
+                    //console.log(data);
+                    if (data.status == true) {
+                        location.href = "http://localhost/sdms/another.php";
+                    } 
+                    else {
                         alert(data.message);
                     }
                 }

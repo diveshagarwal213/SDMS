@@ -11,7 +11,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 $fullname = $data['fullname'] ;
 $username = $data['username'];
 $email = $data['email'] ;
-$password = md5($data['password'],true);
+$password = md5($data['password']);
 
 $D = mysqli_query($conn,"SELECT * FROM userdata WHERE uemail = '$email' or username = '$username'");
 
