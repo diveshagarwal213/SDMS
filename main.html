@@ -23,15 +23,22 @@
     <div id="navDiv">
       <nav>
         <a href="index2.html">SDMS</a>
-        <a href="index2.html">Home</a>
-        <a >Select Cource</a>                
+        <a id="selectcBtn">Select Cource</a>                
         <a href="read.html">Q</a>
       </nav>
     </div>
-    <!--Section-A-->
-    <div class="sectionA A1">
-      <a href="index2.html" class="logolink"><span class="sdmslogo">SDMS</span></a>
-      <span class="courcehead"><b>BCA-|||</b></span>
+    <!--select cource-->
+    <div id="selectDiv">
+      <div id="cbDiv">
+        <button class="cBtn" data-idcource = "BCA">BCA</button>
+        <button class="cBtn" data-idcource = "BSC">BSC</button>
+        <button class="cBtn" data-idcource = "BCOM">BCOM</button>
+      </div>
+      <hr>
+      <h4>Select Year</h4>
+      <button class="yearBtn" data-idyear = "1">ONE</button>
+      <button class="yearBtn" data-idyear = "2">TWO</button>
+      <button class="yearBtn" data-idyear = "3">THREE</button>
     </div>
 	  <!--subject-->
 	  <button class="selectsub"> Select Subject <span id="cross" >  &#9652 </span> <span id="cross2" > &#9662</span> </button>
@@ -45,6 +52,7 @@
       <button class = "unitBtn" data-idunit = "5">V</button>
     </div>
     <!--unit ends-->
+
     <!--topic-->
     <div class="topic">
       <button id="tb">Topics</button>
@@ -76,13 +84,20 @@
      var gunit = 0;
      var gsubject = "";
      var gtitle = "";
+     var gcource = "";
+     var gyear = 1;
      $(document).ready(function(){
       
-      //send data to load subject data 
-      function sendfirst(){
-        var sub = "BCA";
-        var y = 3;
-        var obj = {subject: sub, year: y};
+      //gcource
+      $(".cBtn").on("click", function () {
+        gcource = $(this).data("idcource"); //global
+      });
+      
+      //send year and cource data to load subject data
+      $(".yearBtn").on("click", function () {
+        gyear = $(this).data("idyear"); //global
+        $(".subject").html("");
+        var obj = {subject: gcource, year: gyear};
         var send = JSON.stringify(obj);
         //console.log(send);
         $.ajax({
@@ -100,8 +115,7 @@
              }
           }
         });
-      };
-      sendfirst();
+      }); 
 
       // store global subject data , select subject 
       $(document).on("click",".subBtn", function(){
@@ -175,7 +189,23 @@
             $("#tb").trigger("click");
         };
       });
-      
+      //active btn color
+      $(document).on("click",".cBtn", function(){
+          $(".cBtn").css({"background-color": "black"});
+          $(".yearBtn").css({"background-color": "black"});
+          $(this).css({"background-color": "#179942"});
+      });
+      //active btn color
+      $(document).on("click",".yearBtn", function(){
+          $(".yearBtn").css({"background-color": "black"});
+          $(this).css({"background-color": "#179942"});
+          $("#selectDiv").slideUp(1000);
+          $("#selectcBtn").html("" + gcource + "-" + gyear + "")
+      });
+      //selectcBtn
+      $("#selectcBtn").on("click",function(){
+        $("#selectDiv").slideDown(500);
+      });
      });//ready
    </script>
   </body>

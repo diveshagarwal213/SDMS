@@ -2,7 +2,7 @@
 
 header('Content-Type: application/json');//tells which type of data will this api return  
 header('Access-Control-Allow-Origin: *');// which site have acess to this api *->all
-header('Access-Control-Allow-Methods: GET');
+header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 // x methed tell that data can only be recived from ajax
 include "conn.php";
