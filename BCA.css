@@ -133,6 +133,7 @@ b {
 }
 #topicBy {
   text-align: right;
+  margin-top: 5px;
 }
 
 @media (max-width: 521px) {

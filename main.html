@@ -80,7 +80,7 @@
         <h2>Tips : - </h2>
         <p> First Select COURCE and YEAR then SUBJECT, UNIT and TOPIC </p>
       </div>
-      <div id="topicBy">Divesh</div>
+      <div id="topicBy"> Admin(not working)</div>
       <div class="ads2">ADS Block</div>
       <button id="scrolltop">
 		    <svg height="48" viewBox="0 0 48 48" width="48"> <path d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z" /> <path d="M0 0h48v48h-48z" fill="none" /></svg> 
@@ -100,6 +100,7 @@
      var gtitle = "";
      var gcource = "BCA";
      var gyear = 1;
+     var topicBy = 01;
      $(document).ready(function(){
       
       //load first
@@ -108,7 +109,7 @@
         var send = JSON.stringify(obj);
         //console.log(send);
         $.ajax({
-          url:"http://localhost/try/loadsubject.php",
+          url:"http://localhost/sdms/loadsubject.php",
           type:"POST",
           data: send,
           success: function(data){
@@ -124,6 +125,36 @@
           }
         });
       } loadFirst();
+      //empty;
+      function emptyAll() {
+        $("#secMcontent").html("<h2>Tips : - </h2> <p> First Select COURCE and YEAR then SUBJECT, UNIT and TOPIC </p>");
+        $(".unitcontent").html("");
+        $(".subject").html("");
+        $(".unitBtn").css({"background-color": "black"});
+        $("#topicBy").html("");
+      }
+      //byuser
+      function byUser() {
+          if (topicBy !== 01) {
+            var obj = {userid : topicBy};
+          var jsondata = JSON.stringify(obj);
+          //console.log(jsondata);
+          $.ajax({
+          url : "http://localhost/sdms/loadsingleuser.php",
+          type : "POST",
+          data : jsondata,
+          success: function(data){
+            if (data.status == false) {
+              $("#topicBy").html("Admin");
+            } else {
+              $("#topicBy").html("by " + data[0].username);
+            }
+          }
+          });
+          } else {
+            $("#topicBy").html("Admin");
+          }
+        } byUser();
       //gcource
       $(".cBtn").on("click", function () {
         gcource = $(this).data("idcource"); //global
@@ -132,12 +163,12 @@
       //send year and cource data to load subject data
       $(".yearBtn").on("click", function () {
         gyear = $(this).data("idyear"); //global
-        $(".subject").html("");
+        emptyAll();
         var obj = {subject: gcource, year: gyear};
         var send = JSON.stringify(obj);
         //console.log(send);
         $.ajax({
-          url:"http://localhost/try/loadsubject.php",
+          url:"http://localhost/sdms/loadsubject.php",
           type:"POST",
           data: send,
           success: function(data){
@@ -170,7 +201,7 @@
         //console.log(senddata);
         $(".unitcontent").html("");
         $.ajax({
-          url:"http://localhost/try/loadtitle.php",
+          url:"http://localhost/sdms/loadtitle.php",
           type:"POST",
           data: senddata,
           success: function(data){
@@ -194,16 +225,18 @@
         //console.log(upidobj);
         var upidjson = JSON.stringify(upidobj);
         $.ajax({
-            url:"http://localhost/try/loadsingle.php",
+            url:"http://localhost/sdms/loadsingle.php",
             type: "POST",
             data: upidjson,
             success: function(data){
                 //console.log(data);
                 $("#secMcontent").prepend("<div>"+ data[0].tbody +"</div>");
+                topicBy = data[0].topicby;
+                byUser();
             }
         });
       });
-      
+    
       //active button color sub
       $(document).on("click",".subBtn", function(){
           $(".subBtn").css({"background-color": "black"});
