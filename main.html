@@ -32,11 +32,13 @@
 
     <!--Section-x-->
     <div id="navDiv">
-      <nav>
         <a href="index2.html">SDMS</a>
-        <a id="selectcBtn">Select Cource</a>                
-        <a href="read.html">Q</a>
-      </nav>
+        <div id="userDiv">
+          <img src="images/userdata/d12.jpg" alt="not found">
+          <a id="user" >ashuagarwal135 </a>
+        </div>
+        <a id="selectcBtn" >SelectCource</a>                
+        <a href="read.html" >Q</a>
     </div>
     <!--select cource-->
     <div id="selectDiv">
@@ -238,7 +240,7 @@
       });
       //selectcBtn
       $("#selectcBtn").on("click",function(){
-        $("#selectDiv").slideDown(500);
+        $("#selectDiv").slideToggle(500);
       });
       //youtube btn
       $(document).on("click",".youtubeBtn", function(){
