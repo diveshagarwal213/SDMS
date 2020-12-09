@@ -4,10 +4,6 @@ $(function () {
     $(".unitcontent").slideToggle(600);
   });
 });
-
-$(document).on("click","#youtubeBtn", function(){
-  $(".ytcont").slideToggle(600);
-});
 //select Subject button
 $(function () {
   $(".selectsub").click(function () {

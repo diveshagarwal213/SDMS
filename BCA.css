@@ -115,8 +115,11 @@ b {
   background: black;
   cursor: pointer;
   border-radius: 3px;
-
 }
+
+#topicBy {
+  text-align: right;
+} 
 
 @media (max-width: 521px) {
   .topic {

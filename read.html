@@ -26,7 +26,7 @@
                     $("#loadDiv").html(""); 
                     //console.log(search1);   
                     $.ajax({
-                        url: "http://localhost/try/readtitle.php?search=" + search1,
+                        url: "http://localhost/sdms/readtitle.php?search=" + search1,
                         type: "GET",
                         success: function(data){
                             if(data.status == false){
@@ -47,7 +47,7 @@
                 var idjson = JSON.stringify(idobj);
                 console.log(idjson);
                 $.ajax({
-                    url:"http://localhost/try/readtbody.php",
+                    url:"http://localhost/sdms/readtbody.php",
                     type:"POST",
                     data: idjson,
                     success: function(data){

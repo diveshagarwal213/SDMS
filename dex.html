@@ -91,7 +91,7 @@
             function loadTable(){
                 $("#tableData").html("");
                 $.ajax({
-                    url:"http://localhost/try/load.php",
+                    url:"http://localhost/sdms/load.php",
                     type: "GET",
                     success: function(data){
                         //console.log(data);
@@ -123,7 +123,7 @@
 
                 var d = JSON.stringify(obj);
                 $.ajax({
-                    url:"http://localhost/try/insert.php",
+                    url:"http://localhost/sdms/insert.php",
                     type: "POST",
                     data: d,
                     success: function(data){
@@ -146,7 +146,7 @@
                 //console.log(upidobj);
                 var upidjson = JSON.stringify(upidobj);
                 $.ajax({
-                    url:"http://localhost/try/loadsingle.php",
+                    url:"http://localhost/sdms/loadsingle.php",
                     type: "POST",
                     data: upidjson,
                     success: function(data){
@@ -182,7 +182,7 @@
                 //console.log(json2);
 
                 $.ajax({
-                    url:"http://localhost/try/update.php",
+                    url:"http://localhost/sdms/update.php",
                     type:"PUT",
                     data: json2,
                     success: function(data){
@@ -209,7 +209,7 @@
                 var element = this;
                 if(confirm("Really Want to Delete ?")){
                     $.ajax({
-                        url:"http://localhost/try/delete.php",
+                        url:"http://localhost/sdms/delete.php",
                         type:"DELETE",
                         data: dejson,
                         success: function(data){
@@ -229,7 +229,7 @@
                 $("#tableData").html(""); 
                 //console.log(search1);   
                 $.ajax({
-                    url: "http://localhost/try/search.php?search=" + search1,
+                    url: "http://localhost/sdms/search.php?search=" + search1,
                     type: "GET",
                     success: function(data){
                         if(data.status == false){

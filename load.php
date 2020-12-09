@@ -1,11 +1,11 @@
 <?php
 
   header('Content-Type: application/json');//tells which type of data will this api return  
-  header('Access-Control-Allow-Origin: *');// which site have acess to this api *->all
+  header('Access-Control-Allow-Origin: *');// which site have acess to this api *->all ORDER BY tid DESC
 
   include "conn.php";
 
-  $sql = "SELECT tid, cname, cyear, csubject, sunit, title  FROM topic ORDER BY tid DESC";
+  $sql = "SELECT tid, cname, cyear, csubject, sunit, title  FROM topic ORDER BY tid DESC LIMIT 50";
   $result = mysqli_query($conn, $sql) or die("query failed");
   
   if(mysqli_num_rows($result) > 0){
