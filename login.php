@@ -27,6 +27,9 @@
         password <input type="password" id="password">
         <button id="submit">Submit</button>
     </form>
+    <div>
+        <a href="main.php">Go Without login</a>
+    </div>
 
     <script>
         $(document).ready(function(){

@@ -1,3 +1,8 @@
+<?php
+
+include "conn.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,11 +39,19 @@
     <div id="navDiv">
         <a href="index2.html">SDMS</a>
         <div id="userDiv">
-          <img src="images/userdata/d12.jpg" alt="not found">
-          <a id="user" >ashuagarwal135 </a>
+          <?php
+            session_start();
+            if (isset($_SESSION['username'])) {
+              echo "<img src = '" . "images/userdata/d12.jpg". "' alt = 'not found'>";
+              echo "<a id = 'user' href = 'another.php'>". $_SESSION['username']. "</a>";
+            }else{
+              echo "<img src = '" . "images/userdata/facebook.png". "' alt = 'not found'>";
+              echo "<a href = 'login.php'>Login</a>";
+            }
+          ?>
         </div>
         <a id="selectcBtn" >SelectCource</a>                
-        <a href="read.html" >Q</a>
+        <a href="read.html" >Quick search</a>
     </div>
     <!--select cource-->
     <div id="selectDiv">

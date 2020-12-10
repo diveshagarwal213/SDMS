@@ -21,5 +21,6 @@
     $username = $_SESSION['username'];
     echo "<h2> Hi ".$username."</h2>";
     ?>
+    <a href="main.php">mainpage</a>
 </body>
 </html>

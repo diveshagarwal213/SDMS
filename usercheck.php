@@ -22,6 +22,7 @@ if ($inputuser == "" || $inputpass == "") {
         session_start();
         $_SESSION['username'] = $row['username'];
         $_SESSION['userid'] = $row['uid'];
+        $_SESSION['uimage'] = "images/userdata/d12.jpg";
         echo json_encode(array( "message" => "correct info ", "status" => true));
     }
     //header("Location : http://localhost/sdms/another.html"); 
