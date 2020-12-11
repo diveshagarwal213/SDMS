@@ -2,7 +2,7 @@
  include "conn.php";
  session_start();
  if (isset($_SESSION['username'])) {
-     header("Location: {$hostname}/another.php");
+     header("Location: {$hostname}/userprofile.php");
  }
 ?>
 <!DOCTYPE html>
@@ -75,7 +75,7 @@
                 success: function(data){
                     //console.log(data);
                     if (data.status == true) {
-                        location.href = "http://localhost/sdms/another.php";
+                        location.href = "http://localhost/sdms/userprofile.php";
                     } 
                     else {
                         alert(data.message);

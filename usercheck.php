@@ -22,10 +22,11 @@ if ($inputuser == "" || $inputpass == "") {
         session_start();
         $_SESSION['username'] = $row['username'];
         $_SESSION['userid'] = $row['uid'];
-        $_SESSION['uimage'] = "images/userdata/d12.jpg";
+        $_SESSION['userimage'] = $row['uimage'];
+        $_SESSION['fullname'] = $row['fname'];
         echo json_encode(array( "message" => "correct info ", "status" => true));
     }
-    //header("Location : http://localhost/sdms/another.html"); 
+    //header("Location : http://localhost/sdms/userprofile.html"); 
     //echo json_encode(array( "message" => "correct info ", "status" => true));
 }else {
     echo json_encode(array( "message" => "Please Enter Correct Info", "status" => false));

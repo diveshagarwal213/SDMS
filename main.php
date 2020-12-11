@@ -8,7 +8,7 @@ include "conn.php";
 <head>
     <meta charset="UTF-8">
     <script src="jquery.js"></script>
-    <title>Unit-I | Software Engineering | BCA-III | SDMS.com</title>
+    <title>Main | SDMS.com</title>
     <link rel="stylesheet" type="text/css" href="sdms.css" />
     <link rel="stylesheet" type="text/css" href="cources.css" />
     <link rel="stylesheet" type="text/css" href="BCA.css" />
@@ -42,8 +42,12 @@ include "conn.php";
           <?php
             session_start();
             if (isset($_SESSION['username'])) {
-              echo "<img src = '" . "images/userdata/d12.jpg". "' alt = 'not found'>";
-              echo "<a id = 'user' href = 'another.php'>". $_SESSION['username']. "</a>";
+              if ($_SESSION['userimage'] !== "") {
+                echo "<img src = 'images/userdata/" . $_SESSION['userimage']. "' alt = 'not found2'> <br>";
+             } else {
+                echo "<img src = 'images/userdata/facebook.png'  alt = 'not found'> <br>";
+             }               
+              echo "<a id = 'user' href = 'userprofile.php'>". $_SESSION['username']. "</a>";
             }else{
               echo "<img src = '" . "images/userdata/facebook.png". "' alt = 'not found'>";
               echo "<a href = 'login.php'>Login</a>";
