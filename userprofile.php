@@ -13,9 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="sdms.css" />
-    <link rel="stylesheet" type="text/css" href="cources.css" />
-    <link rel="stylesheet" type="text/css" href="BCA.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/media.css" />
+    <link rel="stylesheet" type="text/css" href="css/userprofile.css" />
 </head>
 <body>
     <div id="navDiv">
@@ -33,10 +33,10 @@
                if ($_SESSION['userimage'] !== "") {
                   echo "<img src = 'images/userdata/" . $_SESSION['userimage']. "' alt = 'not found2'> <br>";
                } else {
-                echo "<img src = 'images/userdata/facebook.png'  alt = 'not found'> <br>";
+                echo "<img src = 'images/userdata/profile.jpg'  alt = 'not found'> <br>";
                }               
                echo "<button>Edit profile</button>";
-            ?>
+            ?>            
         </div>
         <div id="usernameDiv">
             <?php

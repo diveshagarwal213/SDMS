@@ -9,7 +9,8 @@ include "conn.php";
     <meta charset="UTF-8">
     <script src="jquery.js"></script>
     <title>Main | SDMS.com</title>
-    <link rel="stylesheet" type="text/css" href="sdms.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/media.css" />
     <link rel="stylesheet" type="text/css" href="cources.css" />
     <link rel="stylesheet" type="text/css" href="BCA.css" />
     <meta name="viewport" content="Width=device-width, initial-scale=1.0" />
@@ -28,6 +29,9 @@ include "conn.php";
       .youtubeBtn:hover {
         background-color: #179942;
       }
+      .ytcont{
+        border: 1px solid #179942;
+      }
     </style>
   </head>
   
@@ -45,11 +49,11 @@ include "conn.php";
               if ($_SESSION['userimage'] !== "") {
                 echo "<img src = 'images/userdata/" . $_SESSION['userimage']. "' alt = 'not found2'> <br>";
              } else {
-                echo "<img src = 'images/userdata/facebook.png'  alt = 'not found'> <br>";
+                echo "<img src = 'images/userdata/profile.jpg'  alt = 'not found'> <br>";
              }               
               echo "<a id = 'user' href = 'userprofile.php'>". $_SESSION['username']. "</a>";
             }else{
-              echo "<img src = '" . "images/userdata/facebook.png". "' alt = 'not found'>";
+              echo "<img src = '" . "images/userdata/profile.jpg". "' alt = 'not found'>";
               echo "<a href = 'login.php'>Login</a>";
             }
           ?>

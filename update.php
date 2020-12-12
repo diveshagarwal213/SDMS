@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');//tells which type of data will this api return  
 header('Access-Control-Allow-Origin: *');// which site have acess to this api *->all
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Methods: PUT');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
 $data = json_decode(file_get_contents("php://input"), true);

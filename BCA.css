@@ -42,32 +42,12 @@
 .courcehead {
   color: #179942;
 }
-.paint {
-  color: #179942;
-  font-size: 140%;
-}
-.paint2 {
-  color: #179942;
-}
+
 h2 {
   color: #179942;
 }
-.paint3 {
-  text-decoration: underline;
-  text-decoration-color: #179942;
-}
-.paint4 {
-  background-color: #179942;
-  border-radius: 5px;
-}
 b {
   color: #179942;
-}
-#defaultOpen {
-  background-color: #179942;
-}
-#defaultOpen2 {
-  background-color: #179942;
 }
 #scrolltop {
   background-color: #179942;
@@ -78,42 +58,8 @@ b {
 .f-hline{
   background-color: #179942;
 }
-.ytcont{
-  border: 1px solid #179942;
-}
-/*--nav---*/
-#navDiv {
-  /*border: 1px solid red;*/
-  width: 100%;
-  padding: 0px 5px;
-  display: inline-flex;
-  align-items: center;
-}
-#navDiv img {
-  width: 50px;
-  height: 50px;
-  border-radius: 5px;
-  padding: 0;
-  margin: 0;
-  margin-right: 2px; 
-}
+/*--user div---*/
 
-#navDiv a { 
-  font-size: 200%;
-  color: white;  
-  text-decoration: none;
-  cursor: pointer;
-  margin-right: calc(100% - 98%);
-}
-#navDiv a:nth-child(1) {
-  letter-spacing: 10px;
-  font-size: 400%;
-  font-family: "Megrim"; 
-}
-#navDiv a:nth-child(3) {
-  color: #179917;
-  margin-left: calc(100% - 98%); 
-}
 #userDiv {
   display: inline-flex;
   align-items: center;
@@ -137,48 +83,6 @@ b {
 #topicBy {
   text-align: right;
   margin-top: 5px;
-}
-
-/*------ucontent------*/
-#ucontent {
-  /*border: 1px solid red;*/
-  display: inline-flex;
-  align-items: center;
-  width: 100%;
-  padding-left: 1%;
-}
-#imageDiv {
-  /*border: 1px solid green;*/
-  width: fit-content;
-  text-align: center;
-}
-#imageDiv button {
-  outline: none;
-  border: 1px solid white;
-  border-radius: 5px;
-  padding: 5px 8px;
-  color: white;
-  background-color: black;
-  margin-top: 5px;
-}
-#ucontent img {
-  width: 200px;
-  height: 200px;
-  border-radius: 25px;
-  padding: 0;
-  margin: 0;
-}
-#usernameDiv {
-  /*border: 1px solid yellow;*/
-  padding: 5px;
-  margin: 10px;
-  height: fit-content;
-  font-size: x-large;
-  color: gray;
-}
-#username {
-  font-size: xx-large;
-  color: white;
 }
 
 @media (max-width: 521px) {
