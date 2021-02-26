@@ -11,8 +11,8 @@ include "conn.php";
     <title>Main | SDMS.com</title>
     <link rel="stylesheet" type="text/css" href="css/common.css" />
     <link rel="stylesheet" type="text/css" href="css/media.css" />
-    <link rel="stylesheet" type="text/css" href="cources.css" />
-    <link rel="stylesheet" type="text/css" href="BCA.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/main2.css" />
     <meta name="viewport" content="Width=device-width, initial-scale=1.0" />
     <style>
       .fig1{
@@ -41,7 +41,7 @@ include "conn.php";
 
     <!--Section-x-->
     <div id="navDiv">
-        <a href="index2.html">SDMS</a>
+        <a href="index.html">SDMS</a>
         <div id="userDiv">
           <?php
             session_start();
@@ -59,7 +59,7 @@ include "conn.php";
           ?>
         </div>
         <a id="selectcBtn" >SelectCource</a>                
-        <a href="read.html" >Quick search</a>
+        <a href="searchTopic.html" >Quick search</a>
     </div>
     <!--select cource-->
     <div id="selectDiv">
@@ -120,7 +120,7 @@ include "conn.php";
      var gsubject = "";
      var gtitle = "";
      var gcource = "BCA";
-     var gyear = 1;
+     var gyear = 3;
      var topicBy = 01;
      $(document).ready(function(){
       

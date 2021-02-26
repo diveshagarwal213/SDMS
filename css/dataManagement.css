@@ -4,9 +4,63 @@
 body{
     color: white;
     background-color: #303030;
-
+}
+.deleteBtn{
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border: 0;
+    padding: 4px 10px;
+    border-radius: 3px;
+}
+.updateBtn{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border: 0;
+    padding: 4px 10px;
+    border-radius: 3px;
+}
+#two{
+    background: rgb(0,0,0, 0.7);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: none;
+}
+#twoForm{
+    background: #fff;
+    width: 30%;
+    position: relative;
+    left: calc(50% - 15%) ;
+    top: 20%;
+    padding: 15px;
+    border-radius: 4px;
+}
+#closebtn{
+    background: black;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    position: absolute;
+    cursor: pointer;
+    top: -15px;
+    right: -15px;
+    color: white;
+}
+#twoForm h2 {
+    margin: 0 0 15px;
+    padding-bottom: 10px ;
+    border-bottom: 1px solid black ;
 }
 
+/*-mycss------------------------------------*/
 .heading{
     text-align: center;
 }

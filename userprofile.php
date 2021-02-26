@@ -19,10 +19,10 @@
 </head>
 <body>
     <div id="navDiv">
-        <a href="index2.html">SDMS</a>
+        <a href="index.html">SDMS</a>
         <a href="logout.php">Logout</a>
         <a href="main.php">Main page</a>
-        <a href="read.html" >Quick search</a>
+        <a href="searchTopic.html" >Quick search</a>
     </div>
     
     <hr>
