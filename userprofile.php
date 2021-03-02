@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="jquery.js"></script>
+    <script src="functions.js"></script>
     <link rel="stylesheet" type="text/css" href="css/common.css" />
     <link rel="stylesheet" type="text/css" href="css/media.css" />
     <link rel="stylesheet" type="text/css" href="css/userprofile.css" />
@@ -75,12 +76,19 @@
         //uplod image
         $(document).ready(function(){
             
+            //global variables
+            var gUid = <?php echo $_SESSION['userid'] ?>;
+            var gUimage = "<?php echo $_SESSION['userimage'] ?>";
+            
             //uplod image
             $("#subImg").on("submit", function (e) {
                 e.preventDefault();
 
                 var formData = new FormData(this);
-
+                if (gUimage !="") {
+                    //delete old image if present
+                    unlink_UserImage(gUimage,gUid);
+                }
                 $.ajax({
                 url : "userImgUplod.php",
                 type : "POST",
@@ -96,22 +104,9 @@
             });
 
             //delete user image
-            $("#deleteBtn").on("click",function () {
-                if (confirm("sure?")) {
-                    //var path = $("#deleteBtn").data("path");
-                    var path = "<?php echo $_SESSION['userimage'] ?>";
-
-                    $.ajax({
-                    url : "deleteUserPImg.php",
-                    type : "POST",
-                    data : {path : path},
-                    success: function(data){
-                        if(data != ""){
-                            $("#imagePre").html('');
-                            setTimeout(location.reload.bind(location),1000); 
-                        }
-                    }
-                    });
+            $("#deleteBtn").on("click",function  () {
+                if(confirm("are you sure?")){
+                    unlink_UserImage(gUimage,gUid);
                 }
             });
 
