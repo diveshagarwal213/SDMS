@@ -3,7 +3,7 @@
 }
 
 body{
-    background-color: #303030;
+    background-color: black;
     color: white;
 }
 .same{
@@ -64,6 +64,12 @@ input:focus{
     border: 1px solid  #414141 ;
     min-height: 300px;
     margin: 10px;
+    display: block;
+    width: 100%;
+    color: white;
+    min-height: 800px;
+    padding: 10px;
+    font-size: 120%;
 }
 .courcehead {
     color: #E09A3A;
@@ -91,4 +97,30 @@ input:focus{
   }
   .active{
     background-color: #E09A3A;
+  }
+  /**/
+  .heading {
+    font-size: 200%;
+  }
+  
+  .tabcontent {
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+  }
+  table,th,td {
+    border: 1px solid dimgray;
+    border-collapse: collapse;
+    text-align: center;
+    table-layout: fixed;
+    color: white;
+  }
+  th,
+  td {
+    padding: 10px;
+  }
+  td {
+    text-align: left;
+  }
+  .topicby{
+    margin-left: 80%;
   }

@@ -1,0 +1,22 @@
+database type mysql
+total no of tables = 2 (topic,userdata)
+
+ 1, topic structure:- total coloums = 8
+    
+    coloums= tid(int 10,auto-increment),
+             cname(var 20),
+             cyear(int 2),
+             csubject(var 50),
+             sunit(int 2),
+             title(var 50),
+             tbody(meadium text),
+             topicby(var 50). 
+ 
+ 2, userdata structure:- total coloums = 6
+    
+    coloums = uid(int 20 auto-increment),
+              fname(var 30),
+              username(var-30),
+              email(var-50),
+              upass(var-50),
+              uimage(var-60)

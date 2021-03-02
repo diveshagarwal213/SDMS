@@ -2,6 +2,12 @@
 
 include "conn.php";
 
+//check url variables are present or not
+function check_index($key, $def){
+  return isset($_GET[$key]) ? $_GET[$key] : $def; 
+}
+$cource_index = check_index("cource","BCA");
+$year_index = check_index("year", 3);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,8 +125,8 @@ include "conn.php";
      var gunit = 0;
      var gsubject = "";
      var gtitle = "";
-     var gcource = "BCA";
-     var gyear = 3;
+     var gcource = "<?php echo $cource_index?>";
+     var gyear = <?php echo $year_index?>;
      var topicBy = 01;
      $(document).ready(function(){
       
