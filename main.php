@@ -132,17 +132,17 @@ $year_index = check_index("year", 3);
       
       //load first
       function loadFirst() {
-        var obj = {subject: gcource, year: gyear};
+        var obj = {subject: gcource, year: gyear };//function_id:1
         var send = JSON.stringify(obj);
         //console.log(send);
         $.ajax({
-          url:"http://localhost/sdms/loadsubject.php",
+          url:"http://localhost/sdms/php_files/databaseManagement.php?function_id=1",
           type:"POST",
           data: send,
           success: function(data){
             //console.log(data);
-            if(data.status == false){
-              $(".subject").append("<h2>" + data.message + "</h2>");
+            if(data[0].status == false){
+              $(".subject").append("<h2>" + data[0].message + "</h2>");
             }else{
               $.each(data, function(key, value){
                   $(".subject").append("<button class = 'subBtn' data-idsub = '" + value.csubject + "'>" + value.csubject +"</button>");
@@ -195,13 +195,13 @@ $year_index = check_index("year", 3);
         var send = JSON.stringify(obj);
         //console.log(send);
         $.ajax({
-          url:"http://localhost/sdms/loadsubject.php",
+          url:"http://localhost/sdms/php_files/databaseManagement.php?function_id=1",
           type:"POST",
           data: send,
           success: function(data){
             //console.log(data);
-            if(data.status == false){
-              $(".subject").append("<h2>" + data.message + "</h2>");
+            if(data[0].status == false){
+              $(".subject").append("<h2>" + data[0].message + "</h2>");
             }else{
               $.each(data, function(key, value){
                   $(".subject").append("<button class = 'subBtn' data-idsub = '" + value.csubject + "'>" + value.csubject +"</button>");
@@ -228,13 +228,13 @@ $year_index = check_index("year", 3);
         //console.log(senddata);
         $(".unitcontent").html("");
         $.ajax({
-          url:"http://localhost/sdms/loadtitle.php",
+          url:"http://localhost/sdms/php_files/databaseManagement.php?function_id=2",
           type:"POST",
           data: senddata,
           success: function(data){
             //console.log(data);
-            if(data.status == false){
-              $(".unitcontent").append("<h2>" + data.message + "</h2>");
+            if(data[0].status == false){
+              $(".unitcontent").append("<h2>" + data[0].message + "</h2>");
             }else{
               $.each(data, function(key, value){
                 $(".unitcontent").append("<button class = 'titleBtn' data-idtid = '" + value.tid + "' data-idtitle = '" + value.title + "'>" + value.title +"</button>");
@@ -252,7 +252,7 @@ $year_index = check_index("year", 3);
         //console.log(upidobj);
         var upidjson = JSON.stringify(upidobj);
         $.ajax({
-            url:"http://localhost/sdms/loadsingle.php",
+            url:"http://localhost/sdms/php_files/databaseManagement.php?function_id=3",
             type: "POST",
             data: upidjson,
             success: function(data){

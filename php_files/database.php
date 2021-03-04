@@ -4,7 +4,7 @@ class Database{
     private $db_host ="localhost";
     private $db_username ="root";
     private $db_pass ="";
-    private $db_name ="test";
+    private $db_name ="sdms";
 
     private $mysqli = "";
     private $result = array();
@@ -117,12 +117,17 @@ class Database{
 
             $query = $this->mysqli->query($sql);
 
-            if ($query) {
-                $this->result = $query->fetch_all(MYSQLI_ASSOC);
-                return true;   
-            } else {
-                 array_push($this->result, $this->mysqli->error);
-                return false;                                  
+            if ($query->num_rows > 0) {
+                if ($query) {
+                    $this->result = $query->fetch_all(MYSQLI_ASSOC);
+                    return true;   
+                } else {
+                     array_push($this->result, $this->mysqli->error);
+                    return false;                                  
+                }
+            }else{
+                array_push($this->result, array('message' => 'no Record found', 'status' => false));
+                return false;  
             }
             
         } else {
@@ -175,7 +180,7 @@ class Database{
     public function getResult(){
         $val = $this->result;
         $this->result = array();
-        return $val;
+        return json_encode($val);
     }
 }//database
 

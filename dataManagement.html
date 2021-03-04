@@ -145,7 +145,7 @@
                 //console.log(upidobj);
                 var upidjson = JSON.stringify(upidobj);
                 $.ajax({
-                    url:"http://localhost/sdms/loadsingle.php",
+                    url:"http://localhost/sdms/php_files/databaseManagement.php?function_id=3",
                     type: "POST",
                     data: upidjson,
                     success: function(data){
