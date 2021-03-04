@@ -128,15 +128,16 @@ $year_index = check_index("year", 3);
      var gcource = "<?php echo $cource_index?>";
      var gyear = <?php echo $year_index?>;
      var topicBy = 01;
+
      $(document).ready(function(){
-      
-      //load first
-      function loadFirst() {
-        var obj = {subject: gcource, year: gyear };//function_id:1
+
+      //get subjects from data base
+      function fetch_subjects(cource_name,c_year,selectC_btn = null) {
+        var obj = {cource: cource_name, year: c_year};
         var send = JSON.stringify(obj);
         //console.log(send);
         $.ajax({
-          url:"http://localhost/sdms/php_files/databaseManagement.php?function_id=1",
+          url:"http://localhost/sdms/php_files/databaseApi.php?api_id=1",
           type:"POST",
           data: send,
           success: function(data){
@@ -147,11 +148,15 @@ $year_index = check_index("year", 3);
               $.each(data, function(key, value){
                   $(".subject").append("<button class = 'subBtn' data-idsub = '" + value.csubject + "'>" + value.csubject +"</button>");
               });
-              $("#selectcBtn").html("" + gcource + "-" + gyear + "");
+              if (selectC_btn != null) {
+                $("#selectcBtn").html("" + gcource + "-" + gyear + "");
+              }
              }
           }
         });
-      } loadFirst();
+      }
+      fetch_subjects(gcource,gyear,1);
+      
       //empty;
       function emptyAll() {
         $("#secMcontent").html("<h2>Tips : - </h2> <p> First Select COURCE and YEAR then SUBJECT, UNIT and TOPIC </p>");
@@ -182,33 +187,16 @@ $year_index = check_index("year", 3);
             $("#topicBy").html("Admin");
           }
         } byUser();
-      //gcource
+      // New gcource
       $(".cBtn").on("click", function () {
         gcource = $(this).data("idcource"); //global
       });
       
-      //send year and cource data to load subject data
+      //send New year and cource data to load subject data
       $(".yearBtn").on("click", function () {
         gyear = $(this).data("idyear"); //global
         emptyAll();
-        var obj = {subject: gcource, year: gyear};
-        var send = JSON.stringify(obj);
-        //console.log(send);
-        $.ajax({
-          url:"http://localhost/sdms/php_files/databaseManagement.php?function_id=1",
-          type:"POST",
-          data: send,
-          success: function(data){
-            //console.log(data);
-            if(data[0].status == false){
-              $(".subject").append("<h2>" + data[0].message + "</h2>");
-            }else{
-              $.each(data, function(key, value){
-                  $(".subject").append("<button class = 'subBtn' data-idsub = '" + value.csubject + "'>" + value.csubject +"</button>");
-              });
-             }
-          }
-        });
+        fetch_subjects(gcource,gyear);
       }); 
 
       // store global subject data , select subject 
@@ -228,7 +216,7 @@ $year_index = check_index("year", 3);
         //console.log(senddata);
         $(".unitcontent").html("");
         $.ajax({
-          url:"http://localhost/sdms/php_files/databaseManagement.php?function_id=2",
+          url:"http://localhost/sdms/php_files/databaseApi.php?api_id=2",
           type:"POST",
           data: senddata,
           success: function(data){
@@ -252,7 +240,7 @@ $year_index = check_index("year", 3);
         //console.log(upidobj);
         var upidjson = JSON.stringify(upidobj);
         $.ajax({
-            url:"http://localhost/sdms/php_files/databaseManagement.php?function_id=3",
+            url:"http://localhost/sdms/php_files/databaseApi.php?api_id=3",
             type: "POST",
             data: upidjson,
             success: function(data){
