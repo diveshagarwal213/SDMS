@@ -140,7 +140,7 @@ body {
   outline: none;
   cursor: pointer;
   color: white;
-  padding: 7px;
+  padding: 7px 15px;
   font-size: 180%;
   background: linear-gradient(10deg,#E66F2C 50%,#FBCA69 );
   border-radius: 50px;
@@ -380,6 +380,19 @@ body {
 }
 .sectionC p {
   font-weight: normal;
+}
+#quickAdvance{
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+#quickAdvance a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #E66F2C;
+  background-color: rgba(255, 255, 255);
+  padding: 7px 10px;
+  border-radius: 25px;
 }
 
 

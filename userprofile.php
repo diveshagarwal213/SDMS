@@ -51,16 +51,17 @@
             <div id="imagePre">
             <?php
                if ($_SESSION['userimage'] != "") {
-                  echo "<img src = '" . $_SESSION['userimage']. "' alt = 'error 404'> <br>";
+                  echo "<img  id='previewImg' src = '" . $_SESSION['userimage']. "' alt = 'error 404'> <br>";
                } else {
-                echo "<img src = 'images/userdata/profile.jpg'  alt = 'not found'> <br>";
+                echo '<img id="previewImg" src="images/userdata/profile.jpg" alt="your image" /> <br>';
                }               
             ?>
+            
             </div>
             <div>
                 <form id="subImg">
                     <label for="user_img">Select image : </label>
-                    <input type="file" name="file" id="user_img"/>
+                    <input type="file" name="file" id="user_img" onchange="readURL(this);"/>
                     <input type="submit" name="uploadButton" id="uploadBtn" value="Upload"/>
                     
                 </form>
@@ -96,8 +97,8 @@
                 contentType :false,
                 processData:false,
                 success: function(data){
-                    $("#imagePre").html(data);
-                    $("#user_img").val('');
+                    //$("#imagePre").html(data);
+                    //$("#user_img").val('');
                     setTimeout(location.reload.bind(location),1000); 
                 }
                 });    
@@ -113,7 +114,8 @@
             //editbutton
             $("#editProfile ,#cancle").on("click",function () {
                 $("#userImgUpDiv").slideToggle();
-            })
+            });
+           
         });//ready
     </script>
 </body>
