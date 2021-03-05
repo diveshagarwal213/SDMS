@@ -11,7 +11,7 @@
 <body>
     <div>
         <input type="text" id="searchBox">
-        <button id="searchButton">Search</button>
+        
     </div>
     <div id="loadDiv">
         
@@ -21,17 +21,19 @@
     <script>
 
         $(document).ready( function(){
-            //search data
-            $("#searchButton").on("click", function(){
+
+            //key up
+            $("#searchBox").keyup(function () {
+                if(this.value.length >= 3){
                     var search1 = $("#searchBox").val();
                     $("#loadDiv").html(""); 
                     //console.log(search1);   
                     $.ajax({
-                        url: "http://localhost/sdms/readtitle.php?search=" + search1,
+                        url: "http://localhost/sdms/php_files/databaseApi.php?api_id=7&search=" + search1,
                         type: "GET",
                         success: function(data){
-                            if(data.status == false){
-                                $("#loadDiv").append("<tr><td><h2>" + data.message + "</h2></td></tr>"); 
+                            if(data[0].status == false){
+                                $("#loadDiv").append("<tr><td><h2>" + data[0].message + "</h2></td></tr>"); 
                             }else{
                                 $.each(data, function(key, value){
                                     $("#loadDiv").append("<button class='same' data-id='" + value.tid + "'>" + value.title + "</button>");
@@ -39,16 +41,17 @@
                             }
                         }
                     });
-            });
+                }
+            })
 
             //load tbody
             $(document).on("click",".same", function(){
                 var idarr = $(this).data("id");
                 var idobj = {id: idarr};
                 var idjson = JSON.stringify(idobj);
-                console.log(idjson);
+                //console.log(idjson);
                 $.ajax({
-                    url:"http://localhost/sdms/readtbody.php",
+                    url:"http://localhost/sdms/php_files/databaseApi.php?api_id=3",
                     type:"POST",
                     data: idjson,
                     success: function(data){

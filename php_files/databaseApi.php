@@ -66,27 +66,34 @@ if ($api_id == 1) { //return subject names from given cource and year
     $id = $data['userid'];
     $db->select("userdata","username",null," uid = $id");
     echo $db->getResult();
+}elseif ($api_id == 7) { // input search only title 
+    
+    $search = $_GET['search'];
+    if ($search != "") {
+        $db->selectSql("SELECT  title, tid FROM topic WHERE title LIKE '%$search%'");
+        echo $db->getResult();
+    }else{
+        echo json_encode(array('message' => 'fill before search', 'status' => false ));
+    }
+
+}elseif ($api_id == 8) {//search title,tid,cname,csubject
+    
+    $search = $_GET['search'];
+    if ($search != "") {
+        $db->selectSql("SELECT tid, cname, cyear, csubject, sunit, title FROM topic WHERE title LIKE '%$search%' or tid LIKE '%$search%' or cname LIKE '%$search%' or csubject LIKE '%$search%' LIMIT 50");
+        echo $db->getResult();
+    }else{
+        echo json_encode(array('message' => 'fill before search', 'status' => false ));
+    }
+}else {
+    echo json_encode(array('message' => 'api_id not found', 'status' => false ));
 }
 
 
 
 //$db->insert('students',['sname'=>'Ram2','age'=>'18','mobileno'=>'0123456789']);
-//echo "result is : ";
-//print_r($db->getResult()); 
-
 //$db->update('students',['mobileno'=>''],'sid ="1"');
-//echo " updated result is : ";
-//print_r($db->getResult()); 
-
 //$db->delete('students','sid = "4"');
-//echo " deleted result is : ";
-//print_r($db->getResult()); 
-
 //$db->selectSql('select * from students');
-//echo " selectsql result is : ";
-//print_r($db->getResult());
-
 //$db->select('students','*');
-//echo " select result is : ";
-//print_r($db->getResult());
 ?>

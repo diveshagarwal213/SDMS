@@ -228,11 +228,11 @@
                 $("#tableData").html(""); 
                 //console.log(search1);   
                 $.ajax({
-                    url: "http://localhost/sdms/search.php?search=" + search1,
+                    url: "http://localhost/sdms/php_files/databaseApi.php?api_id=8&search=" + search1,
                     type: "GET",
                     success: function(data){
-                        if(data.status == false){
-                            $("#tableData").append("<tr><td><h2>" + data.message + "</h2></td></tr>"); 
+                        if(data[0].status == false){
+                            $("#tableData").append("<tr><td><h2>" + data[0].message + "</h2></td></tr>"); 
                         }else{
                             $.each(data, function(key, value){
                                 $("#tableData").append("<tr><td>" + value.tid + "</td><td>" + value.cname + "</td><td>" + value.cyear + "</td><td>" + value.csubject + "</td><td>" + value.sunit + "</td><td>" + value.title + "</td>"

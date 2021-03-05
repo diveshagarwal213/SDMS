@@ -117,16 +117,16 @@ class Database{
 
             $query = $this->mysqli->query($sql);
 
-            if ($query->num_rows > 0) {
-                if ($query) {
+            if ($query) {
+                if ($query->num_rows > 0) {
                     $this->result = $query->fetch_all(MYSQLI_ASSOC);
                     return true;   
                 } else {
-                     array_push($this->result, $this->mysqli->error);
+                    array_push($this->result, array('message' => 'no Record found', 'status' => false));
                     return false;                                  
                 }
             }else{
-                array_push($this->result, array('message' => 'no Record found', 'status' => false));
+                array_push($this->result, $this->mysqli->error);
                 return false;  
             }
             
@@ -140,8 +140,14 @@ class Database{
         $query = $this->mysqli->query($sql);
 
         if ($query) {
-            $this->result = $query->fetch_all(MYSQLI_ASSOC);
-            return true;   
+              
+            if ($query->num_rows > 0) {
+                $this->result = $query->fetch_all(MYSQLI_ASSOC);
+                return true;
+            }else{
+                array_push($this->result, array('message' => 'no Record found', 'status' => false));
+                return false;
+            }
         } else {
             array_push($this->result, $this->mysqli->error);
             return false;                                  
