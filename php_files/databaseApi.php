@@ -20,7 +20,7 @@ if ($api_id == 1) { //return subject names from given cource and year
     //print_r($db->getResult()); 
     echo $db->getResult(); 
 
-}elseif($api_id == 2){ //return title names from given subject and unit
+}elseif($api_id == 2){ //return title names(with there tid) from given subject and unit
     
     $subject = $data['subjectId'];
     $unit = $data['unitId']; 
@@ -28,13 +28,44 @@ if ($api_id == 1) { //return subject names from given cource and year
     $db->select("topic","title, tid",null,"csubject = '$subject' and sunit = $unit");
     echo $db->getResult();
 
-}elseif ($api_id == 3) {
+}elseif ($api_id == 3) { //fetch all data of a single title from given tid  
     
     $id = $data['id'];
 
     $db->select("topic","*",null,"tid = '$id'");
     echo $db->getResult();
 
+}elseif ($api_id == 4) {//delete images and update database 
+    $id = $data['id'];
+    $path = $data['path'];
+    $empty =$data['empty'];
+    session_start();
+
+    if ($path != "") {
+        if (unlink("../".$path)) {
+            
+            if ($id != 0) { //if user_id present delete address from database 
+                $db->update("userdata",["uimage"=>null],"uid = $id ");
+                echo $db->getResult();
+                if ($empty !=0) { //update session
+                    $_SESSION['userimage'] = "";
+                }
+            }else{
+                echo json_encode(array('message' => 'image deleted :'. $path, 'status' => true));
+            }
+        }else{
+            echo json_encode(array('message' => 'image not deleted :'. $path, 'status' => false));
+        }
+        
+    }
+}elseif($api_id == 5){ //collect all recent 50 data from topic except tbody in desc order 
+   
+    $db->select("topic","tid, cname, cyear, csubject, sunit, title",null,null,"tid DESC",50);
+    echo $db->getResult(); 
+}elseif ($api_id == 6) { //fetch username with given uid
+    $id = $data['userid'];
+    $db->select("userdata","username",null," uid = $id");
+    echo $db->getResult();
 }
 
 

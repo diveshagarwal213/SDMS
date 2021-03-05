@@ -99,6 +99,7 @@
                 success: function(data){
                     //$("#imagePre").html(data);
                     //$("#user_img").val('');
+                    //console.log(data);
                     setTimeout(location.reload.bind(location),1000); 
                 }
                 });    
@@ -107,7 +108,7 @@
             //delete user image
             $("#deleteBtn").on("click",function  () {
                 if(confirm("are you sure?")){
-                    unlink_UserImage(gUimage,gUid);
+                    unlink_UserImage(gUimage,gUid,1);
                 }
             });
 

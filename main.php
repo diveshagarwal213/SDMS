@@ -30,10 +30,12 @@ $year_index = check_index("year", 3);
         border: none;
         color: white;
         padding: 10px 8px;
-        background: black;
+        background: #179942;
+        border-radius: 5px;
+        transition: border-radius 1s;
       }
       .youtubeBtn:hover {
-        background-color: #179942;
+        border-radius: 25px;
       }
       .ytcont{
         border: 1px solid #179942;
@@ -172,11 +174,12 @@ $year_index = check_index("year", 3);
           var jsondata = JSON.stringify(obj);
           //console.log(jsondata);
           $.ajax({
-          url : "http://localhost/sdms/loadsingleuser.php",
+          url : "http://localhost/sdms/php_files/databaseApi.php?api_id=6",
           type : "POST",
           data : jsondata,
           success: function(data){
-            if (data.status == false) {
+            //console.log(data);
+            if (data[0].status == false) {
               $("#topicBy").html("Admin");
             } else {
               $("#topicBy").html("by " + data[0].username);

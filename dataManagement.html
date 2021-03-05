@@ -90,7 +90,7 @@
             function loadTable(){
                 $("#tableData").html("");
                 $.ajax({
-                    url:"http://localhost/sdms/load.php",
+                    url:"http://localhost/sdms/php_files/databaseApi.php?api_id=5",
                     type: "GET",
                     success: function(data){
                         //console.log(data);
