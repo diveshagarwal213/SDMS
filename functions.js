@@ -4,7 +4,7 @@ function unlink_UserImage(image_path ="", id = 0,empty_img = 0) {
     var obj = {path: image_path, id: id, empty: empty_img};
     var send = JSON.stringify(obj);
     $.ajax({
-        url : "http://localhost/sdms/php_files/databaseApi.php?api_id=4",
+        url : "http://localhost/sdms/php_files/databaseApi_delete.php?api_del_id=1",
         type : "POST",
         data : send,
         success: function(data){

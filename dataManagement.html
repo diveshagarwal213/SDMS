@@ -181,17 +181,17 @@
                 //console.log(json2);
 
                 $.ajax({
-                    url:"http://localhost/sdms/update.php",
+                    url:"http://localhost/sdms/php_files/databaseApi_insert.php?api_insert_id=3",
                     type:"PUT",
                     data: json2,
                     success: function(data){
                         //console.log(data);
-                        if(data.status == false){
-                            alert(data.message);
-                        }else{
+                        if(data.status == true){
                             loadTable();
                             $("#updateDiv").hide();
-                            
+                        }else{
+                            alert(data + " error check console for more detail" );
+                            console.log(data);
                         }
                     }
                 });
@@ -208,14 +208,15 @@
                 var element = this;
                 if(confirm("Really Want to Delete ?")){
                     $.ajax({
-                        url:"http://localhost/sdms/delete.php",
+                        url:"http://localhost/sdms/php_files/databaseApi_delete.php?api_del_id=2",
                         type:"DELETE",
                         data: dejson,
                         success: function(data){
-                            if(data.status == false){
-                                alert(data.message);
-                            }else{
+                            if(data.status == true){
                                 $(element).closest("tr").fadeOut();
+                            }else{
+                                alert(data.message + " error check console for more detail" );
+                                console.log(data);
                             }
                         }
                     });

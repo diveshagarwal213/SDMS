@@ -20,7 +20,7 @@ include "conn.php";
             echo '<img src ="' .$path. '"/>';
             $sql = "UPDATE userdata SET uimage = '{$path}'  WHERE uid = '{$id}'";
             if(mysqli_query($conn,$sql)){
-                echo "<script>console.log('image saved to database');</script>";
+                echo "image saved to database";
                 $_SESSION['userimage'] = $path;
             }
         }else{
