@@ -182,11 +182,16 @@ class Database{
         }
     }
 
-    // get result value
-    public function getResult(){
+    // get result value in json(default) or in array 
+    public function getResult($rawData = false){
         $val = $this->result;
         $this->result = array();
-        return json_encode($val);
+        if ($rawData) {
+            return $val;
+        }else{
+            return json_encode($val);
+        }
+        
     }
 }//database
 

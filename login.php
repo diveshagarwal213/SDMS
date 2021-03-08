@@ -45,15 +45,17 @@
                 var jsondata = JSON.stringify(obj);
 
                 $.ajax({
-                    url:"http://localhost/sdms/userdata.php",
+                    url:"http://localhost/sdms/php_files/databaseApi_insert.php?api_insert_id=1",
                     type:"POST",
                     data: jsondata,
                     success: function(data){
                         //console.log(data);
                         if(data.status == false){
                             alert(data.message);
+                            console.log(data);
                         }else{
-                            alert(data.message);
+                            alert("please log in to continue ");
+                            $("input").val("");
                         }
                     }
                 });

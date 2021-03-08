@@ -122,19 +122,19 @@
 
                 var d = JSON.stringify(obj);
                 $.ajax({
-                    url:"http://localhost/sdms/insert.php",
+                    url:"http://localhost/sdms/php_files/databaseApi_insert.php?api_insert_id=2",
                     type: "POST",
                     data: d,
                     success: function(data){
-                        if(data.status == false){
-                            alert(data.message);
-                        }else{
+                        if(data.status == true){
                             loadTable();
+                            $("#inputForm").trigger("reset");
+                        }else{    
+                            alert(data.message + " error check console for more detail" );
+                            console.log(data);
                         }
                     }
                 });
-                $("#inputForm").trigger("reset");
-
             });
             
             //fetch data for update
