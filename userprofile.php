@@ -18,14 +18,28 @@
     <link rel="stylesheet" type="text/css" href="css/userprofile.css" />
 </head>
 <body>
+    <!--Section-x-->
     <div id="navDiv">
-        <a href="index.html">SDMS</a>
-        <a href="logout.php">Logout</a>
-        <a href="main.php">Main page</a>
-        <a href="searchTopic.html" >Quick search</a>
+      <div id="navDiv_a">
+        <a id="sdmsLogo" href="index.php">SDMS</a>
+        <a href="main.php">Main page</a>                
+      </div>
+      
+      <div id="navDiv_b">
+        <a href="quickSearch.php" >Quick search</a>
+        <div id="userDiv">
+            <a href='logout.php'>Logout</a>
+            <?php
+            if ($_SESSION['userimage'] !== "") {
+                echo "<img src = '" . $_SESSION['userimage']. "' alt = 'not found2'> <br>";
+            } else {
+                echo "<img src = 'images/userdata/profile.jpg'  alt = 'not found'> <br>";
+            }   
+            ?>
+        </div>
+      </div>
     </div>
-    
-    <hr>
+    <!--Section-x end-->
     
     <div id="ucontent">
         <div id="imageDiv">

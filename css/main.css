@@ -1,12 +1,6 @@
-* {
-  box-sizing: border-box;
-}
-html {
-  scroll-behavior: smooth;
-}
 body {
-  color: white;
-  background: black;
+  color: #EEEEEE;
+  background: #121212;
 }
 h1, h2, h3{
   text-transform: uppercase;
@@ -22,6 +16,13 @@ h1, h2, h3{
   font-size: 400%;
   letter-spacing: 5px;
 }
+button {
+  color: #EEEEEE;
+}
+a {
+  text-decoration: none;
+}
+
 @-webkit-keyframes fadeEffect {
   from {
     opacity: 0;
@@ -38,21 +39,38 @@ h1, h2, h3{
     opacity: 1;
   }
 }
-
-
-/*subject*/
-
-.subject {
-  /*border: 4px solid white;*/
+/*select cource selectDiv*/
+#selectDiv {
+  border: 1px solid #BB86FC;
+  padding: 5px;
+  display: none;
+  margin-bottom: 10px;
+}
+#selectDiv button {
+  outline: none;
+  border: none;
+  padding: 10px 8px;
+  margin: 5px;
   color: white;
+  background: rgba(187, 134, 252, 0.200);
+  cursor: pointer;
+  border-radius: 3px;
+}
+#topicBy {
+  text-align: right;
+  margin-top: 5px;
+}
+/*subject*/
+.subject {
   overflow: hidden;
+  background-color: rgba(187, 134, 252, 0.100);
+  border-radius: 10px;
 }
 .subject button {
-  background-color: inherit;
-  color: white;
-  padding: 22px 0px;
-  width: 18%;
+  background-color: rgba(187, 134, 252, 0.200);
+  padding: 20px 3%;
   border: none;
+  border-bottom: 3px solid rgba(187, 134, 252, 0);
   outline: none;
   text-align: center;
   cursor: pointer;
@@ -60,59 +78,23 @@ h1, h2, h3{
   font-size: 100%;
   font-weight: bold;
 }
-
 .subject button:hover {
-  color: dimgrey;
-  background-color: #ddd;
-}
-.subject a {
-  text-decoration: none;
-}
-
-/*papers*/
-
-.papers {
-  border: 1px solid white;
-  color: white;
-  overflow: hidden;
-}
-.papers button {
-  display: block;
-  background-color: inherit;
-  color: white;
-  padding: 22px 0px;
-  width: 33.3%;
-  border: none;
-  outline: none;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 100%;
-  font-weight: bold;
-  float: left;
-}
-.papers button:hover {
-  color: dimgrey;
-  background-color: #ddd;
-}
-.papers a {
-  text-decoration: none;
+  border-bottom: 3px solid rgba(187, 134, 252, 0.400);
 }
 
 /*unit*/
-
 .unit {
   /*border: 3.5px solid white;*/
-  color: white;
   overflow: hidden;
+  margin-top: 1%;
 }
 .unit button {
   display: block;
-  background-color: inherit;
-  color: white;
+  background-color: rgba(187, 134, 252, 0.200);
   padding: 20px 0px;
   width: 20%;
   border: none;
+  border-bottom: 3px solid rgba(187, 134, 252, 0);
   outline: none;
   text-align: center;
   cursor: pointer;
@@ -120,13 +102,8 @@ h1, h2, h3{
   font-size: 120%;
   float: left;
 }
-.unit button.active {
-  color: black;
-  background-color: white;
-}
 .unit button:hover {
-  color: dimgrey;
-  background-color: #ddd;
+  border-bottom: 3px solid rgba(187, 134, 252, 0.400);
 }
 .subjcontent {
   -webkit-animation: fadeEffect 1s;
@@ -134,17 +111,15 @@ h1, h2, h3{
 }
 
 /*topic*/
-
 .topic {
   /*border: 2px solid white;*/
-  color: white;
   width: 20.2%;
   float: left;
+  border-bottom: 3px solid #EEEEEE;
 }
 .topic button {
   display: block;
-  background-color: inherit;
-  color: white;
+  background-color: rgba(187, 134, 252, 0.200);
   padding: 18px 0px;
   width: 100%;
   border: none;
@@ -153,15 +128,10 @@ h1, h2, h3{
   cursor: pointer;
   transition: 0.3s;
   font-size: 105%;
+  border-bottom: 3px solid rgba(187, 134, 252, 0);
 }
-.topic button.active {
-  color: black;
-  background-color: white;
-}
-
 .topic button:hover {
-  color: dimgrey;
-  background-color: #ddd;
+  border-bottom: 3px solid rgba(187, 134, 252, 0.400);
 }
 .unitcontent {
   -webkit-animation: fadeEffect 1s;
@@ -268,11 +238,10 @@ td {
 }
 .selectsub {
   display: none;
-  background-color: inherit;
-  color: white;
   padding: 18px 0px;
   width: 100%;
-  border: 2px solid #179942;
+  background-color: rgba(187, 134, 252, 0.400);
+  border: none;
   outline: none;
   text-align: center;
   cursor: pointer;
@@ -297,14 +266,6 @@ td {
   right: 0;
   width: 100%;
   height: 100%;
-}
-.youtubeBtn {
-  outline: none;
-  cursor: pointer;
-  border: none;
-  color: white;
-  padding: 10px 8px;
-  background: black;
 }
 /*------------------------------------------------------media starts */
 @media (max-width: 521px) {

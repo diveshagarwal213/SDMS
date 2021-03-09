@@ -30,15 +30,16 @@ $year_index = check_index("year", 3);
         border: none;
         color: white;
         padding: 10px 8px;
-        background: #179942;
+        background: rgba(187, 134, 252, 0.200);
         border-radius: 5px;
-        transition: border-radius 1s;
-      }
-      .youtubeBtn:hover {
+        transition: background-color 1s;
         border-radius: 25px;
       }
+      .youtubeBtn:hover {
+        background-color: rgba(187, 134, 252, 0.400);
+      }
       .ytcont{
-        border: 1px solid #179942;
+        border: 1px solid #BB86FC;
       }
     </style>
   </head>
@@ -49,25 +50,30 @@ $year_index = check_index("year", 3);
 
     <!--Section-x-->
     <div id="navDiv">
-        <a href="index.html">SDMS</a>
+      <div id="navDiv_a">
+        <a id="sdmsLogo" href="index.php">SDMS</a>
+        <a id="selectcBtn" >SelectCource</a>                
+      </div>
+      
+      <div id="navDiv_b">
+        <a href="quickSearch.php" >Quick search</a>
         <div id="userDiv">
           <?php
             session_start();
             if (isset($_SESSION['username'])) {
-              if ($_SESSION['userimage'] !== "") {
-                echo "<img src = 'images/userdata/" . $_SESSION['userimage']. "' alt = 'not found2'> <br>";
-             } else {
-                echo "<img src = 'images/userdata/profile.jpg'  alt = 'not found'> <br>";
-             }               
               echo "<a id = 'user' href = 'userprofile.php'>". $_SESSION['username']. "</a>";
+              if ($_SESSION['userimage'] !== "") {
+                echo "<img src = '" . $_SESSION['userimage']. "' alt = 'not found2'> <br>";
+              } else {
+                echo "<img src = 'images/userdata/profile.jpg'  alt = 'not found'> <br>";
+              }               
             }else{
+              echo "<a id ='user' href = 'login.php'>Login</a>";
               echo "<img src = '" . "images/userdata/profile.jpg". "' alt = 'not found'>";
-              echo "<a href = 'login.php'>Login</a>";
             }
           ?>
         </div>
-        <a id="selectcBtn" >SelectCource</a>                
-        <a href="searchTopic.html" >Quick search</a>
+      </div>
     </div>
     <!--select cource-->
     <div id="selectDiv">
@@ -106,7 +112,7 @@ $year_index = check_index("year", 3);
     <!--section M (main)-->
     <div class="sectionM">
       <div id="secMcontent">
-        <h2>Tips : - </h2>
+        <h2>Tips :</h2>
         <p> First Select COURCE and YEAR then SUBJECT, UNIT and TOPIC </p>
       </div>
       <div id="topicBy"> Admin(not working)</div>
@@ -118,9 +124,9 @@ $year_index = check_index("year", 3);
     <!--section ends-->
 
    <!--Section-footer-->
-   <div class="footer"></div>
+   <?php include "footer.php"?>
    <script src="main.js"></script>
-   <script src="sdms.js"></script>
+   
 
    <script>
      //global variables
@@ -164,7 +170,7 @@ $year_index = check_index("year", 3);
         $("#secMcontent").html("<h2>Tips : - </h2> <p> First Select COURCE and YEAR then SUBJECT, UNIT and TOPIC </p>");
         $(".unitcontent").html("");
         $(".subject").html("");
-        $(".unitBtn").css({"background-color": "black"});
+        $(".unitBtn").css({"background-color": "rgba(187, 134, 252, 0.200)"});
         $("#topicBy").html("");
       }
       //byuser
@@ -257,19 +263,20 @@ $year_index = check_index("year", 3);
     
       //active button color sub
       $(document).on("click",".subBtn", function(){
-          $(".subBtn").css({"background-color": "black"});
-          $(".unitBtn").css({"background-color": "black"});
-          $(this).css({"background-color": "#179942"});
+          $(".subBtn").css({"background-color": "rgba(187, 134, 252, 0.200)"});
+          $(".unitBtn").css({"background-color": "rgba(187, 134, 252, 0.200)"});
+          $(this).css({"background-color": "rgba(187, 134, 252, 0.400)"});
       });
       //active button color unit
       $(document).on("click",".unitBtn", function(){
-          $(".unitBtn").css({"background-color": "black"});
-          $(this).css({"background-color": "#179942"});
+          $(".unitBtn").css({"background-color": "rgba(187, 134, 252, 0.200)"});
+          $(this).css({"background-color": "rgba(187, 134, 252, 0.400)"});
       });
       //active button color unit
       $(document).on("click",".titleBtn", function(){
-          $(".titleBtn").css({"background-color": "black"});
-          $(this).css({"background-color": "#179942"});
+          $(".titleBtn").css({"background-color": "rgba(187, 134, 252, 0.200)"});
+          $(this).css({"background-color": "rgba(187, 134, 252, 0.400)"});
+          //set current topic name
           gtitle = $(this).data("idtitle");
           if(screen.width <= 521){
             $("#tb").html("" + gtitle + "");
@@ -278,14 +285,14 @@ $year_index = check_index("year", 3);
       });
       //active Cource btn color
       $(document).on("click",".cBtn", function(){
-          $(".cBtn").css({"background-color": "black"});
-          $(".yearBtn").css({"background-color": "black"});
-          $(this).css({"background-color": "#179942"});
+          $(".cBtn").css({"background-color": "rgba(187, 134, 252, 0.200)"});
+          $(".yearBtn").css({"background-color": "rgba(187, 134, 252, 0.200)"});
+          $(this).css({"background-color": "rgba(187, 134, 252, 0.400)"});
       });
       //active year btn color
       $(document).on("click",".yearBtn", function(){
-          $(".yearBtn").css({"background-color": "black"});
-          $(this).css({"background-color": "#179942"});
+          $(".yearBtn").css({"background-color": "rgba(187, 134, 252, 0.200)"});
+          $(this).css({"background-color": "rgba(187, 134, 252, 0.400)"});
           $("#selectDiv").slideUp(1000);
           $("#selectcBtn").html("" + gcource + "-" + gyear + "");
       });

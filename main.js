@@ -1,3 +1,9 @@
+//loader start
+window.addEventListener("load", function () {
+  const loader = document.querySelector(".loader");
+  loader.className += " hidden";
+});
+//loder ends
 //topics button
 $(function () {
   $("#tb").click(function () {

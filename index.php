@@ -110,7 +110,7 @@
       <h1>"In this <a href="dataManagement.html">world</a> life has an end, but in life <a href="main.php">Learning</a>  never ends"</h1>
       <p>-Divesh Aggarwal</p>
       <div id="quickAdvance">
-        <a href="searchTopic.html">Quick search</a>
+        <a href="quickSearch.php">Quick search</a>
       </div>
     </div>
     <!--section E-->
@@ -155,7 +155,14 @@
       
     </div>
     <!--Section-footer-->
-    <div  class="footer"></div>
-    <script src="sdms.js"></script>
+    <?php include "footer.php"; ?>
+    <script>
+      //loader start
+      window.addEventListener("load", function () {
+        const loader = document.querySelector(".loader");
+        loader.className += " hidden";
+      });
+      //loder ends
+    </script>
   </body>
 </html>

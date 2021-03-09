@@ -7,15 +7,64 @@
     <script src="jquery.js"></script>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/searchTopics.css">
+    <style>
+      .fig1{
+        max-width: 500px;
+      }
+      .youtubeBtn {
+        outline: none;
+        cursor: pointer;
+        border: none;
+        color: white;
+        padding: 10px 8px;
+        background: rgba(187, 134, 252, 0.200);
+        border-radius: 5px;
+        transition: background-color 1s;
+        border-radius: 25px;
+      }
+      .youtubeBtn:hover {
+        background-color: rgba(187, 134, 252, 0.400);
+      }
+      .ytcont{
+        border: 1px solid #BB86FC;
+      }
+    </style>
 </head>
 <body>
-    <div>
-        <input type="text" id="searchBox">
-        
+    <!--Section-x-->
+    <div id="navDiv">
+      <div id="navDiv_a">
+        <a id="sdmsLogo" href="index.php">SDMS</a>
+        <a href="main.php">Main page</a>                
+      </div>
+      
+      <div id="navDiv_b">
+        <a href="quickSearch.php" >Quick search</a>
+        <div id="userDiv">
+          <?php
+            session_start();
+            if (isset($_SESSION['username'])) {
+              echo "<a id = 'user' href = 'userprofile.php'>". $_SESSION['username']. "</a>";
+              if ($_SESSION['userimage'] !== "") {
+                echo "<img src = '" . $_SESSION['userimage']. "' alt = 'not found2'> <br>";
+              } else {
+                echo "<img src = 'images/userdata/profile.jpg'  alt = 'not found'> <br>";
+              }               
+            }else{
+              echo "<a id ='user' href = 'login.php'>Login</a>";
+              echo "<img src = '" . "images/userdata/profile.jpg". "' alt = 'not found'>";
+            }
+          ?>
+        </div>
+      </div>
     </div>
-    <div id="loadDiv">
-        
+    <!--Section-x End-->
+
+    <div id="inputDiv">
+        <input type="text" id="searchBox" placeholder="Type at least 3 characters">
+        <img src="css/icons/search_icon.svg" alt="search">
     </div>
+    <div id="loadDiv"></div>
     <div id="titleBody"></div>
 
     <script>
@@ -67,9 +116,13 @@
             
             //active button color
             $(document).on("click",".same", function(){
-                $("#loadDiv button:nth-child(even)").css({"background-color": "#f2f2f2"});
-                $("#loadDiv button:nth-child(odd)").css({"background-color": "#414141"});
-                $(this).css({"background-color": "#E09A3A"});
+                $("#loadDiv button:nth-child(even)").css({"background-color": "#EEEEEE"});
+                $("#loadDiv button:nth-child(odd)").css({"background-color": "#121212"});
+                $(this).css({"background-color": "rgba(187, 134, 252, 0.300)"});
+            });
+            //youtube btn
+            $(document).on("click",".youtubeBtn", function(){
+                $(".ytcont").slideToggle(600);
             });
 
         });//ready

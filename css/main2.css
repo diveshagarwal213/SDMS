@@ -1,99 +1,20 @@
-*{
-  box-sizing: border-box;
-}
-.topic {
-  border-right : 2px solid #179942;
-  border-bottom : 2px solid #179942;
-}
-.unit {
-  border-bottom: 3.5px solid #179942;
-}
-.subject {
-  border-bottom : 4px solid #179942;
-  border-top : 4px solid #179942;
-}
-.topic button.active {
-  color: white;
-  background-color: #179942;
-}
-.topic button:hover {
-  color: white;
-  background-color: #179942bd;
-}
 
-.unit button:hover {
-  color: white;
-  background-color: #179942bd;
-}
-
-.subject button:hover {
-  color: white;
-  background-color: #179942bd;
-}
-
-.selectsub.active {
-  color: white;
-  background-color: #179942;
-}
-.selectsub:hover {
-  color: white;
-  background-color: #179942;
-}
 .courcehead {
-  color: #179942;
+  color: #BB86FC;
 }
 
 h2 {
-  color: #179942;
+  color: #BB86FC;
 }
 b {
-  color: #179942;
+  color: #BB86FC;
 }
 #scrolltop {
-  background-color: #179942;
+  background-color: #BB86FC;
 }
 .topiclink svg:hover {
-  fill: #179942;
+  fill: #BB86FC;
 }
 .f-hline{
-  background-color: #179942;
-}
-/*--user div---*/
-
-#userDiv {
-  display: inline-flex;
-  align-items: center;
-}
-#selectDiv {
-  border: 1px solid #179917;
-  padding: 5px;
-  display: none;
-}
-
-#selectDiv button {
-  outline: none;
-  border: none;
-  padding: 10px 8px;
-  margin: 5px;
-  color: white;
-  background: black;
-  cursor: pointer;
-  border-radius: 3px;
-}
-#topicBy {
-  text-align: right;
-  margin-top: 5px;
-}
-
-@media (max-width: 521px) {
-  .topic {
-    border-right: none;
-  }
-  #navDiv {
-    display: block;
-    align-items: center;
-  }
-  #user{
-    display: none;
-  }
+  background-color: rgba(187, 134, 252, 0.300);
 }

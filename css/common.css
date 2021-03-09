@@ -4,8 +4,8 @@
 }
 body{
   font-family: Roboto-Regular;
-  background: black;
-  color: white;
+  background: #121212;
+  color: #EEEEEE;
 }
 @font-face {
   font-family: Megrim;
@@ -61,10 +61,25 @@ body{
 /*----------nav Div-------*/
 
 #navDiv {
-  /*border: 1px solid red;*/
+  border-bottom: 3px solid #EEEEEE;
   width: 100%;
-  padding: 0px 5px;
+  padding: 10px 5px;
   display: inline-flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+#navDiv_a{
+  /*border: solid 1px red;*/
+  width: 50%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#navDiv_b{
+  /*border: solid 1px green;*/
+  width: 50%;
+  display: inline-flex;
+  justify-content: flex-end;
   align-items: center;
 }
 #navDiv img {
@@ -77,19 +92,33 @@ body{
 }
 
 #navDiv a { 
-  font-size: 200%;
-  color: white;  
+  color: #EEEEEE;  
   text-decoration: none;
   cursor: pointer;
-  margin-right: calc(100% - 98%);
 }
-#navDiv a:nth-child(1) {
+#sdmsLogo {
   letter-spacing: 10px;
-  font-size: 400%;
+  font-size: 200%;
   font-family: "Megrim"; 
 }
-#navDiv a:nth-child(3) {
-  margin-left: calc(100% - 98%); 
+
+/*--user div---*/
+#userDiv {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10%;
+}
+#userDiv a{
+  padding-right: 10px;
+}
+
+@media (max-width: 521px) {
+  #navDiv_b{
+    width: fit-content;
+  }
+  #navDiv_a{
+    width: 100%;
+  }
 }
 
 /*----------nav Div-------*/

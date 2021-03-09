@@ -1,15 +1,7 @@
-*{
-    box-sizing: border-box;
-}
-
-body{
-    background-color: black;
-    color: white;
-}
 .same{
-    background-color:  #414141;
+    background-color:  #121212;
     margin: 10px;
-    color: white;
+    color: #EEEEEE;
     padding: 18px 12px;
     border: none;
     outline: none;
@@ -18,35 +10,46 @@ body{
     transition: 0.3s;
     font-size: 105%;
 }
+#inputDiv{
+  margin-top: 10px;
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+}
 input{
     padding: 5px;
-    background: #3b3b3b;
-    color: white;
+    background: #121212;
+    color: #EEEEEE;
     outline: none;
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 3px solid rgba(187, 134, 252, 0.200);
     border-top: 0;
     border-left: 0;
     border-right: 0;
     width: 80%;
     margin-bottom: 20px;
     margin-top: 5px;
+    text-align: center;
+    font-size: large;
 }
 input:focus{
-    border-bottom: 1px solid #E09A3A;
+  border-bottom: 3px solid rgba(187, 134, 252, 0.500);
     outline: none;
     transition: 0.5s;
 }
 #loadDiv{
-    border: 1px solid #E09A3A;
+    background-color:  rgba(187, 134, 252, 0.100);
     min-height: 120px;
+    margin-bottom: 10px;
 }
 #loadDiv button:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #EEEEEE;
     color: black;
 }
 
 #loadDiv button:hover {
-    background-color:#E09A3A;
+    background-color:rgba(187, 134, 252, 0.100);
     color: white;
 }
 #searchButton{
@@ -58,13 +61,11 @@ input:focus{
     cursor: pointer;
 }
 #searchButton:hover{
-    background-color: #E09A3A;
+    background-color: #BB86FC;
 }
 #titleBody{
-    border: 1px solid  #414141 ;
-    min-height: 300px;
-    margin: 10px;
-    display: block;
+    border: 3px solid rgba(187, 134, 252, 0.200);
+    border-radius: 5px;
     width: 100%;
     color: white;
     min-height: 800px;
@@ -72,31 +73,20 @@ input:focus{
     font-size: 120%;
 }
 .courcehead {
-    color: #E09A3A;
-  }
-  .paint {
-    color: #E09A3A;
-    font-size: 140%;
-  }
-  .paint2 {
-    color: #E09A3A;
+    color: #BB86FC;
   }
   h2 {
-    color: #E09A3A;
+    color: #BB86FC;
   }
   .paint3 {
     text-decoration: underline;
-    text-decoration-color: #E09A3A;
-  }
-  .paint4 {
-    background-color: #E09A3A;
-    border-radius: 5px;
+    text-decoration-color: #BB86FC;
   }
   b {
-    color: #E09A3A;
+    color: #BB86FC;
   }
   .active{
-    background-color: #E09A3A;
+    background-color: #BB86FC;
   }
   /**/
   .heading {
@@ -123,4 +113,20 @@ input:focus{
   }
   .topicby{
     margin-left: 80%;
+  }
+  .ytcont {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 40.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    display: none;
+  }
+  .responsiveif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
   }
