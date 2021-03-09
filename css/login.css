@@ -1,0 +1,94 @@
+#first_div{
+    /*border: 1px solid green;*/
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+#second_div{
+    /*border: 1px solid red;*/
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+}
+button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+h3 button {
+    background: none;
+    color: #EEEEEE;
+    font-size: medium;
+    font-weight: bold;
+}
+input{
+    background: #121212;
+    padding: 15px 10px;
+    font-size: large;
+    outline: none;
+    border: none;
+    color: #EEEEEE;
+    border-bottom: 3px solid #e6702c75;
+    transition: border 1s;
+}
+input:focus {
+    outline: none;
+    border: none;
+    border-bottom: 3px solid #E66F2C;
+}
+#loginDiv{
+    border-bottom: 3px solid #E66F2C;
+    padding: 10px;
+    position: absolute;
+    background: #121212;
+    z-index: 3;
+    width: 100%;
+    height: 450px;
+}
+#login ,#submit {
+    border-radius: 5px;
+    padding: 10px 50px;
+    text-transform: uppercase;
+}
+#login:hover, #submit:hover{
+    background: #e6702c;
+}
+#main_page {
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #121212;
+    background: #EEEEEE;
+}
+#main_page:hover{
+    background-color:#e6702c;
+}
+p {
+    font-size: small;
+}
+p button {
+    background: none;
+    color: #EEEEEE;
+    font-size: small;
+}
+#regDiv {
+    border-top: 3px solid #E66F2C;
+    position: absolute;
+    width: 100%;
+}
+#create, #already{
+    color: #e6702cc9;
+}
+#create:hover, #already:hover{
+    color: #e6702c;
+}
+
+@media(max-width:600px){
+    #second_div{
+        width: 100%;
+    }
+}
