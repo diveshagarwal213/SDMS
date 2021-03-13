@@ -1,3 +1,4 @@
+@import "footer.css"; 
 *{
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -633,7 +634,6 @@ body {
 .fc2-ul li {
   margin-top: 10px;
   list-style-type: none;
-  font-weight: bold;
   font-size: 110%;
 }
 .fc2-ul a {
@@ -641,7 +641,6 @@ body {
   color: grey;
 }
 .fc2-ul a:hover {
-  font-size: 115%;
   transition-duration: 0.5s;
   color: white;
 }

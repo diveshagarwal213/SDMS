@@ -1,0 +1,192 @@
+/*Section-------------------------------------------------------------------footer*/
+.footer {
+    background-color: black;
+    padding-bottom: 10px;
+    width: 100%;
+    height: auto;
+    color: white;
+  }
+  .f-hline {
+    width: 100%;
+    height: auto;
+    background-color: #E66F2C;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 160%;
+    padding: 10px 0px;
+  }
+  .f-container {
+    /*border: 1px solid green;*/
+    width: 90%;
+    max-height: 655px;
+    height: 260px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .fc-com {
+    /*border:1px solid yellow;*/
+    height: 250px;
+    float: left;
+    margin-left: 10%;
+  }
+  .fc1 {
+    margin-left: 5%;
+    width: auto;
+    max-width: 300px;
+    min-width: 250px;
+  }
+  
+  .fc1-logo {
+    /*border:1px solid pink;*/
+    width: 100%;
+    height: 80px;
+  }
+  .fc1-logo div {
+    float: left;
+  }
+  
+  .fc1-logo:hover {
+    transition-duration: 0.5s;
+    transform: scale(1.1, 1.1);
+  }
+  .fc1-logo:hover div {
+    color: white;
+  }
+  
+  .fc1-l {
+    /*border:1px solid blue;*/
+    width: 22%;
+    height: 88%;
+    padding-top: 3%;
+    padding-left: 4%;
+  }
+  .l1 {
+    padding-left: 5%;
+    padding-top: 4%;
+    height: 84%;
+    width: 21%;
+  }
+  
+  .fc1-lt {
+    /*border:1px solid red;*/
+    padding-top: 8%;
+    font-size: 180%;
+    width: 70%;
+    color: grey;
+    text-align: center;
+  }
+  .fc2 {
+    min-width: 165px;
+  }
+  
+  .fc2-ul li {
+    margin-top: 10px;
+    list-style-type: none;
+    font-size: 110%;
+  }
+  .fc2-ul a {
+    text-decoration: none;
+    color: grey;
+  }
+  .fc2-ul a:hover {
+    color: white;
+  }
+  .fc3 {
+    max-width: 250px;
+    min-width: 200px;
+    width: auto;
+    color: grey;
+  }
+  .fc3 span {
+    font-family: "Megrim";
+    font-size: 350%;
+    color: white;
+  }
+  .fc3 a {
+    text-decoration: none;
+    color: grey;
+    background-color: black;
+    font-weight: bold;
+    font-size: 120%;
+    /*padding:8px;
+   border-radius:50px;
+   box-shadow: 0 1px 3px rgba(255,255,255,.12), 0 1px 3px rgba(255,255,255,.45);*/
+  }
+  .fc3 a:hover {
+    transition-duration: 0.5s;
+    font-size: 130%;
+    color: white;
+  }
+  .copyright {
+    text-align: center;
+    color: grey;
+    font-size: 90%;
+  }
+  
+  @media (max-width: 1077px) {
+    /*footer*/
+    .fc-com {
+      margin-left: 6%;
+    }
+    .f-container{
+      width: 99%;
+    }
+    #sabd{
+      /*display: none;*/
+      top: 22%;
+    }
+  }
+  @media (max-width: 900px) {
+    .fc-com {
+      margin-left: 2%;
+    }
+  }
+  /*media 800*/
+  @media (max-width: 800px) {
+
+    .cards-comon {
+      margin-top: 2%;
+    }
+    .f-container{
+      margin: 0;
+      width: 99%;
+      height: 505px;
+    }
+} 
+
+  /*media 600 query*/
+  @media (max-width: 600px) {
+    /*footer*/
+    .fc-com {
+      margin-left: 0%;
+    }
+  
+    .fc2 {
+      min-width: 10px;
+      height: auto;
+    }
+  
+    .fc3 {
+      max-width: 100%;
+      padding: 2%;
+    }
+
+  }
+  /*media 400 (iphon-6-7)query*/
+  
+  @media (max-width: 400px) {
+    .ula1 li {
+      margin: 3px;
+    }
+   .f-container {
+      height: 655px;
+    }
+  }
+  /*media 350 (iphon-6-7)query*/
+  @media (max-width: 350px) {  
+    .f-hline2 div {
+      margin-left: 0%;
+    }
+  }

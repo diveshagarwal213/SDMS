@@ -8,6 +8,8 @@ h2 {
 }
 b {
   color: #BB86FC;
+  font-weight: normal;
+  font-size: large;
 }
 #scrolltop {
   background-color: #BB86FC;

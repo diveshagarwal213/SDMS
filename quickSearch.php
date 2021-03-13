@@ -28,6 +28,9 @@
       .ytcont{
         border: 1px solid #BB86FC;
       }
+      .f-hline{
+        background-color: rgba(187, 134, 252, 0.300);
+      }
     </style>
 </head>
 <body>
@@ -66,6 +69,7 @@
     </div>
     <div id="loadDiv"></div>
     <div id="titleBody"></div>
+    <?php include "footer.php"?>
 
     <script>
 
