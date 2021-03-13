@@ -17,6 +17,8 @@ button {
     border: none;
     cursor: pointer;
     outline: none;
+    background-color: #1f1f1f;
+    color: #EEEEEE;
 }
 h3 button {
     background: none;
@@ -61,19 +63,24 @@ input:focus {
     padding: 10px 20px;
     text-transform: uppercase;
     text-decoration: none;
-    color: #121212;
-    background: #EEEEEE;
+    background-color: #1f1f1f;
+    color: #EEEEEE;
 }
 #main_page:hover{
     background-color:#e6702c;
 }
 p {
     font-size: small;
+    color: rgb(70, 70, 70);
+    
 }
 p button {
     background: none;
-    color: #EEEEEE;
+    color: rgb(70, 70, 70);
     font-size: small;
+}
+p button:hover{
+    color: #EEEEEE;
 }
 #regDiv {
     border-top: 3px solid #E66F2C;
@@ -81,10 +88,10 @@ p button {
     width: 100%;
 }
 #create, #already{
-    color: #e6702cc9;
+    color: #e6702c;
 }
 #create:hover, #already:hover{
-    color: #e6702c;
+
 }
 
 @media(max-width:600px){

@@ -14,8 +14,12 @@
     <title>Document</title>
     <script src="jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="css/common.css" />
-    <link rel="stylesheet" type="text/css" href="css/media.css" />
     <link rel="stylesheet" type="text/css" href="css/userprofile.css" />
+    <style>
+       #navDiv{
+            border-bottom: 3px solid #E66F2C;
+        }
+    </style>
 </head>
 <body>
     <!--Section-x-->
@@ -73,7 +77,7 @@
             </div>
             <div>
                 <form id="subImg">
-                    <label for="user_img">Select image : </label>
+                    <label for="user_img">Browser</label>
                     <input type="file" name="file" id="user_img" onchange="readURL(this);"/>
                     <input type="submit" name="uploadButton" id="uploadBtn" value="Upload"/>
                     

@@ -1,10 +1,11 @@
 @import "footer.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 *{
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
 body{
-  font-family: Roboto-Regular;
+  font-family: 'Roboto', sans-serif;
   background: #121212;
   color: #EEEEEE;
 }
@@ -12,10 +13,7 @@ body{
   font-family: Megrim;
   src: url("../other/Megrim.ttf");
 }
-@font-face {
-  font-family: Roboto-Regular;
-  src: url("../other/Roboto-Regular.ttf");
-}
+
   
 /* loading start */
 .loader {

@@ -53,7 +53,7 @@
             <div id="loginDiv">
                 <h1>Login</h1>
                 <h3>New to Sdms? <button id="create" >Creat an account</button></h3>
-                <form id="check">
+                <form id="check" spellcheck="false">
                     <input type="text" id="inputname" placeholder="Username" autocomplete="off"> <br>
                     <input type="password" id="inputpass" placeholder="Password">
                     <br> <br>
@@ -67,7 +67,7 @@
             <div id="regDiv">
                 <h1>Register</h1>
                 <h3>Already have an Account? <button id="already">Login</button></h3>
-                <form id="insert">
+                <form id="insert" spellcheck="false">
                     <input id="fullname" type="text" placeholder="Full Name" autocomplete="off"> <br>
                     <input type="text" id="username" placeholder="Username"> <br>
                     <input type="email" id="email" placeholder="Email"> <br>
@@ -139,12 +139,12 @@
 
             //hide login
             $("#create").on('click', function () {
-                $("#loginDiv").slideUp(1000)
+                $("#loginDiv").slideUp(900)
             });
 
             //show login
             $("#already").on('click', function () {
-                $("#loginDiv").slideDown(1000)
+                $("#loginDiv").slideDown(900)
             });
 
 

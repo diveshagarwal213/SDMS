@@ -1,6 +1,13 @@
+button{
+  cursor: pointer;
+  color: #EEEEEE;
+  background-color: #1f1f1f;
+  outline: none;
+  border: none;
+}
 /*------ucontent------*/
 #ucontent {
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     display: inline-flex;
     align-items: center;
     width: 100%;
@@ -12,23 +19,25 @@
   text-align: center;
 }
 #imageDiv button {
-  outline: none;
-  border: 1px solid white;
   border-radius: 5px;
   padding: 5px 8px;
-  color: white;
-  background-color: black;
+  background-color: #1f1f1f;
   margin-top: 5px;
+}
+#imageDiv button:hover {
+  background-color: #e6702cd0;
 }
 #ucontent img {
   width: 200px;
   height: 200px;
-  border-radius: 25px;
-  padding: 0;
+  border-radius: 50%;
+  padding: 5px;
+  border-bottom: 3px solid #E66F2C;
+  border-right: 6px solid #E66F2C;
   margin: 0;
 }
 #usernameDiv {
-  border: 1px solid yellow;
+  /*border: 1px solid yellow;*/
   padding: 5px;
   margin: 10px;
   height: fit-content;
@@ -40,22 +49,21 @@
   font-size: xx-large;
   color: white;
 }
-#imageDiv button{
-  cursor: pointer;
-}
-
 /*user image uplod div--------------------------*/
 #userImgUpDiv{
-  border: 2px solid orange;
+  /*border: 2px solid orange;*/
   display: none;
+  margin-top: 10px;
 }
 #imagePreDiv{
-  border: 2px solid red;
+  /*border: 2px solid red;*/
   display: flex;
   justify-content: space-around;
   align-items: center;
   text-align: center;
   padding: 10px;
+  background-color: #e6702c91;
+  border-radius: 5px;
 }
 #imagePre{
   border-radius: 25px;
@@ -65,9 +73,14 @@
 #imagePre img{
   width: 200px;
   height: 200px;
-  border-radius: 25px;
-  padding: 0;
+  border-radius: 50%;
+  padding: 5px;
+  border-top: 6px solid #E66F2C;
+  border-left: 3px solid #E66F2C;
   margin: 0;
+}
+input[type="file"]{
+  display: none;
 }
 
   
