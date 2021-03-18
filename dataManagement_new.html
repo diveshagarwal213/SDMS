@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDMS Data Management</title>
+    <script src="jquery.js"></script>
+    
+</head>
+<body>
+    <h1 class="heading"> <a href="index.php">SDMS</a> New Data Management</h1>
+    <div id="formDiv">
+        <h2 class="heading">Insert New Data</h2>
+        <form id="inputForm">
+            <div id="one1">
+                <label for="Cname">Cource Name</label> 
+                <select  id="Cname">
+                    <option value="">select Cource name</option>     
+                </select>
+                <div id="cyear">
+                    <p>select Year</p>
+                    <label for="Cyear_1">1</label>
+                    <input type="radio" id="Cyear_1" name="year" value="1">
+                    <label for="Cyear_2">2</label>
+                    <input type="radio" id="Cyear_2" name="year" value="2">
+                    <label for="Cyear_3">3</label>
+                    <input type="radio" id="Cyear_3" name="year" value="3">
+                    <label for="Cyear_4">4</label>
+                    <input type="radio" id="Cyear_4" name="year" value="4">
+                </div>
+            </div>
+            <div id="two2">
+                <label for="Csubject">subjects</label> 
+                <select  id="Csubject">
+                    <option value="">select subject</option>     
+                </select>
+                <div id="sunit">
+                    <p>select subject unit</p>
+                    <label for="unit_1">1</label>
+                    <input type="radio" id="unit_1" name="unit" value="1">
+                    <label for="unit_2">2</label>
+                    <input type="radio" id="unit_2" name="unit" value="2">
+                    <label for="unit_3">3</label>
+                    <input type="radio" id="unit_3" name="unit" value="3">
+                    <label for="unit_4">4</label>
+                    <input type="radio" id="unit_4" name="unit" value="4">
+                </div>
+            </div>
+            <!--<label for="title">Toipc Title<span class="orange">*</span></label>
+            <input type="text" id="title">
+            <br>
+            <label for="Tbody">Title Body<span class="orange">*</span></label>
+            <textarea  id="Tbody"></textarea>
+            <input type="submit" id="saveButton" class="Button1" value="Submit">
+        </form>
+    </div>
+    <div id="searchDiv">
+        <h2 class="heading">Search Topic</h2>
+        <input type="text" id="searchBox">
+    </div>
+    <div id="updateDiv">
+        <div id="updateformdiv">
+            <h2 class="heading">Update data</h2>
+            <form id="updateForm">
+                <div id="one1">
+                    <label for="upcname">Cource Name</label> 
+                    <input type="text" id="upcname" >
+                    <input type="text" id="uptid" hidden>
+                    <label for="upcyear">Cource Year</label>
+                    <input type="number" id="upcyear">
+                </div>
+                <div id="two2">
+                    <label for="upcsubject">Cource Subject</label>
+                    <input type="text" id="upcsubject">
+                    <label for="upsunit">Subject Unit</label>
+                    <input type="number" id="upsunit">
+                </div>
+
+                <label for="uptitle">Toipc Title<span class="orange">*</span></label>
+                <input type="text" id="uptitle">
+                <br>
+                <label for="uptbody">Title Body<span class="orange">*</span></label>
+                <textarea  id="uptbody"></textarea>
+                <input type="submit" id="updateButton" class="Button1" value="Update">
+                <button class="Button2">Cancle</button>
+            </form>
+        </div>
+    </div>
+    <div id="loadDiv">
+        <table id="loadTable">
+            <tr>
+                <th>ID</th>
+                <th>Cource Name</th>
+                <th>Cource Year</th>
+                <th>Cource Subject</th>
+                <th>Subject Unit</th>
+                <th>Title</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            <tbody id="tableData">
+                
+            </tbody>
+        </table>
+    </div>-->
+
+    <script>
+        $(document).ready(function(){
+            
+            //global variables
+            var url = "http://localhost/sdms/";
+            var c_id ;
+            var c_year ;
+            var s_name;
+            var s_unit ;
+
+            function load_cources() {
+                
+                $.ajax({
+                    url :  url + "php_files/databaseApi.php?api_id=9",
+                    type : "GET",
+                    success: function(data){
+                        //console.log(data);
+                        $.each(data, function(key, value){
+                            $("#Cname").append("<option value ='" + value.cid + "'>" + value.cname + "</option>");
+                        });
+                    }
+                });
+            } 
+            load_cources();
+
+            // get cource name id into  c_id
+            $('#Cname').on('change', function () {
+                c_id = this.value;        
+                //var c_yearText = $(this).find('option').filter(':selected').text();        
+                //console.log(c_id,c_yearText);
+            });
+
+            //get cource_year and subject_unit into c_year & s_unit 
+            $("input[type='radio']").click(function(){
+                c_year = $("input[name='year']:checked").val();
+                s_unit = $("input[name='unit']:checked").val();
+                //console.log(c_year,s_unit);
+            });
+
+            $("#cyear input[type='radio']").change(function () {
+                load_subjects();
+            })
+            
+            //load subjects(s_name)
+            function load_subjects() {
+                
+                var obj = {c_id: c_id, c_year: c_year};
+                var d = JSON.stringify(obj);
+                $.ajax({
+                    url :  url + "php_files/databaseApi.php?api_id=10",
+                    type : "POST",
+                    data : d,
+                    success: function(data){
+                       if (data[0].status == false) {
+                        $("#Csubject").html("<option value =''> no record found </option>");
+                        console.log(data);
+                       }else{
+                            $.each(data, function(key, value){
+                                $("#Csubject").html("<option value ='" + value.subid + "'>" + value.sub_name + "</option>");
+                            });
+                       }
+                    }
+                });
+            }
+            
+
+        });//ready
+        
+
+    </script>
+
+</body>
+</html>
