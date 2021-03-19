@@ -89,6 +89,8 @@
         
         
     </div>
+
+    <div id="user_topics"></div>
     
     <script src="functions.js"></script>
     <script>

@@ -63,15 +63,26 @@ if ($api_id == 1) { //return subject names from given cource and year
         echo json_encode(array('message' => 'fill before search', 'status' => false ));
     }
 }elseif ($api_id == 9) { //fetch cources 
-    $db->select("cources","*");
-    echo $db->getResult();
+    if ($db->select("cources","*")) {
+        echo $db->getResult();
+    }else {
+        $message = $db->getResult();
+        echo json_encode(array('message' => $message, 'status' => false ));
+    }
+    
+    
 }elseif ($api_id == 10) { //fetch subjects names according to cource name and year
 
     $cid = $data['c_id'];
     $cyear = $data['c_year'];
 
-    $db->select("subject","sub_name",null,"cid = '$cid' And C_year = '$cyear'" );
-    echo $db->getResult();
+    if ($db->select("subject","sub_name, subid",null,"cid = '$cid' And C_year = '$cyear'")) {
+        echo $db->getResult();
+    }else {
+        $message = $db->getresult();
+        echo json_encode(array('message' => $message, 'status' => false ));
+
+    }
 
 } else {
     echo json_encode(array('message' => 'api_id not found', 'status' => false ));

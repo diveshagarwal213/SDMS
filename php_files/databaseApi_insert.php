@@ -78,28 +78,29 @@ if($api_id == 1){ //insert new user data into data base
 
 }elseif($api_id == 4){ //insert new data to topics  
     //tid auto increment
-    $cname = $data['cid'];
-    $cyear = $data['cyear'];
-    $csubject = $data['subid'];
-    $sunit = $data['sunit'];
+    $cname = $data['c_id'];
+    $cyear = $data['year'];
+    $csubject = $data['sub_id'];
+    $sunit = $data['unit'];
     $title = $data['title'];
-    $hOne = $data['hOne'];
-    $hTwo = $data['hTwo'];
-    $hThree = $data['hThree'];
-    $tOne = $data['tOne'];
-    $tTwo = $data['tTwo'];
-    $tThree = $data['tThree'];
+    $hOne = $data['h_one'];
+    $hTwo = $data['h_two'];
+    $hThree = $data['h_three'];
+    $tOne = $data['t_one'];
+    $tTwo = $data['t_two'];
+    $tThree = $data['t_three'];
     // empty fields image-one-two-three, t_likes , reports, active => total(19-7 = 12)
     $topicBy = $data['topicBy'];
- 
+    
     if($title == "" || $hOne == ""){
-        echo json_encode(array( "message" => "please fill all * ", "status" => false));
+        echo json_encode(array( "message" => "title hone empyty ", "status" => false));
     }else {
-        if ($db->insert('topics',['cname'=>$cname,'cyear'=>$cyear,'csubject'=>$csubject,'sunit'=>$sunit,'title'=>$title,'h_one'=>$hOne,'h_two'=>$hTwo,'h_three'=>$hThree,'t_one'=>$tOne,'t_two'=>$tTwo,'t_three'=>$tThree,'topic_by'=>$topicBy])) {
-            $db->getResult();//new topic id
-            echo json_encode(array( "message" => " topic inserted ", "status" => true));
+        if ($db->insert('topics',['cid'=>$cname,'cyear'=>$cyear,'subid'=>$csubject,'sunit'=>$sunit,'title'=>$title,'h_one'=>$hOne,'h_two'=>$hTwo,'h_three'=>$hThree,'t_one'=>$tOne,'t_two'=>$tTwo,'t_three'=>$tThree,'topic_by'=>$topicBy])) {
+            $message = $db->getResult();//new topic id
+            echo json_encode(array( "message" => " $message ", "status" => true));
         }else {
-            echo $db->getResult();
+            $message = $db->getResult();
+            echo json_encode(array( "message" =>"$message", "status" => false));
         }
     }
     

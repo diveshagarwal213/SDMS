@@ -11,10 +11,10 @@
     <h1 class="heading"> <a href="index.php">SDMS</a> New Data Management</h1>
     <div id="formDiv">
         <h2 class="heading">Insert New Data</h2>
-        <form id="inputForm">
+        <form id="topicText">
             <div id="one1">
                 <label for="Cname">Cource Name</label> 
-                <select  id="Cname">
+                <select  id="Cname" name="c_id">
                     <option value="">select Cource name</option>     
                 </select>
                 <div id="cyear">
@@ -31,7 +31,7 @@
             </div>
             <div id="two2">
                 <label for="Csubject">subjects</label> 
-                <select  id="Csubject">
+                <select  id="Csubject" name="sub_id">
                     <option value="">select subject</option>     
                 </select>
                 <div id="sunit">
@@ -46,45 +46,46 @@
                     <input type="radio" id="unit_4" name="unit" value="4">
                 </div>
             </div>
-            <!--<label for="title">Toipc Title<span class="orange">*</span></label>
-            <input type="text" id="title">
+            <label for="title">Toipc Title<span class="orange">*</span></label>
+            <input type="text" id="title" name="title">
             <br>
-            <label for="Tbody">Title Body<span class="orange">*</span></label>
+            
+            <label for="h_one">First Heading<span class="orange">*</span></label>
+            <input type="text" id="h_one" name="h_one" >
+            <br>
+            <label for="t_one">Text body</label> <br>
+            <textarea id="t_one" cols="30" rows="10" name="t_one"></textarea>
+            <br>
+            
+            <label for="h_two">second Heading</label>
+            <input type="text" id="h_two" name="h_two">
+            <br>
+            <label for="t_two">Text body 2</label>
+            <br> 
+            <textarea id="t_two" cols="30" rows="10" name="t_two"></textarea>
+            <br>
+            
+            <label for="h_three">third Heading</label>
+            <input type="text" id="h_three" name="h_three">
+            <br>
+            <label for="t_three">Text body 3</label>
+            <br>
+            <textarea  id="t_three" cols="30" rows="10" name="t_three"></textarea>
+            <br>
+            <input type="submit" value="save ok" id="save_TopicText">
+
+        </form>
+            <div id="success"></div>
+            <div id="error"></div>
+            <div id="data" ></div>
+            <!--<label for="Tbody">Title Body<span class="orange">*</span></label>
+                <button id="save_TopicText">save</button>
             <textarea  id="Tbody"></textarea>
             <input type="submit" id="saveButton" class="Button1" value="Submit">
-        </form>
     </div>
     <div id="searchDiv">
         <h2 class="heading">Search Topic</h2>
         <input type="text" id="searchBox">
-    </div>
-    <div id="updateDiv">
-        <div id="updateformdiv">
-            <h2 class="heading">Update data</h2>
-            <form id="updateForm">
-                <div id="one1">
-                    <label for="upcname">Cource Name</label> 
-                    <input type="text" id="upcname" >
-                    <input type="text" id="uptid" hidden>
-                    <label for="upcyear">Cource Year</label>
-                    <input type="number" id="upcyear">
-                </div>
-                <div id="two2">
-                    <label for="upcsubject">Cource Subject</label>
-                    <input type="text" id="upcsubject">
-                    <label for="upsunit">Subject Unit</label>
-                    <input type="number" id="upsunit">
-                </div>
-
-                <label for="uptitle">Toipc Title<span class="orange">*</span></label>
-                <input type="text" id="uptitle">
-                <br>
-                <label for="uptbody">Title Body<span class="orange">*</span></label>
-                <textarea  id="uptbody"></textarea>
-                <input type="submit" id="updateButton" class="Button1" value="Update">
-                <button class="Button2">Cancle</button>
-            </form>
-        </div>
     </div>
     <div id="loadDiv">
         <table id="loadTable">
@@ -114,6 +115,19 @@
             var s_name;
             var s_unit ;
 
+            // function form data to json object
+            function jsonData(form_id) {
+                var form_data = $(form_id).serializeArray(); //get all form values in array
+                var obj ={};
+                for (let a = 0; a < form_data.length; a++) { // convert form_data array into javaScript-Object
+                    obj[form_data[a].name] = form_data[a].value;
+                }
+                var json_data = JSON.stringify(obj); //convert java script-object into Json
+                //console.log(json_data);
+                return json_data;
+            }
+
+            //load cources
             function load_cources() {
                 
                 $.ajax({
@@ -121,15 +135,61 @@
                     type : "GET",
                     success: function(data){
                         //console.log(data);
-                        $.each(data, function(key, value){
-                            $("#Cname").append("<option value ='" + value.cid + "'>" + value.cname + "</option>");
-                        });
+                        if (data.status == false) {
+                            $("#Cname").html("<option value =''> no record found </option>");
+                            console.log(data.message);
+                        }else{
+                            $.each(data, function(key, value){
+                                $("#Cname").append("<option value ='" + value.cid + "'>" + value.cname + "</option>");
+                            });
+                        }
+                        
                     }
                 });
             } 
             load_cources();
 
-            // get cource name id into  c_id
+            //load subjects(s_name)
+            function load_subjects() {
+                
+                var obj = {c_id: c_id, c_year: c_year};
+                var d = JSON.stringify(obj);
+                $.ajax({
+                    url :  url + "php_files/databaseApi.php?api_id=10",
+                    type : "POST",
+                    data : d,
+                    success: function(data){
+                       if (data.status == false) {
+                        $("#Csubject").html("<option value =''> no record found </option>");
+                        console.log(data.message);
+                       }else{
+                            $.each(data, function(key, value){
+                                $("#Csubject").html("<option  value ='" + value.subid + "'>" + value.sub_name + "</option>");
+                            });
+                            //console.log(data);
+                       }
+                    }
+                });
+            }
+
+            // message function
+            function message(message,status) { // message("display error or succes message", false);
+                if (status == true) {
+                    $("#success").html(message).slideDown();
+                    $("#error").slideUp();
+                    setTimeout(function () {
+                        $("#success").slideUp();
+                    },5000)
+                }else if(status == false){
+                    $("#error").html(message).slideDown();
+                    $("#success").slideUp();
+                    setTimeout(function () {
+                        $("#error").slideUp();
+                    },5000)
+                }
+            }
+
+            // get selected cName id into  c_id
             $('#Cname').on('change', function () {
                 c_id = this.value;        
                 //var c_yearText = $(this).find('option').filter(':selected').text();        
@@ -143,33 +203,29 @@
                 //console.log(c_year,s_unit);
             });
 
+            // get subjects name according to selected  cource year
             $("#cyear input[type='radio']").change(function () {
                 load_subjects();
             })
             
-            //load subjects(s_name)
-            function load_subjects() {
-                
-                var obj = {c_id: c_id, c_year: c_year};
-                var d = JSON.stringify(obj);
+            // insert topic_text on click save button
+            $("#save_TopicText").on("click", function (e) {
+                e.preventDefault();
+
+                var j = jsonData("#topicText");
+                console.log(j);
                 $.ajax({
-                    url :  url + "php_files/databaseApi.php?api_id=10",
+                    url : "http://localhost/sdms/php_files/databaseApi_insert.php?api_insert_id=4",
                     type : "POST",
-                    data : d,
+                    data : j,
                     success: function(data){
-                       if (data[0].status == false) {
-                        $("#Csubject").html("<option value =''> no record found </option>");
                         console.log(data);
-                       }else{
-                            $.each(data, function(key, value){
-                                $("#Csubject").html("<option value ='" + value.subid + "'>" + value.sub_name + "</option>");
-                            });
-                       }
                     }
                 });
-            }
-            
+                
+            });
 
+            
         });//ready
         
 
