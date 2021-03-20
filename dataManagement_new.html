@@ -20,30 +20,30 @@
                 <div id="cyear">
                     <p>select Year</p>
                     <label for="Cyear_1">1</label>
-                    <input type="radio" id="Cyear_1" name="year" value="1">
+                    <input type="radio" id="Cyear_1" name="c_year" value="1">
                     <label for="Cyear_2">2</label>
-                    <input type="radio" id="Cyear_2" name="year" value="2">
+                    <input type="radio" id="Cyear_2" name="c_year" value="2">
                     <label for="Cyear_3">3</label>
-                    <input type="radio" id="Cyear_3" name="year" value="3">
+                    <input type="radio" id="Cyear_3" name="c_year" value="3">
                     <label for="Cyear_4">4</label>
-                    <input type="radio" id="Cyear_4" name="year" value="4">
+                    <input type="radio" id="Cyear_4" name="c_year" value="4">
                 </div>
             </div>
             <div id="two2">
                 <label for="Csubject">subjects</label> 
-                <select  id="Csubject" name="sub_id">
+                <select  id="Csubject" name="s_id">
                     <option value="">select subject</option>     
                 </select>
                 <div id="sunit">
                     <p>select subject unit</p>
                     <label for="unit_1">1</label>
-                    <input type="radio" id="unit_1" name="unit" value="1">
+                    <input type="radio" id="unit_1" name="s_unit" value="1">
                     <label for="unit_2">2</label>
-                    <input type="radio" id="unit_2" name="unit" value="2">
+                    <input type="radio" id="unit_2" name="s_unit" value="2">
                     <label for="unit_3">3</label>
-                    <input type="radio" id="unit_3" name="unit" value="3">
+                    <input type="radio" id="unit_3" name="s_unit" value="3">
                     <label for="unit_4">4</label>
-                    <input type="radio" id="unit_4" name="unit" value="4">
+                    <input type="radio" id="unit_4" name="s_unit" value="4">
                 </div>
             </div>
             <label for="title">Toipc Title<span class="orange">*</span></label>
@@ -110,10 +110,11 @@
             
             //global variables
             var url = "http://localhost/sdms/";
-            var c_id ;
-            var c_year ;
-            var s_name;
-            var s_unit ;
+            var c_id = null;
+            var c_year = null;
+            var s_id = null;
+            var s_unit = null;
+            var topic_by = null;
 
             // function form data to json object
             function jsonData(form_id) {
@@ -159,12 +160,13 @@
                     type : "POST",
                     data : d,
                     success: function(data){
+                        $("#Csubject").html("<option value =''> select subject </option>");
                        if (data.status == false) {
                         $("#Csubject").html("<option value =''> no record found </option>");
                         console.log(data.message);
                        }else{
                             $.each(data, function(key, value){
-                                $("#Csubject").html("<option  value ='" + value.subid + "'>" + value.sub_name + "</option>");
+                                $("#Csubject").append("<option  value ='" + value.subid + "'>" + value.sub_name + "</option>");
                             });
                             //console.log(data);
                        }
@@ -193,8 +195,11 @@
             $('#Cname').on('change', function () {
                 c_id = this.value;        
                 //var c_yearText = $(this).find('option').filter(':selected').text();        
-                //console.log(c_id,c_yearText);
+                //console.log(c_id);
             });
+
+            
+            
 
             //get cource_year and subject_unit into c_year & s_unit 
             $("input[type='radio']").click(function(){
@@ -207,19 +212,41 @@
             $("#cyear input[type='radio']").change(function () {
                 load_subjects();
             })
-            
+
+            // get selected subject name id  into s_id
+            $('#Csubject').on('change', function () {
+                s_id = this.value; 
+                //console.log(s_id);       
+            });
+
             // insert topic_text on click save button
             $("#save_TopicText").on("click", function (e) {
                 e.preventDefault();
 
-                var j = jsonData("#topicText");
-                console.log(j);
+                var title = $("#title").val();
+                var h_one = $("#h_one").val();
+                var h_two = $("#h_two").val();
+                var h_three = $("#h_three").val();
+                var t_one = $("#t_one").val();
+                var t_two = $("#t_two").val();
+                var t_three = $("#t_three").val();
+                var obj = {c_id:c_id,c_year:c_year,s_id:s_id,s_unit:s_unit,title:title,h_one:h_one,h_two:h_two,h_three:h_three,t_one:t_one,t_two:t_two,t_three:t_three,topic_by:topic_by};
+                
+                var j = JSON.stringify(obj);
+                //var j = jsonData("#topicText"); (not working [console bug] )
+                //console.log(j);
                 $.ajax({
-                    url : "http://localhost/sdms/php_files/databaseApi_insert.php?api_insert_id=4",
+                    url : "http://localhost/sdms/php_files/databaseApi_insert.php?api_insert_id=5",
                     type : "POST",
                     data : j,
-                    success: function(data){
-                        console.log(data);
+                    success : function(data){
+                        //console.log(data);
+                        if (data.status == false) {
+                            message(data.message,false);
+                            console.log(data);
+                        }else if(data.status == true){
+                            message("ok",true);
+                        }
                     }
                 });
                 
