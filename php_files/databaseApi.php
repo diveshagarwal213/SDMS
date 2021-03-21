@@ -35,10 +35,12 @@ if ($api_id == 1) { //return subject names from given cource and year
     $db->select("topic","*",null,"tid = '$id'");
     echo $db->getResult();
 
-}elseif($api_id == 5){ //collect all recent 50 data from topic except tbody in desc order 
+}elseif($api_id == 5){ //collect all recent 50 data from topics except tbody in desc order (use only in dabaseManagement.html) 
    
-    $db->select("topic","tid, cname, cyear, csubject, sunit, title",null,null,"tid DESC",50);
+    $db->select("topics","tid, cname, cyear, sub_name, sunit, title","cources ON topics.cid = cources.cid JOIN subject ON topics.subid = subject.subid ",null,"tid DESC",50);
+    // remember if cid is empty in a row ,then api will not fetch that row-data.   
     echo $db->getResult(); 
+
 }elseif ($api_id == 6) { //fetch username with given uid
     $id = $data['userid'];
     $db->select("userdata","username",null," uid = $id");

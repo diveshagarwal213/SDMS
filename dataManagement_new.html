@@ -77,7 +77,6 @@
         </form>
             <div id="success"></div>
             <div id="error"></div>
-            <div id="data" ></div>
             <!--<label for="Tbody">Title Body<span class="orange">*</span></label>
                 <button id="save_TopicText">save</button>
             <textarea  id="Tbody"></textarea>
@@ -86,14 +85,14 @@
     <div id="searchDiv">
         <h2 class="heading">Search Topic</h2>
         <input type="text" id="searchBox">
-    </div>
+    </div>-->
     <div id="loadDiv">
         <table id="loadTable">
             <tr>
                 <th>ID</th>
                 <th>Cource Name</th>
                 <th>Cource Year</th>
-                <th>Cource Subject</th>
+                <th>Subject</th>
                 <th>Subject Unit</th>
                 <th>Title</th>
                 <th>Update</th>
@@ -103,7 +102,7 @@
                 
             </tbody>
         </table>
-    </div>-->
+    </div>
 
     <script>
         $(document).ready(function(){
@@ -127,6 +126,27 @@
                 //console.log(json_data);
                 return json_data;
             }
+
+            //loadData
+            function loadTable(){
+                $("#tableData").html("");
+                $.ajax({
+                    url:"http://localhost/sdms/php_files/databaseApi.php?api_id=5",
+                    type: "GET",
+                    success: function(data){
+                        //console.log(data);
+                        if(data.status == false){
+                            $("#tableData").append("<tr><td><h2>" + data.message + "</h2></td></tr>"); 
+                        }else{
+                            $.each(data, function(key, value){
+                                $("#tableData").append("<tr><td>" + value.tid + "</td><td>" + value.cname + "</td><td>" + value.cyear + "</td><td>" + value.sub_name + "</td><td>" + value.sunit + "</td><td>" + value.title + "</td>"
+                                    + "<td> <button class = 'updateBtn' data-idupdate = '" + value.tid + "'>Update</button> </td>" + "<td> <button class = 'deleteBtn' data-idDelete ='" + value.tid + "'>Delete</button> </td>" );
+                            });
+                        }
+                    }
+                });
+            }
+            loadTable();
 
             //load cources
             function load_cources() {
@@ -155,6 +175,7 @@
                 
                 var obj = {c_id: c_id, c_year: c_year};
                 var d = JSON.stringify(obj);
+                //console.log(d);
                 $.ajax({
                     url :  url + "php_files/databaseApi.php?api_id=10",
                     type : "POST",
@@ -203,8 +224,8 @@
 
             //get cource_year and subject_unit into c_year & s_unit 
             $("input[type='radio']").click(function(){
-                c_year = $("input[name='year']:checked").val();
-                s_unit = $("input[name='unit']:checked").val();
+                c_year = $("input[name='c_year']:checked").val();
+                s_unit = $("input[name='s_unit']:checked").val();
                 //console.log(c_year,s_unit);
             });
 
@@ -246,6 +267,8 @@
                             console.log(data);
                         }else if(data.status == true){
                             message("ok",true);
+                            loadTable();
+                            $("#topicText").trigger("reset");
                         }
                     }
                 });
