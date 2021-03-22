@@ -32,7 +32,7 @@ if ($api_id == 1) { //return subject names from given cource and year
     
     $id = $data['id'];
 
-    $db->select("topic","*",null,"tid = '$id'");
+    $db->select("topics","*",null,"tid = '$id'");
     echo $db->getResult();
 
 }elseif($api_id == 5){ //collect all recent 50 data from topics except tbody in desc order (use only in dabaseManagement.html) 

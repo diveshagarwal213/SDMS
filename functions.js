@@ -28,3 +28,32 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+//message function
+function message(message,status) { // message("display error or succes message", false);
+    if (status == true) {
+        $("#success").html(message).slideDown();
+        $("#error").slideUp();
+        setTimeout(function () {
+            $("#success").slideUp();
+        },5000)
+    }else if(status == false){
+        $("#error").html(message).slideDown();
+        $("#success").slideUp();
+        setTimeout(function () {
+            $("#error").slideUp();
+        },5000)
+    }
+}
+
+ // function form-data to json 
+ function jsonData(form_id) {
+    var form_data = $(form_id).serializeArray(); //get all form values in array
+    var obj ={};
+    for (let a = 0; a < form_data.length; a++) { // convert form_data array into javaScript-Object
+        obj[form_data[a].name] = form_data[a].value;
+    }
+    var json_data = JSON.stringify(obj); //convert java script-object into Json
+    //console.log(json_data);
+    return json_data;
+}
