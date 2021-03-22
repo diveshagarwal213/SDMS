@@ -5,46 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDMS Data Management</title>
     <script src="jquery.js"></script>
+    <link rel="stylesheet" href="css/dataManagementNew.css">
     
 </head>
 <body>
     <h1 class="heading"> <a href="index.php">SDMS</a> New Data Management</h1>
+    <h2 class="heading">Insert New Data</h2> 
     <div id="formDiv">
-        <h2 class="heading">Insert New Data</h2>
         <form id="topicText">
-            <div id="one1">
-                <label for="Cname">Cource Name</label> 
-                <select  id="Cname" name="c_id">
-                </select>
-                <div id="cyear">
-                    <p>select Year</p>
-                    <label for="Cyear_1">1</label>
-                    <input type="radio" id="Cyear_1" name="c_year" value="1">
-                    <label for="Cyear_2">2</label>
-                    <input type="radio" id="Cyear_2" name="c_year" value="2">
-                    <label for="Cyear_3">3</label>
-                    <input type="radio" id="Cyear_3" name="c_year" value="3">
-                    <label for="Cyear_4">4</label>
-                    <input type="radio" id="Cyear_4" name="c_year" value="4">
+            <div id="one" >
+                <div id="one1">
+                    <label for="Cname">Cource Name</label> 
+                    <select  id="Cname" name="c_id">
+                    </select>
+                    <div id="cyear">
+                        <p>Select Cource Year </p>
+                        <label for="Cyear_1">1</label>
+                        <input type="radio" id="Cyear_1" name="c_year" value="1">
+                        <label for="Cyear_2">2</label>
+                        <input type="radio" id="Cyear_2" name="c_year" value="2">
+                        <label for="Cyear_3">3</label>
+                        <input type="radio" id="Cyear_3" name="c_year" value="3">
+                        <label for="Cyear_4">4</label>
+                        <input type="radio" id="Cyear_4" name="c_year" value="4">
+                    </div>
+                </div>
+                <div id="one2">
+                    <label for="Csubject">subjects</label> 
+                    <select  id="Csubject" name="s_id">
+                        <option value="">select subject</option>     
+                    </select>
+                    <div id="sunit">
+                        <p>select subject unit : 
+                        <label for="unit_1">1</label>
+                        <input type="radio" id="unit_1" name="s_unit" value="1">
+                        <label for="unit_2">2</label>
+                        <input type="radio" id="unit_2" name="s_unit" value="2">
+                        <label for="unit_3">3</label>
+                        <input type="radio" id="unit_3" name="s_unit" value="3">
+                        <label for="unit_4">4</label>
+                        <input type="radio" id="unit_4" name="s_unit" value="4">
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div id="two2">
-                <label for="Csubject">subjects</label> 
-                <select  id="Csubject" name="s_id">
-                    <option value="">select subject</option>     
-                </select>
-                <div id="sunit">
-                    <p>select subject unit</p>
-                    <label for="unit_1">1</label>
-                    <input type="radio" id="unit_1" name="s_unit" value="1">
-                    <label for="unit_2">2</label>
-                    <input type="radio" id="unit_2" name="s_unit" value="2">
-                    <label for="unit_3">3</label>
-                    <input type="radio" id="unit_3" name="s_unit" value="3">
-                    <label for="unit_4">4</label>
-                    <input type="radio" id="unit_4" name="s_unit" value="4">
-                </div>
-            </div>
+            
             <label for="title">Toipc Title<span class="orange">*</span></label>
             <input type="text" id="title" name="title">
             <br>
@@ -164,6 +169,7 @@
             var s_id = null;
             var s_unit = null;
             var topic_by = null;
+            var up_cid = null;
 
             //loadData
             function loadTable(){
@@ -186,7 +192,7 @@
             }
             loadTable();
 
-            //load cources into given select-tag id, autoSelected opction when update  
+            //load cources into given select-tag id, set selected-option while updating.  
             function load_cources(select_id, cid) {
                 
                 $.ajax({
@@ -215,9 +221,9 @@
             load_cources("#Cname");
 
             //load subjects(s_name) into given select tag id
-            function load_subjects(select_id) {
+            function load_subjects(select_id,subid ="",cid = c_id,cyear = c_year) {
                 
-                var obj = {c_id: c_id, c_year: c_year};
+                var obj = {c_id:cid, c_year:cyear}
                 var d = JSON.stringify(obj);
                 //console.log(d);
                 $.ajax({
@@ -227,11 +233,16 @@
                     success: function(data){
                         $(select_id).html("<option value =''> select subject </option>");
                        if (data.status == false) {
-                        $(select_id).html("<option value =''> no record found </option>");
-                        console.log(data.message);
+                        $(select_id).html("<option value =''> no record found  </option>");
+                        console.log(data.message + " load_subject function die");
                        }else{
                             $.each(data, function(key, value){
-                                $(select_id).append("<option  value ='" + value.subid + "'>" + value.sub_name + "</option>");
+                                if (value.subid == subid) {
+                                    var selected = "selected";
+                                }else{
+                                    selected = "";
+                                }
+                                $(select_id).append("<option "+ selected +" value ='" + value.subid + "'>" + value.sub_name + "</option>");
                             });
                             //console.log(data);
                        }
@@ -256,7 +267,7 @@
             // fetch subjects name according to selected cource year
             $("#cyear input[type='radio']").change(function () {
                 load_subjects("#Csubject");
-            })
+            });
 
             // store selected subject name id  into s_id
             $('#Csubject').on('change', function () {
@@ -299,7 +310,7 @@
                 
             });
 
-            //fetch data for update
+            //fetch data for update and pre_set values for change
             $(document).on("click",".updateBtn", function () {
                 var update_id = $(this).data("idupdate");
                 var obj = {id:update_id};
@@ -310,10 +321,12 @@
                     type: "POST",
                     data: Jdata,
                     success: function(data){
-                        console.log(data);
-                        var cid = data[0].cid ;
-                        console.log(cid);
-                        load_cources("#up_Cname",cid);
+                        //console.log(data);
+                        up_cid = data[0].cid ;
+                        var subid = data[0].subid ;
+                        load_cources("#up_Cname",up_cid);
+                        load_subjects("#up_subject",subid,up_cid, data[0].cyear);
+                        //console.log(subid);
                         $("#up_cyear").val(data[0].cyear);
                         $("#up_sunit").val(data[0].sunit);
                         $("#up_title").val(data[0].title);
@@ -325,7 +338,22 @@
                         $("#up_t_three").val(data[0].t_three);
                     }
                 });
-            })
+            });
+
+            // store changed updated cource id 
+            $('#up_Cname').on('change', function () {
+                up_cid = this.value;        
+                //var c_yearText = $(this).find('option').filter(':selected').text();        
+                //console.log(c_id);
+            });
+
+            //fetch subjects according to changes and store changed year value  
+            $(document).on("change","#up_cyear", function () {
+                var y = this.value;
+                load_subjects("#up_subject",null,up_cid, y);
+                //console.log(y);
+            });
+            
         });//ready
         
 
