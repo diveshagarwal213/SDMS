@@ -59,7 +59,7 @@ if ($api_id == 1) { //return subject names from given cource and year
     
     $search = $_GET['search'];
     if ($search != "") {
-        $db->selectSql("SELECT tid, cname, cyear, csubject, sunit, title FROM topic WHERE title LIKE '%$search%' or tid LIKE '%$search%' or cname LIKE '%$search%' or csubject LIKE '%$search%' LIMIT 50");
+        $db->selectSql("SELECT tid, title FROM topics WHERE title LIKE '%$search%' or tid LIKE '%$search%' LIMIT 50");
         echo $db->getResult();
     }else{
         echo json_encode(array('message' => 'fill before search', 'status' => false ));

@@ -39,7 +39,7 @@ if ($api_id == 1) {//delete images and update database
     $id = $data['id'];
     if (!$id == null) {
 
-        if ($db->delete("topic","tid = $id")) {
+        if ($db->delete("topics","tid = $id")) {
             echo json_encode(array('message' => 'data deleted', 'status' => true));
         }else {
             echo $db->getResult();

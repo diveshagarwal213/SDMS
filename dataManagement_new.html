@@ -81,12 +81,11 @@
     </div>
     <div id="success"></div>
     <div id="error"></div>
-
-            
-    <!--<div id="searchDiv">
+        
+    <div id="searchDiv">
         <h2 class="heading">Search Topic</h2>
         <input type="text" id="searchBox">
-    </div>-->
+    </div>
 
     <div id="loadDiv">
         <table id="loadTable">
@@ -186,7 +185,7 @@
                         }else{
                             $.each(data, function(key, value){
                                 $("#tableData").append("<tr><td>" + value.tid + "</td><td>" + value.cname + "</td><td>" + value.cyear + "</td><td>" + value.sub_name + "</td><td>" + value.sunit + "</td><td>" + value.title + "</td>"
-                                    + "<td> <button class = 'updateBtn' data-idupdate = '" + value.tid + "'>Update</button> </td>" + "<td> <button class = 'deleteBtn' data-idDelete ='" + value.tid + "'>Delete</button> </td>" );
+                                    + "<td> <button class = 'updateBtn' data-idupdate = '" + value.tid + "'>Update</button> </td>" + "<td> <button class = 'deleteBtn' data-iddelete = '" + value.tid + "'>Delete</button> </td>" );
                             });
                         }
                     }
@@ -395,6 +394,54 @@
                             message("data updated ok",true);
                             loadTable();
                             $("#update_topicText").trigger("reset");
+                        }
+                    }
+                });
+            });
+        
+            // delete data
+            $(document).on("click",".deleteBtn", function () {
+                var delete_id = $(this).data("iddelete");//remember when giving name to a data attribute, it gives an error(undefine) when capital letters are used
+                var obj = {id:delete_id};
+                var Jdata = JSON.stringify(obj);
+                var element = this; //use to hide when deleted
+
+                if(confirm("Really Want to Delete ?")){
+                    $.ajax({
+                        url:"http://localhost/sdms/php_files/databaseApi_delete.php?api_del_id=2",
+                        type:"DELETE",
+                        data: Jdata,
+                        success: function(data){
+                            if(data.status == true){
+                                $(element).closest("tr").fadeOut();
+                                message("data deleted.",true);
+                            }else{
+                                message("Error not deleted, check console for more details.",false);
+                                //alert(data.message + " error check console for more detail" );
+                                console.log(data);
+                            }
+                        }
+                    });
+                }
+            });
+
+            //search data
+            $("#searchBox").on("keyup", function(){
+                var search1 = $("#searchBox").val();
+                $("#tableData").html(""); 
+                //console.log(search1);   
+                $.ajax({
+                    url: "http://localhost/sdms/php_files/databaseApi.php?api_id=8&search=" + search1,
+                    type: "GET",
+                    success: function(data){
+                        //console.log(data);
+                        if(data[0].status == false){
+                            $("#tableData").append("<tr><td><h2>" + data[0].message + "</h2></td></tr>"); 
+                        }else{
+                            $.each(data, function(key, value){
+                                $("#tableData").append("<tr><td>" + value.tid + "</td><td>" + value.cname + "</td><td>" + value.cyear + "</td><td>" + value.csubject + "</td><td>" + value.sunit + "</td><td>" + value.title + "</td>"
+                                    + "<td> <button class = 'updateBtn' data-idupdate = '" + value.tid + "'>Update</button> </td>" + "<td> <button class = 'deleteBtn' data-idDelete ='" + value.tid + "'>Delete</button> </td>" );
+                            });
                         }
                     }
                 });
