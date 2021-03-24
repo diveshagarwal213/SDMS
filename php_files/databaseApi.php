@@ -49,7 +49,7 @@ if ($api_id == 1) { //return subject names from given cource and year
     
     $search = $_GET['search'];
     if ($search != "") {
-        $db->selectSql("SELECT  title, tid FROM topic WHERE title LIKE '%$search%'");
+        $db->selectSql("SELECT  title, tid FROM topics WHERE title LIKE '%$search%'");
         echo $db->getResult();
     }else{
         echo json_encode(array('message' => 'fill before search', 'status' => false ));

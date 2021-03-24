@@ -68,7 +68,14 @@
         <img src="css/icons/search_icon.svg" alt="search">
     </div>
     <div id="loadDiv"></div>
-    <div id="titleBody"></div>
+    <div id="titleBody">
+      <h1 id="h1"></h1>
+      <p id="t1" ></p>
+      <h1 id="h2"></h1>
+      <p id="t2"></p>
+      <h1 id="h3"></h1>
+      <p id="t3"></p>
+    </div>
     <?php include "footer.php"?>
 
     <script>
@@ -108,11 +115,17 @@
                     type:"POST",
                     data: idjson,
                     success: function(data){
+                      console.log(data);
                         if(data.status == false){
                             alert(data.message);
                         }else{
-                            var tbody2 = data[0].tbody;
-                            $("#titleBody").html(tbody2);
+                            $("#title").html(data[0].title);
+                            $("#h1").html(data[0].h_one);
+                            $("#t1").html(data[0].t_one);
+                            $("#h2").html(data[0].h_two);
+                            $("#t2").html(data[0].t_two);
+                            $("#h3").html(data[0].h_three);
+                            $("#t3").html(data[0].t_three);
                         }
                     }
                 });

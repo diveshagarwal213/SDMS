@@ -104,6 +104,31 @@ if($api_id == 1){ //insert new user data into data base
             echo json_encode(array("message" => "$Emessage", "status" => false ));
         }
     }
+}elseif ($api_id == 6) {
+    $id = $data['id'];
+    $c_id = $data['c_id'];
+    $c_year = $data['c_year'];
+    $s_id = $data['s_id'];
+    $unit = $data['s_unit'];
+    $title = $data['title'];
+    $h_one = $data['h_one'];
+    $h_two = $data['h_two'];
+    $h_three = $data['h_three'];
+    $t_one = $data['t_one'];
+    $t_two = $data['t_two'];
+    $t_three = $data['t_three'];
+
+    if($title == "" || $h_one == "" ){
+        echo json_encode(array( "message" => "please fillup all * ", "status" => false));
+    }else{
+        if ($db->update('topics',['cid'=>$c_id,'cyear'=>$c_year,'subid'=>$s_id,'sunit'=>$unit,'title'=>$title,'h_one'=>$h_one,'h_two'=>$h_two,'h_three'=>$h_three,'t_one'=>$t_one,'t_two'=>$t_two,'t_three'=>$t_three],"tid = $id")) {
+            $Smessage = $db->getResult(); 
+            echo json_encode(array("message" => "$Smessage", "status" => true ));
+        }else{
+            $Emessage = $db->getResult(); 
+            echo json_encode(array("message" => "$Emessage", "status" => false ));
+        }
+    }
 }else{
     echo json_encode(array('message' => 'api_id not found', 'status' => false ));
 }

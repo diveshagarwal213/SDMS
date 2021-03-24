@@ -169,7 +169,9 @@
             var s_id = null;
             var s_unit = null;
             var topic_by = null;
+            var update_id =null;
             var up_cid = null;
+            var up_subid = null;
 
             //loadData
             function loadTable(){
@@ -312,7 +314,7 @@
 
             //fetch data for update and pre_set values for change
             $(document).on("click",".updateBtn", function () {
-                var update_id = $(this).data("idupdate");
+                update_id = $(this).data("idupdate");
                 var obj = {id:update_id};
                 var Jdata = JSON.stringify(obj);
                 $("#update_topicText").trigger("reset");
@@ -323,9 +325,9 @@
                     success: function(data){
                         //console.log(data);
                         up_cid = data[0].cid ;
-                        var subid = data[0].subid ;
+                        up_subid = data[0].subid;
                         load_cources("#up_Cname",up_cid);
-                        load_subjects("#up_subject",subid,up_cid, data[0].cyear);
+                        load_subjects("#up_subject",up_subid,up_cid, data[0].cyear);
                         //console.log(subid);
                         $("#up_cyear").val(data[0].cyear);
                         $("#up_sunit").val(data[0].sunit);
@@ -335,7 +337,7 @@
                         $("#up_h_three").val(data[0].h_three);
                         $("#up_t_one").val(data[0].t_one);
                         $("#up_t_two").val(data[0].t_two);
-                        $("#up_t_three").val(data[0].t_three);
+                        $("#up_t_three").val(data[0].t_three);       
                     }
                 });
             });
@@ -349,11 +351,54 @@
 
             //fetch subjects according to changes and store changed year value  
             $(document).on("change","#up_cyear", function () {
-                var y = this.value;
-                load_subjects("#up_subject",null,up_cid, y);
-                //console.log(y);
+                var up_cyear = this.value;
+                load_subjects("#up_subject",null,up_cid, up_cyear);
+                //console.log(up_cyear);
             });
             
+            // store updated selected subject name id  into s_id
+            $('#up_subject').on('change', function () {
+                up_subid = this.value; 
+                //console.log(up_subid);       
+            });
+
+            // update data
+            $("#update_TopicText").on("click", function (e) {
+                e.preventDefault();
+
+                var c_id = up_cid;
+                var c_year =$("#up_cyear").val();
+                var s_id = up_subid;
+                var s_unit =$("#up_sunit").val();
+                var title = $("#up_title").val();
+                var h_one = $("#up_h_one").val();
+                var h_two = $("#up_h_two").val();
+                var h_three = $("#up_h_three").val();
+                var t_one = $("#up_t_one").val();
+                var t_two = $("#up_t_two").val();
+                var t_three = $("#up_t_three").val();
+                
+                var obj = {id:update_id, c_id:c_id,c_year:c_year,s_id:s_id,s_unit:s_unit,title:title,h_one:h_one,h_two:h_two,h_three:h_three,t_one:t_one,t_two:t_two,t_three:t_three};
+                var Jdata = JSON.stringify(obj);
+                //console.log(Jdata);
+
+                $.ajax({
+                    url : "http://localhost/sdms/php_files/databaseApi_insert.php?api_insert_id=6",
+                    type : "POST",
+                    data : Jdata,
+                    success : function(data){
+                        //console.log(data);
+                        if (data.status == false) {
+                            message(data.message,false);
+                            console.log(data);
+                        }else if(data.status == true){
+                            message("data updated ok",true);
+                            loadTable();
+                            $("#update_topicText").trigger("reset");
+                        }
+                    }
+                });
+            });
         });//ready
         
 
