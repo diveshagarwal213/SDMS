@@ -12,7 +12,7 @@
     <h1 class="heading"> <a href="index.php">SDMS</a> New Data Management</h1>
     <h2 class="heading">Insert New Data</h2> 
     <div id="formDiv">
-        <form id="topicText">
+        <form id="topicText" autocomplete="off">
             <div id="one" >
                 <div id="one1">
                     <label for="Cname">Cource Name</label> 
@@ -50,34 +50,38 @@
                 </div>
             </div>
             
-            <label for="title">Toipc Title<span class="orange">*</span></label>
-            <input type="text" id="title" name="title">
-            <br>
-            
-            <label for="h_one">First Heading<span class="orange">*</span></label>
-            <input type="text" id="h_one" name="h_one" >
-            <br>
-            <label for="t_one">Text body</label> <br>
-            <textarea id="t_one" cols="30" rows="10" name="t_one"></textarea>
-            <br>
-            
-            <label for="h_two">second Heading</label>
-            <input type="text" id="h_two" name="h_two">
-            <br>
-            <label for="t_two">Text body 2</label>
-            <br> 
-            <textarea id="t_two" cols="30" rows="10" name="t_two"></textarea>
-            <br>
-            
-            <label for="h_three">third Heading</label>
-            <input type="text" id="h_three" name="h_three">
-            <br>
-            <label for="t_three">Text body 3</label>
-            <br>
-            <textarea  id="t_three" cols="30" rows="10" name="t_three"></textarea>
-            <br>
-            <input type="submit" value="save ok" id="save_TopicText">
+            <div id="two" >
+                <label for="title">Toipc Title<span class="orange">*</span></label>
+                <input type="text" id="title" name="title">
+                <br>
+                
+                <label for="h_one">First Heading<span class="orange">*</span></label>
+                <input type="text" id="h_one" name="h_one" >
+                <br>
+                <label for="t_one">Text body</label> <br>
+                <textarea id="t_one" cols="30" rows="10" name="t_one"></textarea>
+                <br>
+                <div id="two1">
+                    <label for="h_two">second Heading</label>
+                    <input type="text" id="h_two" name="h_two">
+                    <br>
+                    <label for="t_two">Text body 2</label>
+                    <br> 
+                    <textarea id="t_two" cols="30" rows="10" name="t_two"></textarea>
+                    <br>
+                    
+                    <label for="h_three">third Heading</label>
+                    <input type="text" id="h_three" name="h_three">
+                    <br>
+                    <label for="t_three">Text body 3</label>
+                    <br>
+                    <textarea  id="t_three" cols="30" rows="10" name="t_three"></textarea>
+                    <br>
+                </div>
+                <input type="submit" value="save" id="save_TopicText">
+            </div>
         </form>
+    <button id="more">More Space</button>
     </div>
     <div id="success"></div>
     <div id="error"></div>
@@ -106,7 +110,7 @@
     </div>
 
     <div id="update_form">
-        <form id="update_topicText">
+        <form id="update_topicText" autocomplete="off">
             <div id="one1">
                 <label for="up_Cname">Cource Name</label> 
                 <select  id="up_Cname">
@@ -153,7 +157,7 @@
             <br>
             <textarea  id="up_t_three" cols="30" rows="10" name="t_three"></textarea>
             <br>
-            <input type="submit" value="update ok" id="update_TopicText">
+            <input type="submit" value="update" id="update_TopicText">
         </form>
     </div>
 
@@ -445,6 +449,11 @@
                         }
                     }
                 });
+            });
+
+            //
+            $("#more").on("click", function () {
+                $("#two1").slideToggle(1000);
             });
         });//ready
         

@@ -1,0 +1,101 @@
+@import "common.css";
+
+button{
+    background: #121212;
+    color: #EEEEEE;
+    border:3px solid rgba(187, 134, 252, 0.100);
+    border-radius:50px ;
+    padding: 12px 20px;
+    font-size: large;
+    margin-left: calc(100% - 55%);
+    cursor: pointer;
+    outline: none;
+}
+select {
+    padding: 5px 10px;
+    outline: none;
+    min-width: 150px;
+    cursor: pointer;
+}
+label{
+    font-size: large;
+    text-transform: capitalize;
+}
+input[type="text"] {
+    padding: 5px;
+    width: 100%;
+    background: #121212;
+    color: #EEEEEE;
+    outline: none;
+    border-bottom: 3px solid rgba(187, 134, 252, 0.200);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    font-size: medium;
+    transition: width 1s;
+    text-align: center;
+}
+input[type="text"]:focus{
+    border-bottom: 3px solid rgba(187, 134, 252, 0.500);
+    outline: none;
+    transition: 0.5s;
+}
+input[type="submit"]{
+    background: #222222;
+    color: #EEEEEE;
+    border: none;
+    min-width: 20%;
+    padding: 12px 20px;
+    font-size: large;
+    margin-left: calc(100% - 60%);
+    cursor: pointer;
+    outline: none;
+}
+input[type="submit"]:hover{
+    background-color: rgba(187, 134, 252, 0.500);
+}
+
+textarea{
+    width: 100%;
+    height: 200px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(187, 134, 252, 0.100);;
+    color: white;
+    resize: none;
+    font-size: 20px;
+    outline: none;
+    margin-bottom: 10px;
+}
+#formDiv{
+    border: 2px solid green;
+    padding: 5px;
+    width: 100%;
+
+}
+#one{
+    border: 2px solid red;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+#one1{
+    border: 2px solid purple;
+    width: fit-content;
+}
+#one2{
+    border: 1px solid yellow;
+    width: fit-content;
+}
+#two{
+    border: 1px solid yellow;
+    display: block;
+    padding: 5px;
+}
+#two1 {
+    display: none;
+}
