@@ -16,11 +16,13 @@
         cursor: pointer;
         border: none;
         color: white;
-        padding: 10px 8px;
+        padding: 8px 8px;
+        margin-bottom: 5px;
         background: rgba(187, 134, 252, 0.200);
         border-radius: 5px;
         transition: background-color 1s;
         border-radius: 25px;
+        display: none;
       }
       .youtubeBtn:hover {
         background-color: rgba(187, 134, 252, 0.400);
@@ -70,6 +72,10 @@
     <div id="loadDiv"></div>
     <div id="titleBody">
       <h1 id="h1"></h1>
+      <button class ="youtubeBtn">Youtube</button>
+      <div class="ytcont">
+        <iframe class="responsiveif"  frameborder="0" allowfullscreen></iframe>
+      </div>
       <p id="t1" ></p>
       <h1 id="h2"></h1>
       <p id="t2"></p>
@@ -80,69 +86,75 @@
 
     <script>
 
-        $(document).ready( function(){
+      $(document).ready( function(){
 
-            //key up
-            $("#searchBox").keyup(function () {
-                if(this.value.length >= 3){
-                    var search1 = $("#searchBox").val();
-                    $("#loadDiv").html(""); 
-                    //console.log(search1);   
-                    $.ajax({
-                        url: "http://localhost/sdms/php_files/databaseApi.php?api_id=7&search=" + search1,
-                        type: "GET",
-                        success: function(data){
-                            if(data[0].status == false){
-                                $("#loadDiv").append("<tr><td><h2>" + data[0].message + "</h2></td></tr>"); 
-                            }else{
-                                $.each(data, function(key, value){
-                                    $("#loadDiv").append("<button class='same' data-id='" + value.tid + "'>" + value.title + "</button>");
-                                });
-                            }
-                        }
-                    });
+        //key up
+        $("#searchBox").keyup(function () {
+          if(this.value.length >= 3){
+            var search1 = $("#searchBox").val();
+            $("#loadDiv").html(""); 
+            //console.log(search1);   
+            $.ajax({
+              url: "http://localhost/sdms/php_files/databaseApi.php?api_id=7&search=" + search1,
+              type: "GET",
+              success: function(data){
+                if(data[0].status == false){
+                    $("#loadDiv").append("<tr><td><h2>" + data[0].message + "</h2></td></tr>"); 
+                }else{
+                  $.each(data, function(key, value){
+                    $("#loadDiv").append("<button class='same' data-id='" + value.tid + "'>" + value.title + "</button>");
+                  });
                 }
-            })
+              }
+            });
+          }
+        })
 
-            //load tbody
-            $(document).on("click",".same", function(){
-                var idarr = $(this).data("id");
-                var idobj = {id: idarr};
-                var idjson = JSON.stringify(idobj);
-                //console.log(idjson);
-                $.ajax({
-                    url:"http://localhost/sdms/php_files/databaseApi.php?api_id=3",
-                    type:"POST",
-                    data: idjson,
-                    success: function(data){
-                      console.log(data);
-                        if(data.status == false){
-                            alert(data.message);
-                        }else{
-                            $("#title").html(data[0].title);
-                            $("#h1").html(data[0].h_one);
-                            $("#t1").html(data[0].t_one);
-                            $("#h2").html(data[0].h_two);
-                            $("#t2").html(data[0].t_two);
-                            $("#h3").html(data[0].h_three);
-                            $("#t3").html(data[0].t_three);
-                        }
+        //load tbody
+        $(document).on("click",".same", function(){
+            var idarr = $(this).data("id");
+            var idobj = {id: idarr};
+            var idjson = JSON.stringify(idobj);
+            //console.log(idjson);
+            $.ajax({
+                url:"http://localhost/sdms/php_files/databaseApi.php?api_id=3",
+                type:"POST",
+                data: idjson,
+                success: function(data){
+                  //console.log(data);
+                  if(data.status == false){
+                    alert(data.message);
+                  }else{
+                    $("#title").html(data[0].title);
+                    $("#h1").html(data[0].h_one);
+                    $("#t1").html(data[0].t_one);
+                    $("#h2").html(data[0].h_two);
+                    $("#t2").html(data[0].t_two);
+                    $("#h3").html(data[0].h_three);
+                    $("#t3").text(data[0].t_three);
+                    if (data[0].youtube_link != null) {
+                      $(".responsiveif").attr("src","https://www.youtube.com/embed/" + data[0].youtube_link);
+                      $(".youtubeBtn").slideDown(1000);
+                    }else{
+                      $(".youtubeBtn").slideUp(500);
                     }
-                });
+                  }
+                }
             });
-            
-            //active button color
-            $(document).on("click",".same", function(){
-                $("#loadDiv button:nth-child(even)").css({"background-color": "#EEEEEE"});
-                $("#loadDiv button:nth-child(odd)").css({"background-color": "#121212"});
-                $(this).css({"background-color": "rgba(187, 134, 252, 0.300)"});
-            });
-            //youtube btn
-            $(document).on("click",".youtubeBtn", function(){
-                $(".ytcont").slideToggle(600);
-            });
+        });
+        
+        //active button color
+        $(document).on("click",".same", function(){
+            $("#loadDiv button:nth-child(even)").css({"background-color": "#EEEEEE"});
+            $("#loadDiv button:nth-child(odd)").css({"background-color": "#121212"});
+            $(this).css({"background-color": "rgba(187, 134, 252, 0.300)"});
+        });
+        //youtube btn
+        $(document).on("click",".youtubeBtn", function(){
+            $(".ytcont").slideToggle(600);
+        });
 
-        });//ready
+      });//ready
         
     </script>
 </body>
