@@ -6,6 +6,11 @@
     <title>SDMS Data Management</title>
     <script src="jquery.js"></script>
     <link rel="stylesheet" href="css/dataManagementNew.css">
+    <style>
+        option{
+            background-color: rgb(51, 38, 66);
+        }
+    </style>
     
 </head>
 <body>
@@ -19,7 +24,7 @@
                     <select  id="Cname" name="c_id">
                     </select>
                     <div id="cyear">
-                        <p>Select Cource Year </p>
+                        <p>Cource Year</p>
                         <label for="Cyear_1">1</label>
                         <input type="radio" id="Cyear_1" name="c_year" value="1">
                         <label for="Cyear_2">2</label>
@@ -36,7 +41,7 @@
                         <option value="">select subject</option>     
                     </select>
                     <div id="sunit">
-                        <p>select subject unit : 
+                        <p>Subject Unit </p>
                         <label for="unit_1">1</label>
                         <input type="radio" id="unit_1" name="s_unit" value="1">
                         <label for="unit_2">2</label>
@@ -45,7 +50,6 @@
                         <input type="radio" id="unit_3" name="s_unit" value="3">
                         <label for="unit_4">4</label>
                         <input type="radio" id="unit_4" name="s_unit" value="4">
-                        </p>
                     </div>
                 </div>
             </div>
@@ -60,6 +64,9 @@
                 <br>
                 <label for="t_one">Text body</label> <br>
                 <textarea id="t_one" cols="30" rows="10" name="t_one"></textarea>
+                <br>
+                <label for="youtube">YouTube code </label>
+                <input type="text" id="youtube" name="youtube">
                 <br>
                 <div id="two1">
                     <label for="h_two">second Heading</label>
@@ -83,9 +90,71 @@
         </form>
     <button id="more">More Space</button>
     </div>
-    <div id="success"></div>
-    <div id="error"></div>
+    <div id="message_box">
+        <div id="success"></div>
+        <div id="error"></div>
+    </div>
         
+
+    <div id="update_form">
+        <h2 class="heading">Update Data</h2> 
+        <form id="update_topicText" autocomplete="off">
+
+            <div id="one">
+                <div id="one1">
+                    <label for="up_Cname">Cource Name</label> 
+                    <select  id="up_Cname">
+                        <option value="">select Cource name</option>     
+                    </select>
+                    <div id="update_cyear">
+                        <label for="up_cyear">Cource year</label>
+                    <input type="number" id="up_cyear" min="0" max="4">
+                    </div>
+                </div>
+                <div id="one2">
+                    <label for="up_subject">subjects</label> 
+                    <select  id="up_subject" >
+                        <option value="">select subject</option>     
+                    </select>
+                    <div id="update_sunit">
+                        <label for="up_sunit">subject Unit</label>
+                        <input type="number" id="up_sunit" min="0" max="5">
+                    </div>
+                </div>
+            </div>
+            <label for="up_title">Toipc Title<span class="orange">*</span></label>
+            <input type="text" id="up_title">
+            <br>
+            
+            <label for="up_h_one">First Heading<span class="orange">*</span></label>
+            <input type="text" id="up_h_one" >
+            <br>
+            <label for="up_t_one">Text body</label> <br>
+            <textarea id="up_t_one" cols="30" rows="10" ></textarea>
+            <br>
+            <label for="up_youtube">YouTube code </label>
+            <input type="text" id="up_youtube" name="youtube">
+            <br>
+            <label for="up_h_two">second Heading</label>
+            <input type="text" id="up_h_two" >
+            <br>
+            <label for="up_t_two">Text body 2</label>
+            <br> 
+            <textarea id="up_t_two" cols="30" rows="10" ></textarea>
+            <br>
+            
+            <label for="up_h_three">third Heading</label>
+            <input type="text" id="up_h_three" >
+            <br>
+            <label for="up_t_three">Text body 3</label>
+            <br>
+            <textarea  id="up_t_three" cols="30" rows="10" name="t_three"></textarea>
+            <br>
+            <input type="submit" value="update" id="update_TopicText">
+        </form>
+        <button id="cancle" >Cancle</button>
+    </div>
+
     <div id="searchDiv">
         <h2 class="heading">Search Topic</h2>
         <input type="text" id="searchBox">
@@ -109,62 +178,12 @@
         </table>
     </div>
 
-    <div id="update_form">
-        <form id="update_topicText" autocomplete="off">
-            <div id="one1">
-                <label for="up_Cname">Cource Name</label> 
-                <select  id="up_Cname">
-                    <option value="">select Cource name</option>     
-                </select>
-                <div id="update_cyear">
-                    <label for="up_cyear">Cource year</label>
-                   <input type="number" id="up_cyear" min="0" max="4">
-                </div>
-            </div>
-            <div id="two2">
-                <label for="up_subject">subjects</label> 
-                <select  id="up_subject" >
-                    <option value="">select subject</option>     
-                </select>
-                <div id="update_sunit">
-                    <label for="up_sunit">subject Unit</label>
-                    <input type="number" id="up_sunit" min="0" max="5">
-                </div>
-            </div>
-            <label for="up_title">Toipc Title<span class="orange">*</span></label>
-            <input type="text" id="up_title">
-            <br>
-            
-            <label for="up_h_one">First Heading<span class="orange">*</span></label>
-            <input type="text" id="up_h_one" >
-            <br>
-            <label for="up_t_one">Text body</label> <br>
-            <textarea id="up_t_one" cols="30" rows="10" ></textarea>
-            <br>
-            
-            <label for="up_h_two">second Heading</label>
-            <input type="text" id="up_h_two" >
-            <br>
-            <label for="up_t_two">Text body 2</label>
-            <br> 
-            <textarea id="up_t_two" cols="30" rows="10" ></textarea>
-            <br>
-            
-            <label for="up_h_three">third Heading</label>
-            <input type="text" id="up_h_three" >
-            <br>
-            <label for="up_t_three">Text body 3</label>
-            <br>
-            <textarea  id="up_t_three" cols="30" rows="10" name="t_three"></textarea>
-            <br>
-            <input type="submit" value="update" id="update_TopicText">
-        </form>
-    </div>
+    
 
     <script src="functions.js"></script>
     <script>
         $(document).ready(function(){
-            
+
             //global variables
             var url = "http://localhost/sdms/";
             var c_id = null;
@@ -216,7 +235,7 @@
                                 }else{
                                     selected = "";
                                 }
-                                $(select_id).append("<option "+ selected +" value ='" + value.cid + "'>" + value.cname + "</option>");
+                                $(select_id).append("<option class='options' "+ selected +" value ='" + value.cid + "'>" + value.cname + "</option>");
                             });
                         }
                         
@@ -291,7 +310,8 @@
                 var t_one = $("#t_one").val();
                 var t_two = $("#t_two").val();
                 var t_three = $("#t_three").val();
-                var obj = {c_id:c_id,c_year:c_year,s_id:s_id,s_unit:s_unit,title:title,h_one:h_one,h_two:h_two,h_three:h_three,t_one:t_one,t_two:t_two,t_three:t_three,topic_by:topic_by};
+                var youtube = $("#youtube").val();
+                var obj = {c_id:c_id,c_year:c_year,s_id:s_id,s_unit:s_unit,title:title,h_one:h_one,h_two:h_two,h_three:h_three,t_one:t_one,t_two:t_two,t_three:t_three,topic_by:topic_by,youtube:youtube};
                 
                 var j = JSON.stringify(obj);
                 //var j = jsonData("#topicText"); (not working [console bug] )
@@ -306,7 +326,7 @@
                             message(data.message,false);
                             console.log(data);
                         }else if(data.status == true){
-                            message("ok",true);
+                            message("Data inserted successfully.",true);
                             loadTable();
                             $("#topicText").trigger("reset");
                         }
@@ -341,8 +361,10 @@
                         $("#up_t_one").val(data[0].t_one);
                         $("#up_t_two").val(data[0].t_two);
                         $("#up_t_three").val(data[0].t_three);       
+                        $("#up_youtube").val(data[0].youtube_link);       
                     }
                 });
+                $("#update_form").slideDown(1000);
             });
 
             // store changed updated cource id 
@@ -380,8 +402,9 @@
                 var t_one = $("#up_t_one").val();
                 var t_two = $("#up_t_two").val();
                 var t_three = $("#up_t_three").val();
+                var youtube = $("#up_youtube").val();
                 
-                var obj = {id:update_id, c_id:c_id,c_year:c_year,s_id:s_id,s_unit:s_unit,title:title,h_one:h_one,h_two:h_two,h_three:h_three,t_one:t_one,t_two:t_two,t_three:t_three};
+                var obj = {id:update_id, c_id:c_id,c_year:c_year,s_id:s_id,s_unit:s_unit,title:title,h_one:h_one,h_two:h_two,h_three:h_three,t_one:t_one,t_two:t_two,t_three:t_three,youtube:youtube};
                 var Jdata = JSON.stringify(obj);
                 //console.log(Jdata);
 
@@ -395,7 +418,7 @@
                             message(data.message,false);
                             console.log(data);
                         }else if(data.status == true){
-                            message("data updated ok",true);
+                            message("Data Updated successfully.",true);
                             loadTable();
                             $("#update_topicText").trigger("reset");
                         }
@@ -418,7 +441,7 @@
                         success: function(data){
                             if(data.status == true){
                                 $(element).closest("tr").fadeOut();
-                                message("data deleted.",true);
+                                message("Data deleted successfully.",true);
                             }else{
                                 message("Error not deleted, check console for more details.",false);
                                 //alert(data.message + " error check console for more detail" );
@@ -451,10 +474,16 @@
                 });
             });
 
-            //
+            //show more
             $("#more").on("click", function () {
                 $("#two1").slideToggle(1000);
             });
+
+            //hide update form
+            $("#cancle").on("click", function () {
+                $("#update_form").slideUp(1000);
+            });
+
         });//ready
         
 

@@ -13,6 +13,25 @@ body{
   font-family: Megrim;
   src: url("../other/Megrim.ttf");
 }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fbad24; 
+}
 
   
 /* loading start */
@@ -121,3 +140,34 @@ body{
 }
 
 /*----------nav Div-------*/
+
+/*------------message box ------------*/
+#message_box{
+  display: none;
+  height: 50px;
+  width: 50%;
+  border-radius: 5px;
+  position: fixed;
+  top: 10px;
+  left: calc(100% - 75%);
+}
+#success{
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient( to right, green 2% ,black 1% );
+  width: 100%;
+  height: 100%;
+  padding-left: 3%;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+#error{
+  display: inline-flex;
+  text-transform: capitalize;
+  align-items: center;
+  background: linear-gradient( to right, red 2% ,black 1% );
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  padding-left: 3%;
+}

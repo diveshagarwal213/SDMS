@@ -91,12 +91,13 @@ if($api_id == 1){ //insert new user data into data base
     $t_two = $data['t_two'];
     $t_three = $data['t_three'];
     $topic_by = $data['topic_by'];
+    $youtube = $data['youtube'];
     // empty fields image-one-two-three, t_likes , reports, active => total(19-7 = 12)
 
     if($title == "" || $h_one == "" ){
         echo json_encode(array( "message" => "please fillup all * ", "status" => false));
     }else{
-        if ($db->insert('topics',['cid'=>$c_id,'cyear'=>$c_year,'subid'=>$s_id,'sunit'=>$unit,'title'=>$title,'h_one'=>$h_one,'h_two'=>$h_two,'h_three'=>$h_three,'t_one'=>$t_one,'t_two'=>$t_two,'t_three'=>$t_three,'topic_by'=>$topic_by])) {
+        if ($db->insert('topics',['cid'=>$c_id,'cyear'=>$c_year,'subid'=>$s_id,'sunit'=>$unit,'title'=>$title,'h_one'=>$h_one,'h_two'=>$h_two,'h_three'=>$h_three,'t_one'=>$t_one,'t_two'=>$t_two,'t_three'=>$t_three, 'youtube_link'=> $youtube ,'topic_by'=>$topic_by])) {
             $Smessage = $db->getResult(); 
             echo json_encode(array("message" => "$Smessage", "status" => true ));
         }else{
@@ -117,11 +118,11 @@ if($api_id == 1){ //insert new user data into data base
     $t_one = $data['t_one'];
     $t_two = $data['t_two'];
     $t_three = $data['t_three'];
-
+    $youtube = $data['youtube'];
     if($title == "" || $h_one == "" ){
         echo json_encode(array( "message" => "please fillup all * ", "status" => false));
     }else{
-        if ($db->update('topics',['cid'=>$c_id,'cyear'=>$c_year,'subid'=>$s_id,'sunit'=>$unit,'title'=>$title,'h_one'=>$h_one,'h_two'=>$h_two,'h_three'=>$h_three,'t_one'=>$t_one,'t_two'=>$t_two,'t_three'=>$t_three],"tid = $id")) {
+        if ($db->update('topics',['cid'=>$c_id,'cyear'=>$c_year,'subid'=>$s_id,'sunit'=>$unit,'title'=>$title,'h_one'=>$h_one,'h_two'=>$h_two,'h_three'=>$h_three,'t_one'=>$t_one,'t_two'=>$t_two,'t_three'=>$t_three,'youtube_link'=> $youtube],"tid = $id")) {
             $Smessage = $db->getResult(); 
             echo json_encode(array("message" => "$Smessage", "status" => true ));
         }else{

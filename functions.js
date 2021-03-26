@@ -31,17 +31,22 @@ function readURL(input) {
 
 //message function
 function message(message,status) { // message("display error or succes message", false);
+
+    $("#message_box").fadeIn(1000);
+    $("#error").fadeOut();
+    $("#success").fadeOut();
+
     if (status == true) {
-        $("#success").html(message).slideDown();
-        $("#error").slideUp();
+        $("#success").html(message).fadeIn(500);
         setTimeout(function () {
-            $("#success").slideUp();
+            $("#success").fadeOut();
+            $("#message_box").fadeOut();
         },5000)
     }else if(status == false){
-        $("#error").html(message).slideDown();
-        $("#success").slideUp();
+        $("#error").html(message).fadeIn(500);
         setTimeout(function () {
-            $("#error").slideUp();
+            $("#error").fadeOut();
+            $("#message_box").fadeOut();
         },5000)
     }
 }

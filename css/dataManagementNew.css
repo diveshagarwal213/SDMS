@@ -1,21 +1,38 @@
 @import "common.css";
 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(187, 134, 252); 
+    cursor: pointer;
+}
+div{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+  
 button{
     background: #121212;
     color: #EEEEEE;
     border:3px solid rgba(187, 134, 252, 0.100);
     border-radius:50px ;
-    padding: 12px 20px;
+    padding: 10px 10px;
     font-size: large;
-    margin-left: calc(100% - 55%);
+    /*margin-left: calc(100% - 55%);*/
     cursor: pointer;
     outline: none;
+    transition: border 1s;
+}
+button:hover{
+    border:3px solid rgba(187, 134, 252, 0.500);
 }
 select {
     padding: 5px 10px;
+    color: #EEEEEE;
     outline: none;
     min-width: 150px;
     cursor: pointer;
+    border: none;
+    background-color: rgba(187, 134, 252, 0.100);
 }
 label{
     font-size: large;
@@ -56,6 +73,14 @@ input[type="submit"]{
 input[type="submit"]:hover{
     background-color: rgba(187, 134, 252, 0.500);
 }
+input[type="number"]{
+    background-color: rgba(187, 134, 252, 0.100);
+    color: #EEEEEE;
+    outline: none;
+    border: none;
+    padding: 3px;
+    margin-top: 10px;
+}
 
 textarea{
     width: 100%;
@@ -63,39 +88,67 @@ textarea{
     padding: 12px 20px;
     border: none;
     border-radius: 5px;
-    background-color: rgba(187, 134, 252, 0.100);;
-    color: white;
+    background-color: rgba(187, 134, 252, 0.100);
+    color: #EEEEEE;
     resize: none;
     font-size: 20px;
     outline: none;
     margin-bottom: 10px;
 }
 #formDiv{
-    border: 2px solid green;
+    border: 3px solid rgba(187, 134, 252, 0.500);
     padding: 5px;
     width: 100%;
-
 }
 #one{
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     width: 100%;
     display: inline-flex;
     justify-content: space-around;
     padding: 5px;
 }
 #one1{
-    border: 2px solid purple;
+   /* border: 2px solid purple;*/
     width: fit-content;
 }
 #one2{
-    border: 1px solid yellow;
+    /*border: 1px solid yellow;*/
     width: fit-content;
 }
 #two{
-    border: 1px solid yellow;
+   /* border: 1px solid yellow;*/
     display: block;
     padding: 5px;
 }
 #two1 {
     display: none;
+}
+#more{
+    margin-left: calc(100% - 55%);
+}
+#update_form{
+    display: none;
+    padding: 10px;
+    border: 3px solid rgba(187, 134, 252, 0.500);
+}
+.heading{
+    text-align: center;
+}
+#loadDiv{
+    overflow-x: auto;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+  
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+  
+tr:nth-child(even){
+    background-color: rgba(187, 134, 252, 0.100) ;
 }

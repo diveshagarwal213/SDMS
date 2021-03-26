@@ -123,7 +123,7 @@ input:focus{
 }
 .Button1{
     border: none;
-    width: 20%;
+    max-width: 20%;
     padding: 12px 20px;
     font-size: large;
     margin-left: calc(100% - 60%);
