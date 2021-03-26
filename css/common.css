@@ -9,10 +9,7 @@ body{
   background: #121212;
   color: #EEEEEE;
 }
-@font-face {
-  font-family: Megrim;
-  src: url("../other/Megrim.ttf");
-}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -117,7 +114,7 @@ body{
 #sdmsLogo {
   letter-spacing: 10px;
   font-size: 200%;
-  font-family: "Megrim"; 
+  font-family: 'Roboto', sans-serif;
 }
 
 /*--user div---*/

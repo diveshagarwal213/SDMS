@@ -18,41 +18,6 @@
     <h2 class="heading">Insert New Data</h2> 
     <div id="formDiv">
         <form id="topicText" autocomplete="off">
-            <div id="one" >
-                <div id="one1">
-                    <label for="Cname">Cource Name</label> 
-                    <select  id="Cname" name="c_id">
-                    </select>
-                    <div id="cyear">
-                        <p>Cource Year</p>
-                        <label for="Cyear_1">1</label>
-                        <input type="radio" id="Cyear_1" name="c_year" value="1">
-                        <label for="Cyear_2">2</label>
-                        <input type="radio" id="Cyear_2" name="c_year" value="2">
-                        <label for="Cyear_3">3</label>
-                        <input type="radio" id="Cyear_3" name="c_year" value="3">
-                        <label for="Cyear_4">4</label>
-                        <input type="radio" id="Cyear_4" name="c_year" value="4">
-                    </div>
-                </div>
-                <div id="one2">
-                    <label for="Csubject">subjects</label> 
-                    <select  id="Csubject" name="s_id">
-                        <option value="">select subject</option>     
-                    </select>
-                    <div id="sunit">
-                        <p>Subject Unit </p>
-                        <label for="unit_1">1</label>
-                        <input type="radio" id="unit_1" name="s_unit" value="1">
-                        <label for="unit_2">2</label>
-                        <input type="radio" id="unit_2" name="s_unit" value="2">
-                        <label for="unit_3">3</label>
-                        <input type="radio" id="unit_3" name="s_unit" value="3">
-                        <label for="unit_4">4</label>
-                        <input type="radio" id="unit_4" name="s_unit" value="4">
-                    </div>
-                </div>
-            </div>
             
             <div id="two" >
                 <label for="title">Toipc Title<span class="orange">*</span></label>
@@ -164,10 +129,6 @@
         <table id="loadTable">
             <tr>
                 <th>ID</th>
-                <th>Cource Name</th>
-                <th>Cource Year</th>
-                <th>Subject</th>
-                <th>Subject Unit</th>
                 <th>Title</th>
                 <th>Update</th>
                 <th>Delete</th>
@@ -207,7 +168,7 @@
                             $("#tableData").append("<tr><td><h2>" + data.message + "</h2></td></tr>"); 
                         }else{
                             $.each(data, function(key, value){
-                                $("#tableData").append("<tr><td>" + value.tid + "</td><td>" + value.cname + "</td><td>" + value.cyear + "</td><td>" + value.sub_name + "</td><td>" + value.sunit + "</td><td>" + value.title + "</td>"
+                                $("#tableData").append("<tr><td>" + value.tid + "</td><td>" + value.title + "</td>"
                                     + "<td> <button class = 'updateBtn' data-idupdate = '" + value.tid + "'>Update</button> </td>" + "<td> <button class = 'deleteBtn' data-iddelete = '" + value.tid + "'>Delete</button> </td>" );
                             });
                         }
@@ -216,88 +177,6 @@
             }
             loadTable();
 
-            //load cources into given select-tag id, set selected-option while updating.  
-            function load_cources(select_id, cid) {
-                
-                $.ajax({
-                    url :  url + "php_files/databaseApi.php?api_id=9",
-                    type : "GET",
-                    success: function(data){
-                        //console.log(data);
-                        $(select_id).html("<option value =''> select cource </option>");
-                        if (data.status == false) {
-                            $(select_id).html("<option value =''> no record found </option>");
-                            console.log(data.message);
-                        }else{
-                            $.each(data, function(key, value){
-                                if (value.cid == cid) {
-                                    var selected = "selected";
-                                }else{
-                                    selected = "";
-                                }
-                                $(select_id).append("<option class='options' "+ selected +" value ='" + value.cid + "'>" + value.cname + "</option>");
-                            });
-                        }
-                        
-                    }
-                });
-            } 
-            load_cources("#Cname");
-
-            //load subjects(s_name) into given select tag id
-            function load_subjects(select_id,subid ="",cid = c_id,cyear = c_year) {
-                
-                var obj = {c_id:cid, c_year:cyear}
-                var d = JSON.stringify(obj);
-                //console.log(d);
-                $.ajax({
-                    url :  url + "php_files/databaseApi.php?api_id=10",
-                    type : "POST",
-                    data : d,
-                    success: function(data){
-                        $(select_id).html("<option value =''> select subject </option>");
-                       if (data.status == false) {
-                        $(select_id).html("<option value =''> no record found  </option>");
-                        console.log(data.message + " load_subject function die");
-                       }else{
-                            $.each(data, function(key, value){
-                                if (value.subid == subid) {
-                                    var selected = "selected";
-                                }else{
-                                    selected = "";
-                                }
-                                $(select_id).append("<option "+ selected +" value ='" + value.subid + "'>" + value.sub_name + "</option>");
-                            });
-                            //console.log(data);
-                       }
-                    }
-                });
-            }
-
-            // store selected cName id into  c_id
-            $('#Cname').on('change', function () {
-                c_id = this.value;        
-                //var c_yearText = $(this).find('option').filter(':selected').text();        
-                //console.log(c_id);
-            });
-
-            //store cource_year and subject_unit into c_year & s_unit 
-            $("input[type='radio']").click(function(){
-                c_year = $("input[name='c_year']:checked").val();
-                s_unit = $("input[name='s_unit']:checked").val();
-                //console.log(c_year,s_unit);
-            });
-
-            // fetch subjects name according to selected cource year
-            $("#cyear input[type='radio']").change(function () {
-                load_subjects("#Csubject");
-            });
-
-            // store selected subject name id  into s_id
-            $('#Csubject').on('change', function () {
-                s_id = this.value; 
-                //console.log(s_id);       
-            });
 
             // insert topic_text on click save button
             $("#save_TopicText").on("click", function (e) {
@@ -311,7 +190,7 @@
                 var t_two = $("#t_two").val();
                 var t_three = $("#t_three").val();
                 var youtube = $("#youtube").val();
-                var obj = {c_id:c_id,c_year:c_year,s_id:s_id,s_unit:s_unit,title:title,h_one:h_one,h_two:h_two,h_three:h_three,t_one:t_one,t_two:t_two,t_three:t_three,topic_by:topic_by,youtube:youtube};
+                var obj = {title:title,h_one:h_one,h_two:h_two,h_three:h_three,t_one:t_one,t_two:t_two,t_three:t_three,topic_by:topic_by,youtube:youtube};
                 
                 var j = JSON.stringify(obj);
                 //var j = jsonData("#topicText"); (not working [console bug] )
@@ -347,13 +226,6 @@
                     data: Jdata,
                     success: function(data){
                         //console.log(data);
-                        up_cid = data[0].cid ;
-                        up_subid = data[0].subid;
-                        load_cources("#up_Cname",up_cid);
-                        load_subjects("#up_subject",up_subid,up_cid, data[0].cyear);
-                        //console.log(subid);
-                        $("#up_cyear").val(data[0].cyear);
-                        $("#up_sunit").val(data[0].sunit);
                         $("#up_title").val(data[0].title);
                         $("#up_h_one").val(data[0].h_one);
                         $("#up_h_two").val(data[0].h_two);
@@ -367,34 +239,9 @@
                 $("#update_form").slideDown(1000);
             });
 
-            // store changed updated cource id 
-            $('#up_Cname').on('change', function () {
-                up_cid = this.value;        
-                //var c_yearText = $(this).find('option').filter(':selected').text();        
-                //console.log(c_id);
-            });
-
-            //fetch subjects according to changes and store changed year value  
-            $(document).on("change","#up_cyear", function () {
-                var up_cyear = this.value;
-                load_subjects("#up_subject",null,up_cid, up_cyear);
-                //console.log(up_cyear);
-            });
-            
-            // store updated selected subject name id  into s_id
-            $('#up_subject').on('change', function () {
-                up_subid = this.value; 
-                //console.log(up_subid);       
-            });
-
             // update data
             $("#update_TopicText").on("click", function (e) {
                 e.preventDefault();
-
-                var c_id = up_cid;
-                var c_year =$("#up_cyear").val();
-                var s_id = up_subid;
-                var s_unit =$("#up_sunit").val();
                 var title = $("#up_title").val();
                 var h_one = $("#up_h_one").val();
                 var h_two = $("#up_h_two").val();
@@ -404,7 +251,7 @@
                 var t_three = $("#up_t_three").val();
                 var youtube = $("#up_youtube").val();
                 
-                var obj = {id:update_id, c_id:c_id,c_year:c_year,s_id:s_id,s_unit:s_unit,title:title,h_one:h_one,h_two:h_two,h_three:h_three,t_one:t_one,t_two:t_two,t_three:t_three,youtube:youtube};
+                var obj = {id:update_id, title:title,h_one:h_one,h_two:h_two,h_three:h_three,t_one:t_one,t_two:t_two,t_three:t_three,youtube:youtube};
                 var Jdata = JSON.stringify(obj);
                 //console.log(Jdata);
 
@@ -466,7 +313,7 @@
                             $("#tableData").append("<tr><td><h2>" + data[0].message + "</h2></td></tr>"); 
                         }else{
                             $.each(data, function(key, value){
-                                $("#tableData").append("<tr><td>" + value.tid + "</td><td>" + value.cname + "</td><td>" + value.cyear + "</td><td>" + value.csubject + "</td><td>" + value.sunit + "</td><td>" + value.title + "</td>"
+                                $("#tableData").append("<tr><td>" + value.tid + "</td><td>" + value.title + "</td>"
                                     + "<td> <button class = 'updateBtn' data-idupdate = '" + value.tid + "'>Update</button> </td>" + "<td> <button class = 'deleteBtn' data-idDelete ='" + value.tid + "'>Delete</button> </td>" );
                             });
                         }

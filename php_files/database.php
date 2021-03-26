@@ -4,7 +4,7 @@ class Database{
     private $db_host ="localhost";
     private $db_username ="root";
     private $db_pass ="";
-    private $db_name ="sdms";
+    private $db_name ="sdms_new";
 
     private $mysqli = "";
     private $result = array();

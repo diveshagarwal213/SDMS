@@ -39,12 +39,11 @@
     <!--Section-x-->
     <div id="navDiv">
       <div id="navDiv_a">
-        <a id="sdmsLogo" href="index.php">SDMS</a>
-        <a href="main.php">Main page</a>                
+        <a id="sdmsLogo" href="index.php">SDFS</a>              
       </div>
       
       <div id="navDiv_b">
-        <a href="quickSearch.php" >Quick search</a>
+        <a href="quickSearch.php" >Notes</a>
         <div id="userDiv">
           <?php
             session_start();
