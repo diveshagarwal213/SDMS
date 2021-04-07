@@ -1,55 +1,66 @@
-.same{
-    background-color:  #121212;
-    margin: 10px;
-    color: #EEEEEE;
-    padding: 18px 12px;
-    border: none;
-    outline: none;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 105%;
+#mobNav{
+  border: 1px solid red;
+}
+#searchBar_btn{
+  color :white;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+#mainBox{
+  position: relative;
+}
+#searchBar{
+  height: 100%;
+  width: 250px;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
 }
 #inputDiv{
-  margin-top: 10px;
   display: inline-flex;
   width: 100%;
   align-items: center;
   justify-content: center;
 
 }
-input{
-    padding: 5px;
-    background: #121212;
-    color: #EEEEEE;
-    outline: none;
-    border-bottom: 3px solid rgba(187, 134, 252, 0.200);
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    width: 30%;
-    margin-bottom: 20px;
-    margin-top: 5px;
-    text-align: center;
-    font-size: large;
-    transition: width 1s;
+#inputDiv input{
+  width: 99%;
+  padding: 5px;
+  background: #121212;
+  color: #EEEEEE;
+  outline: none;
+  border: none; 
+  border-bottom: 3px solid rgba(187, 134, 252, 0.200);
+  margin: 5px 0px 10px 0px;
+  font-size: large;
 }
-input:focus{
+#inputDiv input:focus{
   border-bottom: 3px solid rgba(187, 134, 252, 0.500);
     outline: none;
-    transition: 0.5s;
 }
-input[type=text]:focus {
-  width: 70%;
-}
+
 #loadDiv{
-    background-color:  rgba(187, 134, 252, 0.100);
     min-height: 120px;
     margin-bottom: 10px;
+    width: 100%;
 }
-#loadDiv button:nth-child(even) {
-    background-color: #EEEEEE;
-    color: black;
+.same{
+  background-color:  #121212;
+  color: #EEEEEE;
+  padding: 2px 1px 1px 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.5;
+  width: 100%;
 }
 
 #loadDiv button:hover {
@@ -68,9 +79,8 @@ input[type=text]:focus {
     background-color: #BB86FC;
 }
 #titleBody{
-    border: 3px solid rgba(187, 134, 252, 0.200);
-    border-radius: 5px;
-    width: 100%;
+    border-left: 3px solid rgba(187, 134, 252, 0.200);
+    margin-left: 250px;
     color: white;
     min-height: 800px;
     padding: 10px;
@@ -138,11 +148,11 @@ input[type=text]:focus {
     white-space: pre-line;
     width: 100%;
   }
-  @media (max-width : 600px){
-    input {
-      width: 70%;
+  @media (max-width : 700px){
+    #titleBody{
+      margin-left: 0;
     }
-    input[type=text]:focus {
-      width: 80%;
+    #searchBar{
+      width: 0;
     }
   }

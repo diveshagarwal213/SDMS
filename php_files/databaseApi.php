@@ -13,7 +13,7 @@ $db = new Database();
 
 if ($api_id == 3) { //fetch all data of a single title from given tid  
     
-    $id = $data['id'];
+    $id =$_GET['id'];
 
     $db->select("topics","*",null,"tid = '$id'");
     echo $db->getResult();

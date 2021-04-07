@@ -63,98 +63,116 @@
       </div>
     </div>
     <!--Section-x End-->
-
-    <div id="inputDiv">
-        <input type="text" id="searchBox" placeholder="Type at least 3 characters">
-        <img src="css/icons/search_icon.svg" alt="search">
+    <div id="mobNav">
+        <button id="searchBar_btn"> &#9776; </button>
     </div>
-    <div id="loadDiv"></div>
-    <div id="titleBody">
-      <h1 id="h1"></h1>
-      <button class ="youtubeBtn">Youtube</button>
-      <div class="ytcont">
-        <iframe class="responsiveif"  frameborder="0" allowfullscreen></iframe>
+    <div id="mainBox">
+      <div id="searchBar">
+        <div id="inputDiv">
+          <input type="text" id="searchBox" placeholder="More than 2 words  ...search">
+          <!--<img src="css/icons/search_icon.svg" alt="search">-->
+        </div>
+        <div id="loadDiv"></div>
+        <div id="popular"></div>
+        <div id="recents"></div>
       </div>
-      <p id="t1" ></p>
-      <h1 id="h2"></h1>
-      <p id="t2"></p>
-      <h1 id="h3"></h1>
-      <p id="t3"></p>
+      <div id="titleBody">
+      <h2>Default Text</h2>
+        
+        <h1 id="h1"></h1>
+        <button class ="youtubeBtn">Youtube</button>
+        <div class="ytcont">
+          <iframe class="responsiveif"  frameborder="0" allowfullscreen></iframe>
+        </div>
+        <p id="t1" ></p>
+        <h1 id="h2"></h1>
+        <p id="t2"></p>
+        <h1 id="h3"></h1>
+        <p id="t3"></p>
+      </div>
+    </div>
+
+    <div id="message_box">
+        <div id="success"></div>
+        <div id="error"></div>
     </div>
     <?php include "footer.php"?>
+    
+    <script src="functions.js"></script>
 
     <script>
 
-      $(document).ready( function(){
 
-        //key up
-        $("#searchBox").keyup(function () {
-          if(this.value.length >= 3){
-            var search1 = $("#searchBox").val();
-            $("#loadDiv").html(""); 
-            //console.log(search1);   
-            $.ajax({
-              url: "http://localhost/sdms/php_files/databaseApi.php?api_id=7&search=" + search1,
-              type: "GET",
-              success: function(data){
-                if(data[0].status == false){
-                    $("#loadDiv").append("<tr><td><h2>" + data[0].message + "</h2></td></tr>"); 
-                }else{
-                  $.each(data, function(key, value){
-                    $("#loadDiv").append("<button class='same' data-id='" + value.tid + "'>" + value.title + "</button>");
-                  });
-                }
-              }
+      let test = async (url) => {
+        try {
+          const response = await fetch(url);
+          const res = await response.json();
+          //console.log(res);
+          if(res[0].status == false){
+            throw new Error('test status false')
+          }else{
+            return res;
+          } 
+        } catch (error) {
+            console.log(`${error}. so, tata bye bye `);
+            //message("no record found", false);
+        }
+      };
+      
+      //search Notes
+      $("#searchBox").keyup( function ()  {
+        $("#loadDiv").html(""); 
+        if(this.value.length >= 3){
+          var serach_key = $("#searchBox").val();
+          test(`http://localhost/sdms/php_files/databaseApi.php?api_id=7&search=${serach_key}`)
+          .then( data => {
+            $.each(data, (key, value) => {
+              $("#loadDiv").append(`<button class= "same" data-id= "${value.tid}"  > ${value.title} </button>`);
             });
           }
-        })
-
-        //load tbody
-        $(document).on("click",".same", function(){
-            var idarr = $(this).data("id");
-            var idobj = {id: idarr};
-            var idjson = JSON.stringify(idobj);
-            //console.log(idjson);
-            $.ajax({
-                url:"http://localhost/sdms/php_files/databaseApi.php?api_id=3",
-                type:"POST",
-                data: idjson,
-                success: function(data){
-                  //console.log(data);
-                  if(data.status == false){
-                    alert(data.message);
-                  }else{
-                    $("#title").html(data[0].title);
-                    $("#h1").html(data[0].h_one);
-                    $("#t1").html(data[0].t_one);
-                    $("#h2").html(data[0].h_two);
-                    $("#t2").html(data[0].t_two);
-                    $("#h3").html(data[0].h_three);
-                    $("#t3").text(data[0].t_three);
-                    if (data[0].youtube_link != null) {
-                      $(".responsiveif").attr("src","https://www.youtube.com/embed/" + data[0].youtube_link);
-                      $(".youtubeBtn").slideDown(1000);
-                    }else{
-                      $(".youtubeBtn").slideUp(500);
-                    }
-                  }
-                }
-            });
+          );
+        }
+      });
+      
+      //load body
+      $(document).on('click','.same', function(){
+        var id = $(this).data("id");
+        test(`http://localhost/sdms/php_files/databaseApi.php?api_id=3&id=${id}`)
+        .then(data => {
+          console.log(data);
+          $("#title").html(data[0].title);
+          $("#h1").html(data[0].h_one);
+          $("#t1").html(data[0].t_one);
+          $("#h2").html(data[0].h_two);
+          $("#t2").html(data[0].t_two);
+          $("#h3").html(data[0].h_three);
+          $("#t3").text(data[0].t_three);
+          $(".responsiveif").attr("src","https://www.youtube.com/embed/" + data[0].youtube_link);
+            $(".youtubeBtn").slideDown(1000);
         });
-        
+      });
+
+      //ready document
+      $(document).ready( function(){
         //active button color
         $(document).on("click",".same", function(){
-            $("#loadDiv button:nth-child(even)").css({"background-color": "#EEEEEE"});
-            $("#loadDiv button:nth-child(odd)").css({"background-color": "#121212"});
+            $("#loadDiv button").css({"background-color": "#121212"});
             $(this).css({"background-color": "rgba(187, 134, 252, 0.300)"});
         });
         //youtube btn
         $(document).on("click",".youtubeBtn", function(){
             $(".ytcont").slideToggle(600);
         });
-
+        //media searchBar
+        $(document).on("click","#searchBar_btn", function(){
+          var width = $("#searchBar").width();
+          if (width >= 10) {
+            $("#searchBar").css({"width": 0});
+          }else{
+            $("#searchBar").css({"width": 250});
+          }
+        });
       });//ready
-        
     </script>
 </body>
 </html>
