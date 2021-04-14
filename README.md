@@ -1,2 +1,2 @@
 # SDMS
-Learning git and its my collage project.
+Learning git and its my college project.
