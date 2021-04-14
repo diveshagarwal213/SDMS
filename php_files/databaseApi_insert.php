@@ -17,9 +17,10 @@ if($api_id == 1){ //insert new user data into data base
     $fullname = $data['fullname'] ;
     $username = $data['username'];
     $email = $data['email'] ;
+    $pass = $data['password'];
     $password = md5($data['password']);
 
-    if ($fullname == "" || $username == "" || $email == "" || $password == "") {
+    if ($fullname == "" || $username == "" || $email == "" || $pass == "") {
 
         echo json_encode(array( "message" => "please fillup all ", "status" => false));
 
